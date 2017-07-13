@@ -1,34 +1,11 @@
-# NYPL Map Warper
+# Map Warper for MapStory
 
-This software has been developed by Topomancy LLC with the support and
-collaboration of the New York Public Library.
+This project is forked from the NYPL Map Warper and altered to
+provide integration with MapStory.
 
-You can see this code in action at http://maps.nypl.org/.
+If you're interested in the project it's best to use the NYPL version
+which is available at https://github.com/nypl-spacetime/nypl-warper
 
----
-
-Consult the wiki for for more documentation including a report detailing the changes in this version compared with the previous version. https://github.com/NYPL/nypl-warper/wiki
-
---- 
-
-The NYPL Map Warper is an open source map geo-rectification, warping and georeferencing application.
-It enables a user to browse and explore the NYPL's historical map collection, and by placing control points on a reference map and the image, to warp it, to stretch it to fit.
-
-![Map Warper screenshot of main interface](/app/assets/images/Screenshot_MapWarper.png?raw=true "Map Warper screenshot of main interface")
-
-The application can be seen in use at http://maps.nypl.org
-
-The application is a web based crowdsourced geospatial project that enables people and organisations to collaboratively publish images of maps online and digitize and extract vector information from them. 
-
-Users rectify, warp or stretch images of historical maps with a reference basemap, assigning locations on image and map that line up with each other. Often these historical maps were in big paper books, and so for the first time they can be stitched together and shown as a whole, in digital format.
-
-Users can crop around the maps, and join them together into layers.
-
-By georeferencing the images, they can be warped or georectified to match the locations in space, and used in GIS software and other services. One such use of these warped maps is an application that that helps people digitize, that is, trace over the maps to extract information from them. For example, buildings in 18th Century Manhattan, details changing land use, building type etc. This application is called the Digitizer.
-
-The application runs as a Ruby on Rails application using a number of open source geospatial libraries and technologies, including PostGIS, Mapserver, Geoserver, and GDAL tools.
-
-The resulting maps can be exported as a PNG, GeoTIFF, WMS, Tiles, and KML for use in many different applications.
 
 
 ## Features
@@ -105,7 +82,7 @@ In addition have a look in `config/initializers/application_config.rb `for some 
 
 Create a postgis database
 
-    sudo -u postgres createdb mapwarper_development
+d    sudo -u postgres createdb mapwarper_development
     psql mapwarper_development -c "create extension postgis;"
     RAILS_ENV=development bundle exec rake db:migrate
 
@@ -150,9 +127,9 @@ After that runs, type `vagrant ssh` to login and then you can:
 
 Create a user in the console, as [shown above](#database-initialization) and then `exit`. Then start the server in a relative url root use `thin`:
 
-    RAILS_ENV=development bundle exec thin --prefix=/warper start
+    rails s -b 0.0.0.0
 
-and then browse to `http://localhost:3000/warper/`
+and then browse to `http://localhost:3000/`
 
 In non-Vagrant circumstances you may want to run it just using `rails s`.
 

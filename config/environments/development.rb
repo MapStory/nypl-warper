@@ -25,7 +25,10 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
+
+  # Allow web console when using vagrant
+  config.web_console.whitelisted_ips = '10.0.2.2'
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
@@ -35,6 +38,4 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.active_record.raise_in_transactional_callbacks = true
-  config.action_controller.relative_url_root = "/warper"  #for use when starting app: 'RAILS_ENV=development bundle exec thin --prefix=/warper start'
-  config.action_mailer.default_url_options = { :script_name => "/warper" }
 end

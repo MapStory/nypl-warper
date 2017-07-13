@@ -13,26 +13,6 @@
     color: #191970;
 }
 
-#nypl_bar {
-  background: asset_url("nypl-bar-logo.png") no-repeat scroll 10px 50% #000000;
-  color: #AAAAAA;
-  font-size: 14px;
-  padding: 4px 18px 4px 60px;
-  position: relative;
-  font-family: "Kievit","Myriad Pro","Lucida Grande","Calibri","verdana","arial","helvetica","sans-serif";     }
-
-#nypl_bar {
-  color: #AAAAAA;
-  font-size: 14px; }
-
-#nypl_bar a, #nypl_bar a:link, #nypl_bar a:visited {
-  color: #FFFFFF;     }
-
-#nypl_bar form {
-  display: inline;
-  margin-left: 20px;
-}
-
 #Export, #clipping_mask_buttons, #map_table, #Activity {
   a, a:link, a:visited {
     text-decoration: underline;

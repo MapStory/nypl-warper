@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_self
+ *= require reset
  *= require openlayers/theme/default/style
  *= require custom-theme/jquery-ui-1.7.custom
  *= require tabs

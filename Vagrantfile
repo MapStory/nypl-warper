@@ -30,6 +30,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 4096
     v.cpus = 2
     # v.customize [ "modifyvm", :id, "--hwvirtex", "off", "--memory", 1024, "--cpus", 1 ]
+    v.customize [
+      "storagectl", :id,
+      "--name", "SATAController",
+      "--hostiocache", "on"
+    ]
   end
 
   

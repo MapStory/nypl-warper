@@ -111,6 +111,8 @@ Creating a new user
     permission.user = user
     permission.save
 
+Also, you can run `rake db:seed` to add in a default admin user
+
 
 ## Development 
 

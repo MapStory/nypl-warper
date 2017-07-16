@@ -43,7 +43,11 @@ gem "omniauth-mediawiki"
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 
-gem 'pg'
+
+# Locked to .20 to prevent deprecation warnings
+# This is fixed in rails 5.0
+gem 'pg', '0.20.0'
+
 #gem 'activerecord-postgis-adapter'
 gem 'activerecord-postgis-adapter', '~>3.0'
 

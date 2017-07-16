@@ -170,7 +170,7 @@ GEM
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
-    pg (0.21.0)
+    pg (0.20.0)
     proxies (0.2.1)
     public_suffix (2.0.5)
     rack (1.6.8)
@@ -303,7 +303,7 @@ DEPENDENCIES
   omniauth-twitter
   paper_trail (~> 4.0.0.rc1)
   paperclip (~> 4.2.0)
-  pg
+  pg (= 0.20.0)
   rack-attack (~> 3.0)
   rails (= 4.2.3)
   redis-activesupport

@@ -1,1 +1,120 @@
 // MapStory specific styles
+
+// General theme stuff
+p, ul {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+
+
+h1.site-title {
+	background: asset-url("mswarperlogo.png") no-repeat;
+	background-size: 100%;
+
+	width: 350px;
+  height: 45px;
+  text-indent: -9999px;
+  margin: 0;
+  float: left;
+}
+
+
+
+
+footer.site-footer {
+  color: #e0e0e0;
+  background: #333333;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+footer.site-footer a:visited {
+    color: #2286A7;
+}
+footer.site-footer a:link {
+    color: #2286A7;
+}
+
+.site-footer {
+  width: 100%;
+  max-width: 100%;
+  margin-top: initial;
+  padding: 37px;
+}
+
+.site-footer .footer-column {
+    color: #a7a7a7;
+    display: block;
+    float: left;
+    margin-right: 2.3576516%;
+    width: 30.7615656%;
+    font-size: 22px;
+}
+
+
+.site-footer {
+	.footer-column {
+
+		h3 {
+			font-weight: 900;
+		}
+	}
+}
+
+
+////// Buttons!
+
+.button-style-1 {
+    background-color: #da4627;
+    color: #FFFFFF;
+    border: none;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 18px;
+    padding: 14px 12px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    font-family: 'Lato', sans-serif;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+
+
+
+
+// MapStory clearfix (from bootstrap)
+
+.clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical>.btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
+    clear: both;
+}
+.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical>.btn-group:before, .btn-group-vertical>.btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+    content: " ";
+    display: table;
+}

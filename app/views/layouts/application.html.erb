@@ -3,7 +3,7 @@
   <head>
     <title>MapStory Map Warper: <%= (@html_title) || ''-%></title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <%= javascript_include_tag "openlayers/2.8/OpenLayers-2.8/OpenLayers" %>
     <%= javascript_include_tag 'application' %>
     
@@ -20,13 +20,17 @@
     <% if read_only_mode %>
       <%= render :partial => 'shared/read_only' %>
     <% end %>
-      
+    
+    <%= render "header" %>
+
     <div id="headerDiv" class="headerDiv">
       <h1><%= link_to "NYPL Map Warper", root_path %></h1>
       <%= render :partial => 'shared/header' %>
       <%= render :partial => 'shared/nav' %>
     </div>
+
     <%= breadcrumbs "application" %>
+    
     <div id="warper-maindiv">
 
       <%= flash_messages %>
@@ -34,13 +38,8 @@
       <%= yield %>
     </div>
 
-    <div id="footer">
-        New York Public Library
-        <%= render :partial => 'shared/legal' %>
-    </div>
+    <%= render "footer" %>
 
     <%= render :partial => 'shared/analytics' %>
-
-
   </body>
 </html>

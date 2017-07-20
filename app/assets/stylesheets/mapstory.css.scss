@@ -1,6 +1,21 @@
 // MapStory specific styles
+* {
+  box-sizing: border-box;
+}
 
 // General theme stuff
+body {
+  
+  color: #333333;
+  font-size: 16px;
+  line-height: 22px;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  position: relative;
+}
+
 p, ul {
   font-size: 18px;
   font-weight: 200;
@@ -23,16 +38,10 @@ h1.site-title {
   float: left;
 }
 
-
-
-
-footer.site-footer {
-  color: #e0e0e0;
-  background: #333333;
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 0.9em;
+.site-footer .footer-column:last-child {
+    margin-right: 0;
 }
+
 
 footer.site-footer a:visited {
     color: #2286A7;
@@ -42,10 +51,22 @@ footer.site-footer a:link {
 }
 
 .site-footer {
+  color: #e0e0e0;
+  background: #333333;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.9em;
+
   width: 100%;
   max-width: 100%;
   margin-top: initial;
   padding: 37px;
+}
+
+.site-footer .footer-version {
+  font-size: 14px;
+  font-weight: 200;
+  text-align: right;
 }
 
 .site-footer .footer-column {
@@ -62,7 +83,8 @@ footer.site-footer a:link {
 	.footer-column {
 
 		h3 {
-			font-weight: 900;
+			font-weight: 400;
+      font-style: bold;
 		}
 	}
 }

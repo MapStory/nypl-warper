@@ -370,16 +370,6 @@ ul.list {
   color: #00FF00;
 }
 
-body
-{
-  	background: #fff;
-	font-family:Lato, 'Segoe UI', 'Lucida Grande', 'Century Gothic', Helvetica, Arial, Verdana, sans-serif; 
-	line-height:1.5; 
-	font-size:100%;
-	color: #666; 
-	font-size:16px;
-}
-
 h1 {
 font-size: 28px; 	
 }
@@ -392,6 +382,7 @@ h3 {
 font-size: 24px;
 }
 
+// This includes some mapstory specific tweaks as well
 h1,h2,h3,h4,h5,h6 {
   margin-top: 20px;
   margin-bottom: 10px;

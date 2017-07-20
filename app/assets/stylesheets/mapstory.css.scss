@@ -94,40 +94,46 @@ footer.site-footer a:link {
 ////// Buttons!
 
 .button-style-1 {
-    background-color: #da4627;
-    color: #FFFFFF;
-    border: none;
+  background-color: #da4627;
+  color: #FFFFFF;
+  border: none;
 }
 
 .button {
-    display: inline-block;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 18px;
-    padding: 14px 12px;
-    width: 200px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    font-family: 'Lato', sans-serif;
+  display: inline-block;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 18px;
+  padding: 14px 12px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: 'Lato', sans-serif;
 }
 
 .button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
 
 .button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
 }
-
+.button:hover span {
+  padding-right: 25px;
+}
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 
 

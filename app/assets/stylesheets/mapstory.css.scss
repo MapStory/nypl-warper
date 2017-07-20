@@ -38,11 +38,11 @@ h1.site-title {
   float: left;
 }
 
-.site-footer .footer-column:last-child {
-    margin-right: 0;
-}
 
 
+//
+// Footer
+//
 footer.site-footer a:visited {
     color: #2286A7;
 }
@@ -61,33 +61,34 @@ footer.site-footer a:link {
   max-width: 100%;
   margin-top: initial;
   padding: 37px;
-}
 
-.site-footer .footer-version {
-  font-size: 14px;
-  font-weight: 200;
-  text-align: right;
-}
 
-.site-footer .footer-column {
+  .footer-column {
     color: #a7a7a7;
     display: block;
     float: left;
     margin-right: 2.3576516%;
     width: 30.7615656%;
     font-size: 22px;
-}
-
-
-.site-footer {
-	.footer-column {
-
-		h3 {
-			font-weight: 400;
+    
+    h3 {
+      font-weight: 400;
       font-style: bold;
-		}
-	}
+    }
+  }
+
+
+  .footer-column:last-child {
+    margin-right: 0;
+  }
+
+  .footer-version {
+    font-size: 14px;
+    font-weight: 200;
+    text-align: right;
+  }
 }
+
 
 
 ////// Buttons!

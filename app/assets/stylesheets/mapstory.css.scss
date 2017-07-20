@@ -30,10 +30,21 @@ p {
 // Header and menu
 //
 
+.logo-wrapper {
+    position: relative;
+    width: 350px;
+    margin-top: 5px;
+}
+
+header.navigation nav {
+    float: right;
+    min-height: 50px;
+    z-index: 9999999;
+}
+
 h1.site-title {
 	background: asset-url("mswarperlogo.png") no-repeat;
 	background-size: 100%;
-
 	width: 350px;
   height: 45px;
   text-indent: -9999px;
@@ -41,24 +52,27 @@ h1.site-title {
   float: left;
 }
 
-header.navigation ul li.nav-link a {
-  color: #616161;
-  display: inline-block;
-  text-decoration: none;
-}
 
 
 header.navigation ul li.nav-link {
-    font-family: 'Lato', Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 0.85em;
-    display: block;
-    line-height: 50px;
-    overflow: hidden;
-    padding-right: 0.8em;
-    text-align: left;
-    width: 100%;
-    z-index: 9999;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.85em;
+  display: inline;
+  line-height: 50px;
+  overflow: hidden;
+  padding-right: 0.8em;
+  text-align: left;
+  width: auto;
+  background: transparent;
+  z-index: 9999;
+}
+
+header.navigation ul li.nav-link a {
+    color: #616161;
+    display: inline-block;
+    text-decoration: none;
+    padding-right: 1em;
 }
 
 header.navigation .search-bar {
@@ -69,56 +83,13 @@ header.navigation .search-bar {
     width: 16em;
 }
 
-// Not really needed?
-header.navigation .search-bar form {
-    position: relative;
-}
 
-header.navigation .search-bar form input[type=search] {
-    font-family: 'Lato', Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 0.85em;
-    background: #f5f5f5;
-    border: 1px solid #e7e7e7;
-    border-radius: 6px;
-    box-sizing: border-box;
-    color: #424242;
-    font-style: italic;
-    margin: 0;
-    padding: 3px 8px;
-    width: 100%;
-}
-header.navigation .search-bar form button[type=submit] {
-    background: #f5f5f5;
-    border: 0;
-    bottom: 0.3em;
-    left: auto;
-    outline: none;
-    padding: 0 9px;
-    position: absolute;
-    right: 0.3em;
-    top: 0.3em;
-    color: #757575;
-}
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
+
+
+
+
+
 
 
 //

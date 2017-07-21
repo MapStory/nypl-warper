@@ -1,70 +1,8 @@
-
-
-textarea.import_log { 
-  width:auto;
-  height: auto; 
-}
-
 input.date-field{
   width:100px;
 }
 
-input.uuid-field{
-  width:400px;
-}
-div#import_count{
- font-weight: bold;
- font-size: larger;
- text-decoration: underline;
-}
 
-p.import-blurb{
-  padding-left:2em;
-  padding-right:2em;
-  padding-bottom:1em;
-  font-size: smaller;
-}
-
-tr.import-maps textarea{
-    margin-left:4.5em;
-}
-tr.import-maps input{
-    margin-left:4.5em;
-}
-span.import-span-map{
-    margin-left:4em;
-}
-tr.import-maps input.import-textfield-map{
-    width: 25em;
-}
-tr.import-maps textarea.import-textarea-map{
-    width: 25em;
-    height: 6em;
-}
-tr.import-maps label{
-    width: 4em;
-    float: left;
-    margin-right: 0.2em;
-    display: block
-}
-tr.import-maps label.import-delete-map{
-    margin-left: 2em;
-    width: 3em;
-    text-align: center;
-    width: auto;
-}
-
-div.import_error_messages div.error_messages {
-  border: 3px solid #EEC;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5px;
-
-
-  font-weight: 700;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
 
 div.comment {
   padding-bottom: 5px;
@@ -1471,17 +1409,12 @@ div.olControlMousePosition
 	color: #191970;
 }
 
-fieldset#import-fieldset{
-  width: 80%;
-  padding-bottom: 1em;
-  padding-top: 1em;
-}
-fieldset#control_panel_fieldset, fieldset#import-fieldset { 
+fieldset#control_panel_fieldset { 
   border:1px solid green;
   padding-left: 0.3em;
   padding-right: 0.3em;
 }
-fieldset#control_panel_fieldset legend, fieldset#import-fieldset legend {
+fieldset#control_panel_fieldset legend {
   padding: 0.2em 0.5em;
   border:1px solid green;
   color:green;

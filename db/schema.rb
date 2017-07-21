@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512195825) do
+ActiveRecord::Schema.define(version: 20170721023046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,19 +93,6 @@ ActiveRecord::Schema.define(version: 20160512195825) do
   end
 
   add_index "gcps", ["soft"], name: "index_gcps_on_soft", using: :btree
-
-  create_table "imports", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "status"
-    t.integer  "import_type"
-    t.string   "uuid"
-    t.string   "since_date"
-    t.string   "until_date"
-    t.string   "log_filename"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.datetime "finished_at"
-  end
 
   create_table "layer_properties", force: :cascade do |t|
     t.integer "layer_id"

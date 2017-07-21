@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get '/maps/activity' => 'versions#for_map_model', :as => "maps_activity"
   
-  resources :maps,:except => [:edit, :update, :destroy, :new, :create]  do
+  resources :maps do
     member do
       get 'inset_maps'
       post 'create_inset'

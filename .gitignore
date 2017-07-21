@@ -17,3 +17,4 @@ db/maptileindex/*
 db/*.dump
 fixtures/vcr_cassettes/*.yml
 public/assets
+public/uploads

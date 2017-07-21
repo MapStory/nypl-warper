@@ -25,6 +25,12 @@ class Map < ActiveRecord::Base
   validates_length_of :issue_year, :maximum => 4,:allow_nil => true, :allow_blank => true
   validates_numericality_of :issue_year, :if => Proc.new {|c| not c.issue_year.blank?}
 
+  has_attached_file :upload, :styles => {:thumb => ["256x256>", :png]} ,
+    :url => '/:attachment/:id/:style/:basename.:extension'
+  validates_attachment_size(:upload, :less_than => MAX_ATTACHMENT_SIZE) if defined?(MAX_ATTACHMENT_SIZE)
+  validates_attachment_content_type :upload, content_type: /\Aimage\/.*\z/
+
+
   acts_as_commentable
   acts_as_enum :map_type, [:index, :is_map, :not_map ]
   acts_as_enum :status, [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
@@ -242,11 +248,7 @@ class Map < ActiveRecord::Base
   def masked_src_filename
     self.unwarped_filename + "_masked";
   end
-  
-  def thumb
-    "http://images.nypl.org/?t=t&id="+self.nypl_digital_id
-  end
-  
+    
   #############################################
   #INSTANCE METHODS
   #############################################

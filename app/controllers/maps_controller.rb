@@ -20,7 +20,45 @@ class MapsController < ApplicationController
   helper :sort
   include SortHelper
   
-  
+  def new
+    @map = Map.new
+    @html_title = "Upload a new map to "
+    @max_size = Map.max_attachment_size
+    if Map.max_dimension
+      @upload_file_message  = " It may resize the image if it's too large (#{Map.max_dimension}x#{Map.max_dimension}) "
+    else
+      @upload_file_message = ""
+    end
+  end
+
+  def create
+    @map = Map.new(map_params)
+    
+    if user_signed_in?
+      @map.users << current_user
+    end
+
+    respond_to do |format|
+      if @map.save
+        flash[:notice] = 'Map was successfully created.'
+        format.html { redirect_to(@map) }
+      else
+        format.html { render :action => "new", :layout =>'application' }
+      end
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
+  end
  
   
   ###############
@@ -501,13 +539,6 @@ class MapsController < ApplicationController
     end
     
   end
-
-  def thumb
-    map = Map.find(params[:id])
-    thumb = "http://images.nypl.org/?t=t&id=#{map.nypl_digital_id}"
-    
-    redirect_to thumb
-  end
   
   
   def map_type
@@ -949,12 +980,13 @@ class MapsController < ApplicationController
     end
   end
 
+  # TODO: Clean this up - most of these are missing fields
   def map_params
     params.require(:map).permit(:title, :description, :tag_list, :map_type, :subject_area, :unique_id, 
       :source_uri, :call_number, :publisher, :publication_place, :authors, :date_depicted, :scale,
       :metadata_projection, :metadata_lat, :metadata_lon, :public,
       "published_date(3i)", "published_date(2i)", "published_date(1i)", "reprint_date(3i)", 
-      "reprint_date(2i)", "reprint_date(1i)", :upload_url, :upload ) 
+      "reprint_date(2i)", "reprint_date(1i)", :upload ) 
   end
   
   def choose_layout_if_ajax

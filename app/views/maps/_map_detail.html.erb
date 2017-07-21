@@ -3,7 +3,7 @@
 <tr>
   <% cl = cycle('table0', 'table1') %>
   <td class="<%= cl %>">
-    <%=  image_tag(map.thumb) %>
+    <%= image_tag(@map.upload.url(:thumb)) %>
   </td>
   <td class="<%= cl %>">
     <span class="maplist_title">
@@ -81,11 +81,6 @@
         <% end -%>
       <% end -%>
 
-      <% if map.parent && map.inset_maps.empty? %>
-        <%= link_to 'View on Digital Collections', "http://digitalcollections.nypl.org/items/#{map.parent.mods_uuid}" -%>
-      <%else %>
-        <%= link_to 'View on Digital Collections', "http://digitalcollections.nypl.org/items/#{map.mods_uuid}" -%>
-      <% end %>
 
       <% if !admin_authorized? && map.published? %>
         | <strong>Published [<a href="#" title="This map has been published by an admin and no further editing is possible.">?</a>]</strong>
@@ -107,11 +102,6 @@
     
         <% end %>
   
-        <% form_id = "map_import_form#{map.id}" %>
-        <%= link_to('Re-import Map', reimport_map_path(:id => map), :method => :post, :class => "buttonWarper", :data => {:confirm => "really reimport this map?"} ) -%>
-        <%#= form_for(map, url: url_for(action: "reimport", controller: "maps"), html: {:id=>form_id, :class => "map-type-form"}, method: "post") do |f| %>
-          <%#= f.submit "Re-import Map" %>
-        <%# end %>
   
       <% end -%>
 

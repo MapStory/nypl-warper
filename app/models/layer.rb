@@ -26,12 +26,7 @@ class Layer < ActiveRecord::Base
   end
 
   def tileindex_path;  File.join(tileindex_dir, tileindex_filename) ;  end
-  
-  def thumb    
-    id = self.maps.first ? self.maps.first.nypl_digital_id : 0
-    "http://images.nypl.org/?t=t&id="+id.to_s
-  end
-  
+    
   def update_layer
     create_tileindex
     set_bounds

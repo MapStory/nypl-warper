@@ -232,10 +232,6 @@
       <%= render :partial => 'shared/read_only' %>
     <% end %>
       
-      <div id="headerDiv" class="headerDiv">
-      <h1><%= link_to "NYPL Map Warper", root_path %></h1>
-      <%= render :partial => 'shared/header' %>
-    </div>
     <%= breadcrumbs %>
     <table id="map_table">
       <%= render :partial => 'maps/map_detail', :object => @map, :locals => {:variety => "detail"} %>

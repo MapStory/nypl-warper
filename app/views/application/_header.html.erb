@@ -1,9 +1,7 @@
 <header class="navigation" role="banner">
 	<div class="navigation-wrapper container">
 		<div class="logo-wrapper">
-			<a href="/" target="_self">
-				<h1 class="site-title">MapStory Warper</h1>
-			</a>			
+			<a href="/" target="_self"><h1 class="site-title">MapStory Warper</h1></a>
 		</div>
 		
 		<nav role="navigation">
@@ -14,12 +12,26 @@
 				<li class="nav-link"><%= link_to "Layers", layers_path %></li>
 				<li class="nav-link"><%= link_to "Find layers", geosearch_layers_path %></li>
 				
-
-				<li class="nav-link"><%= link_to "Log In", new_user_session_path %></li>
+				<% if user_signed_in? %>
+					<% if current_user.has_role?("administrator") || current_user.has_role?("super user") %>
+						<li class="nav-link"><%= link_to "Admin", admin_path %></li>
+					<% end %>
+					<li class="nav-link"><%= link_to "Account", user_path(current_user) %></li>
+				<% else %>
+					<li class="nav-link"><%= link_to "Log In", new_user_session_path %></li>
+				<% end %>
 			</ul>
+
+			<%# We may want only these personalized links - do we provide any public warping? %>
+			<%#= link_to "My Maps", my_maps_path(current_user) %>
+			<%#= link_to "My Activity", user_activity_path(current_user) %>
+			<%#= link_to "Settings", edit_user_registration_path %>
+			<%#= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+
+			<%#= link_to "Create Account", new_user_registration_path %>
+
+			<%# An additional ul.navigation-menu can be added here, which will show up %>
+			<%# below the existing menu %>
 		</nav>
-
-		<%# Add admin links here, as a second tier menu %>
-
 	</div>
 </header>

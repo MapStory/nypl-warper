@@ -99,7 +99,6 @@ div.export_float_div {
 background-color:#FF0;
 z-index:5000;
 position: absolute;
-// background: url(http://s7.addthis.com/static/t00/atbkg.png);
 padding: 5px !important;
 line-height: 1.3em !important;
 overflow: visible !important;
@@ -135,16 +134,6 @@ div#export_window_content ul{
 list-style-type: none;
 margin-left: 0px;
 padding-left: 0px;
-}
-
-div.addthis_toolbox {
-float:left;
-font-style: normal;
-padding-right: 0.5em;
-}
-
-a.addthis_button_compact{
-  font-size:12px;
 }
 
 #view-maps-index-link {

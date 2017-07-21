@@ -56,14 +56,6 @@
         <%= link_to("Download KML", map_url(:id => map, :format=>:kml)) -%>
       <% end -%>
     </div>
-    <div class="map_links">
-        Bibiliographic records:
-        <% if map.parent && map.inset_maps.empty? %>
-          <%= link_to 'Digital Collections', "http://digitalcollections.nypl.org/items/#{map.parent.mods_uuid}" -%>
-        <% else %>
-          <%= link_to 'Digital Collections', "http://digitalcollections.nypl.org/items/#{map.mods_uuid}" -%>
-        <% end %>        
-    </div>
 
   </td>
   <td>

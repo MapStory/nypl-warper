@@ -756,7 +756,7 @@ class MapsController < ApplicationController
   include Mapscript
 
   def wms
-    
+    Rails.logger.debug "We're in WMS! Looking for #{params[:id]}"
     @map = Map.find(params[:id])
     #status is additional query param to show the unwarped wms
     status = params["STATUS"].to_s.downcase || "unwarped"

@@ -9,6 +9,8 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_tag "jQuery.noConflict();" -%>
 
+    <%# Used for editing / viewing maps %>
+
     <script type="text/javascript">
       if(typeof maps === 'undefined'){
         var maps = {};
@@ -229,6 +231,7 @@
       <%= render :partial => 'shared/read_only' %>
     <% end %>
       
+    <%= render "header" %>
     <%= breadcrumbs %>
     <table id="map_table">
       <%= render :partial => 'maps/map_detail', :object => @map, :locals => {:variety => "detail"} %>
@@ -267,6 +270,7 @@
 
     </div>
 
+    <%= render "footer" %>
     <%= render :partial => 'shared/analyticsbottom', :locals => {
       :map => @map, :current_tab => @current_tab
       } %>

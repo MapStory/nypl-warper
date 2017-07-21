@@ -31,15 +31,18 @@ p {
 //
 
 .logo-wrapper {
-    position: relative;
-    width: 350px;
-    margin-top: 5px;
+  position: relative;
+  width: 350px;
+  margin-top: 8px;
+
+  // Match footer
+  padding-left: 37px;
 }
 
 header.navigation nav {
-    float: right;
-    min-height: 50px;
-    z-index: 9999999;
+  float: right;
+  min-height: 50px;
+  z-index: 9999999;
 }
 
 h1.site-title {

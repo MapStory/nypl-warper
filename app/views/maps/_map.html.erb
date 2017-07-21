@@ -1,7 +1,8 @@
 <tr>
   <td>
     <a name="a-map-row-<%=map.id%>"></a>
-<%= link_to image_tag("http://images.nypl.org/?t=t&id=#{map.nypl_digital_id}", :height=>'80'), map %>
+
+<%= link_to image_tag(map.upload.url(:thumb)), map %>
   </td>
   <td>
     <div class="maplist_title">

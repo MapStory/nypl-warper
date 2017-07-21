@@ -975,6 +975,8 @@ class MapsController < ApplicationController
 
     @map = Map.find(params[:id])
 
+    Rails.logger.debug "Map status is #{@map.status}"
+
     if @map.status.nil? or @map.status == :unloaded or @map.status == :loading 
       redirect_to map_path
     end

@@ -142,9 +142,6 @@
     <% if read_only_mode %>
       <%= render :partial => 'shared/read_only' %>
     <% end %>
-      
-    <%= breadcrumbs %>
-
 
     <table id="map_table">
       <%= render :partial => 'layers/layer_detail', :object => @layer, :locals => {:variety => "detail"} %>

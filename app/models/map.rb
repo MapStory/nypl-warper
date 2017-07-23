@@ -68,7 +68,8 @@ class Map < ActiveRecord::Base
   end
   
   
-  #paperclip plugin deletes the images when model is destroyed
+  # paperclip plugin deletes the images when model is destroyed
+  # we just need to take care of things paperclip isn't aware of.
   def delete_images
     logger.info "Deleting map images"
     if File.exists?(temp_filename)
@@ -82,10 +83,6 @@ class Map < ActiveRecord::Base
     if File.exists?(warped_png_filename)
       logger.info "deleted warped png"
       File.delete(warped_png_filename)
-    end
-    if File.exists?(unwarped_filename)
-      logger.info "deleting unwarped"
-      File.delete unwarped_filename
     end
   end
   

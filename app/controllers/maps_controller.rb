@@ -60,11 +60,21 @@ class MapsController < ApplicationController
   end
 
   def update
-    # TODO: Wire up
+    @map = Map.find(params[:id])
+    respond_to do |format|
+      if @map.update(map_params)
+        format.html { redirect_to @map, notice: 'Map was successfully updated.' }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
   end
 
   def destroy
-    # TODO: Wire up
+    @map.destroy
+    respond_to do |format|
+      format.html { redirect_to maps_url }
+    end
   end
  
   

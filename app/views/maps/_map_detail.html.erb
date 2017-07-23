@@ -73,8 +73,8 @@
       <% if user_signed_in? %>
         <% current_user_maps = current_user.maps %>
         <% if current_user_maps.to_a.include?(map) %>
-          <%= link_to('Remove from My Maps',
-            destroy_my_map_path(:user_id => current_user, :map_id => map), :method => :post, :data => {:confirm => "really remove this map from your list?"} ) -%>  |
+          <%= link_to('Remove from My Maps', destroy_my_map_path(:user_id => current_user, :map_id => map), :method => :post, :data => {:confirm => "really remove this map from your list?"} ) -%>  |
+          <%= link_to "Edit map details", edit_map_path(map) %>
         <% else %>
           <%= link_to('Save to My Maps',
             add_my_map_path(:user_id => current_user, :map_id => map), :method => :post) -%> | 
@@ -85,6 +85,7 @@
       <% if !admin_authorized? && map.published? %>
         | <strong>Published [<a href="#" title="This map has been published by an admin and no further editing is possible.">?</a>]</strong>
       <% end %>
+
       <% if admin_authorized? %>
         <% if map.status == :warped  %>
           | <%= link_to("Publish",publish_map_path(:id => map, :to => "publish"), :data => {:confirm => "Really publish this map? This will mean that no further editing can be done"} ) -%>
@@ -103,7 +104,7 @@
         <% end %>
   
   
-      <% end -%>
+      <% end %>
 
       <%if map.warped_or_published? %> |
         <%= link_to("Download KML", map_url(:id => map, :format=>:kml)) %>

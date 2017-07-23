@@ -102,12 +102,6 @@
           | <%= link_to("Create Inset", create_inset_map_path(:id => map), :method => :post, :data => {:confirm => "Really create a new inset map?"}) %>
     
         <% end %>
-  
-  
-      <% end %>
-
-      <%if map.warped_or_published? %> |
-        <%= link_to("Download KML", map_url(:id => map, :format=>:kml)) %>
       <% end %>
 
       <% if admin_authorized? %>
@@ -115,7 +109,6 @@
       <% end %>
 
       <div style="clear:both;"></div>
-      <%= render :partial => 'shared/export_window', :locals => {:map => @map} %>
     </span>
   </td>
 </tr>

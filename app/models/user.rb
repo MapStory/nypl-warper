@@ -23,17 +23,17 @@ class User < ActiveRecord::Base
     self.roles.find_by_name(name) ? true : false
   end
   
-#  def own_maps
-#    Map.where(["owner_id = ?", self.id])
-#  end
-#
-#  def own_this_map?(map_id)
-#    Map.exists?(:id => map_id.to_i, :owner_id => self.id)
-#  end
-#
-#  def own_this_layer?(layer_id)
-#    Layer.exists?(:id => layer_id.to_i, :user_id => self.id)
-#  end
+  # def own_maps
+  #  Map.where(["owner_id = ?", self.id])
+  # end
+
+  # def own_this_map?(map_id)
+  #  Map.exists?(:id => map_id.to_i, :owner_id => self.id)
+  # end
+
+  # def own_this_layer?(layer_id)
+  #  Layer.exists?(:id => layer_id.to_i, :user_id => self.id)
+  # end
   
   #override the confirm method from devise, called when a user confirms their email. Email auth only
   def confirm!

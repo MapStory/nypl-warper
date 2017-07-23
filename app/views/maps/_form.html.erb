@@ -15,6 +15,8 @@
   </div>
 
   <div class="column span-24">
+    
+    <%# Only show the upload if it's a new image %>
     <%- if defined?(page)  && page =~ /new/ -%>
       <p>
         <label for="upload"><b>Upload An Image File:</b>

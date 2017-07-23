@@ -1,12 +1,12 @@
 class MapsController < ApplicationController
 
-  layout 'mapdetail', :only => [:show, :edit, :preview, :warp, :clip, :align, :activity, :warped, :export, :metadata, :comments]
+  layout 'mapdetail', :only => [:show, :preview, :warp, :clip, :align, :activity, :warped, :export, :metadata, :comments]
   
   before_filter :store_location, :only => [:warp, :align, :clip, :export, :edit, :comments ]
   
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :delete, :warp, :rectify, :clip, :align, :warp_align, :mask_map, :delete_mask, :save_mask, :save_mask_and_warp, :set_rough_state, :set_rough_centroid, :publish, :trace, :id, :map_type, :create_inset]
  
-  before_filter :check_administrator_role, :only => [:publish, :map_type, :create_inset]
+  before_filter :check_administrator_role, :only => [:publish, :map_type, :create_inset, :edit]
  
   before_filter :find_map_if_available,
     :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :edit, :tag, :geosearch, :map_type, :create_inset]
@@ -24,6 +24,10 @@ class MapsController < ApplicationController
     @map = Map.new
     @html_title = "Upload a new map to "
     @max_size = Map.max_attachment_size
+
+    # We could technically set status here to :loading, but no other process
+    # would see it yet, so no reason to.
+
     if Map.max_dimension
       @upload_file_message  = " It may resize the image if it's too large (#{Map.max_dimension}x#{Map.max_dimension}) "
     else
@@ -38,6 +42,9 @@ class MapsController < ApplicationController
       @map.users << current_user
     end
 
+    # File has been uploaded, go ahead and set status now.
+    @map.status = :available
+
     respond_to do |format|
       if @map.save
         flash[:notice] = 'Map was successfully created.'
@@ -49,15 +56,15 @@ class MapsController < ApplicationController
   end
 
   def edit
-
+    @map = Map.find(params[:id])
   end
 
   def update
-
+    # TODO: Wire up
   end
 
   def destroy
-
+    # TODO: Wire up
   end
  
   
@@ -302,7 +309,6 @@ class MapsController < ApplicationController
           format.html {render :action => "preview"}
           format.kml {render :action => "show_kml", :layout => false}
           format.rss {render :action=> 'show'}
-          # format.xml {render :xml => @map.to_xml(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]) }
           format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
         end
       end
@@ -591,7 +597,7 @@ class MapsController < ApplicationController
     end
   end
 
-  
+  # for ajax update / progress bar on map load status
   def status
     map = Map.find(params[:id])
     if map.status.nil?
@@ -948,11 +954,14 @@ class MapsController < ApplicationController
 #    end
 #  end
 
+  # TODO: This should support xhr requests properly.
+  # right now it just shows a blank page as the tab doesn't
+  # understand what to do with the redirect...
   def find_map_if_available
 
     @map = Map.find(params[:id])
 
-    Rails.logger.debug "Map status is #{@map.status}"
+    Rails.logger.debug "Map status is: #{@map.status}"
 
     if @map.status.nil? or @map.status == :unloaded or @map.status == :loading 
       redirect_to map_path

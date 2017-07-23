@@ -53,6 +53,9 @@ class Map < ActiveRecord::Base
   after_destroy :delete_map, :update_counter_cache, :update_layers
   after_save :update_counter_cache
   
+  # Really we might want this on only before_create...
+  before_save :extract_dimensions
+
   ##################
   # CALLBACKS
   ###################
@@ -191,12 +194,9 @@ class Map < ActiveRecord::Base
     dest_dir
   end
 
+  # Return the path to what was uploaded? (or does this have to be a tif?)
   def unwarped_filename
-    if self.filename
-      self.filename 
-    else
-      ""
-    end
+    self.upload.path
   end
 
   def warped_filename
@@ -729,6 +729,21 @@ class Map < ActiveRecord::Base
   #PRIVATE
   ############
   
+  # Grabs uploaded file dimensions.
+  # call with before_save
+  def extract_dimensions
+    tempfile = upload.queued_for_write[:original]
+    unless tempfile.nil?
+      geometry = Paperclip::Geometry.from_file(tempfile)
+      self.height = geometry.height.to_i
+      self.width = geometry.width.to_i
+    end
+    #img = Magick::Image.ping(filename)
+    #self.height       = img[0].rows
+    #self.width        = img[0].columns
+  end
+
+
   def convert_to_png
     logger.info "start convert to png ->  #{warped_png_filename}"
     ext_command = "#{GDAL_PATH}gdal_translate -of png #{warped_filename} #{warped_png_filename}"

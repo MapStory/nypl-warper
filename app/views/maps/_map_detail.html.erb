@@ -44,7 +44,7 @@
       <% end %>
     </div>
 
-    <% if user_signed_in? %>
+    <% if true #user_signed_in? %>
       <div class="users_version_info map_summary ">
         <% if @current_version_number > 0  && @current_version_user %>
           Version No.<%= @current_version_number%> 
@@ -114,7 +114,6 @@
       <% end %>
 
       <div style="clear:both;"></div>
-      <%# render :partial => 'shared/addthis', :locals => {:title => map.title, :description =>map.description} %>
       <%= render :partial => 'shared/export_window', :locals => {:map => @map} %>
     </span>
   </td>

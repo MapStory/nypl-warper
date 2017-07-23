@@ -226,11 +226,7 @@
     <body>
     <%end%>
     <%= render :partial => 'shared/analyticstop' %>
-    
-    <% if read_only_mode %>
-      <%= render :partial => 'shared/read_only' %>
-    <% end %>
-      
+          
     <%= render "header" %>
     <table id="map_table">
       <%= render :partial => 'maps/map_detail', :object => @map, :locals => {:variety => "detail"} %>

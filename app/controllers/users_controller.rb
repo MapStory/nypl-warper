@@ -5,8 +5,6 @@ class UsersController < ApplicationController
 
   before_filter :check_super_user_role, :only => [:index, :destroy, :enable, :disable, :stats, :disable_and_reset, :force_confirm]
   
-  skip_before_filter :check_site_read_only,  :only => [:show]
-
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
   
   helper :sort

@@ -12,8 +12,6 @@ class MapsController < ApplicationController
     :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :edit, :tag, :geosearch, :map_type, :create_inset]
 
   before_filter :check_link_back, :only => [:show, :warp, :clip, :align, :warped, :export, :activity]
-
-  skip_before_filter :check_site_read_only, :only => [:show, :index, :geosearch, :wms, :tile, :status, :warped, :comments, :export, :metadata, :activity, :preview, :thumb, :inset_maps]
   
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
 

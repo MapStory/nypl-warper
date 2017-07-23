@@ -6,8 +6,6 @@ class GcpsController < ApplicationController
   before_filter :find_gcp, :only => [:show, :update,:update_field, :destroy ]
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
   
-  skip_before_filter :check_site_read_only,  :only => [:show, :index]
-
   def show
     respond_to do | format |
       format.html

@@ -268,7 +268,6 @@ class MapsController < ApplicationController
   ###############
   
   def show
-
     @current_tab = "show"
     @selected_tab = 0
     @disabled_tabs =[]
@@ -337,27 +336,14 @@ class MapsController < ApplicationController
         @disabled_tabs += ["warp", "clip", "align"]  #dont show any others unless you're an editor
       end
     end
-    
-     #note, trying to view an image that hasnt been requested, will cause it to be requested
-     if @map.status.nil? or @map.status == :unloaded
-       @disabled_tabs = ["warp", "clip", "align", "warped", "preview","activity", "export"]
-       @title = "Viewing unwarped map."
-       logger.debug("starting spawn fetch iamge")
-       Spawnling.new do
-         logger.info "starting fetch from image server"
-         @map.fetch_from_image_server
-         logger.info "finished fetch from image server. Status  = "+@map.status.to_s
-       end
-       return
-     end
 
-     @title = "Viewing original map. "
+    @title = "Viewing original map. "
 
-     if !@map.warped_or_published?
-       @title += "This map has not been warped yet."
-     end
+    if !@map.warped_or_published?
+      @title += "This map has not been warped yet."
+    end
      
-     if request.xhr?
+    if request.xhr?
       choose_layout_if_ajax
     else
       respond_to do |format|
@@ -365,18 +351,9 @@ class MapsController < ApplicationController
         format.kml {render :action => "show_kml", :layout => false}
         format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
       end
-    end
-    
-    
+    end    
   end
 
-  def reimport
-    @map = Map.find(params[:id])
-    @map.fetch_from_image_server(true)
-
-    redirect_to map_path(@map)
-  end
-  
 
   def comments
     @html_title = "comments"

@@ -437,69 +437,6 @@ class Map < ActiveRecord::Base
     gcps
   end
 
-  def fetch_from_image_server(force = false)
-      return if available? and not force
-      if not available?
-         self.height       = 0
-         self.width        = 0
-         self.filename     = ''
-         self.status       = :loading
-         logger.debug "saving if not available"
-         self.paper_trail_event = 'loading'
-         self.save!
-         self.paper_trail_event = nil
-      end
-      
-      #to work with new nypl repo / digital archive
-      bibl_id = self.bibl_uuid 
-      uuid = self.uuid
-
-      repo_client = NyplRepo::Client.new(REPO_CONFIG[:token])
-      
-      url = repo_client.get_highreslink(bibl_id, self.nypl_digital_id)
-      if url.nil?
-        url = repo_client.get_highreslink(bibl_id, self.nypl_digital_id.upcase)
-      end
-      logger.debug url.inspect
-      #id = self.nypl_digital_id
-      #command = "#{RAILS_ROOT}/bin/fetch.sh #{id} #{maps_dir}"
-      command = "#{ Rails.root }/lib/nypl/fetch_repo.sh #{uuid} #{url} #{maps_dir}"
-      logger.debug command
-
-      status = nil
-      
-      if url
-        stdout, stderr, status = Open3.capture3( command )
-      #  f_in, f_out, f_err = Open3::popen3(command)
-
-        logger.info "fetch exit status etc ="+ status.inspect
-        f_err_msg = stderr
-        logger.debug "err msg: "+ f_err_msg
-      end
-
-
-      if url && status.exitstatus == 0 && !f_err_msg.include?("ERROR")
-         filename = File.join(maps_dir, uuid) + ".tif"
-         img = Magick::Image.ping(filename)
-         self.height       = img[0].rows
-         self.width        = img[0].columns
-         self.filename     = filename
-         self.status       = :available if not available?
-         self.status       = :available if self.gcps.count == 0
-      elsif not available?
-        if f_err_msg
-         logger.error "fetch std error =" + f_err_msg
-        end
-         self.status       = :unloaded
-      end
-      #logger.debug [self.height, self.width, self.filename, self.status]
-      logger.debug "now saving after"
-      self.paper_trail_event = 'load_finished'
-      self.save!
-      self.paper_trail_event = nil
-      return (status != nil && status.exitstatus == 0) ? true : false
-   end
-  
   def mask!
     require 'fileutils'
     self.paper_trail_event = 'masking'

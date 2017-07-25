@@ -1062,6 +1062,10 @@ function bestGuess(guessObj) {
     }
     jQuery("#to_map_notification_inner").html(message);
     jQuery("#to_map_notification").show('slow');
+  } else {
+    // No best guess. We should center the map somewhere that isn't the middle of the ocean...
+    // This is North America and a good chunk of South America
+    centerToMap(-88, 30, 3);
   }
 
 }

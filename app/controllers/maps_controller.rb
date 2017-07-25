@@ -442,6 +442,13 @@ class MapsController < ApplicationController
     choose_layout_if_ajax
   end
 
+  # Return the thumbnail of a given map
+  def thumb
+    @map = Map.find(params[:id])
+
+    send_file(@map.upload.path(:thumb), disposition: :inline)
+  end
+
   def warp
     @current_tab = "warp"
     @selected_tab = 2

@@ -4,8 +4,8 @@ var currentPlaceholder;
 var map = jQuery("#mapid");
 
 function addImageTo(placeholder, mapid) {
-    thumburl = thumb_base_path + "/"+ mapid;
-    jQuery("#" + placeholder).html("<img src = '" + thumburl + "' />");
+    thumburl = thumb_base_path + "/"+ mapid + "/thumb";
+    jQuery("#" + placeholder).html("<img src='" + thumburl + "'>");
  }
 
 

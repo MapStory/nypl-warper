@@ -4,7 +4,7 @@ var maxOpacity = 1;
 var minOpacity = 0.1;
 
 maps['warped'] = {};
-maps['warped'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } );
+maps['warped'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: false } );
 maps['warped'].panZoomBar = new OpenLayers.Control.PanZoomBar();
 maps['warped'].keyboard = new OpenLayers.Control.KeyboardDefaults({ observeElement: 'map' });
 

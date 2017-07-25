@@ -194,8 +194,8 @@ function init() {
     saveDraggedMarker(feature);
   };
 
-  navig = new OpenLayers.Control.Navigation({title: "Move Around Map (m)", zoomWheelEnabled: true});
-  navigFrom = new OpenLayers.Control.Navigation({title: "Move Around Map (m)", zoomWheelEnabled: true});
+  navig = new OpenLayers.Control.Navigation({title: "Move Around Map (m)", zoomWheelEnabled: false});
+  navigFrom = new OpenLayers.Control.Navigation({title: "Move Around Map (m)", zoomWheelEnabled: false});
 
   to_panel.addControls([navig, dragMarker, drawFeatureTo]);
   to_map.addControl(to_panel);
@@ -204,8 +204,8 @@ function init() {
   from_map.addControl(from_panel);
 
   //we'll add generic navigation controls so we can zoom whilst addingd
-  to_map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled: true}));
-  from_map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled: true}));
+  to_map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled: false}));
+  from_map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled: false}));
 
   navig.activate();
   navigFrom.activate();
@@ -216,6 +216,7 @@ function init() {
 
 
   // keyboard shortcuts for switching tools
+  // Note: these don't seem to work at all...
   var keyboardControl = new OpenLayers.Control();  
   var control = new OpenLayers.Control();
   var callbacks = { keydown: function(evt) {

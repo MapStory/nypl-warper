@@ -12,7 +12,9 @@ if(typeof maps === 'undefined'){
 
 maps['clip'] = {};
 
-maps['clip'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } );
+//maps['clip'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } );
+// Zoom is way too sensitive - not useable - disable to prevent overloading server with requests
+maps['clip'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: false } );
 maps['clip'].panZoomBar = new OpenLayers.Control.PanZoomBar();
 maps['clip'].keyboard = new OpenLayers.Control.KeyboardDefaults({ observeElement: 'map' });
 

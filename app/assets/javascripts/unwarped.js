@@ -7,7 +7,7 @@ if(typeof maps === 'undefined'){
 }
 
 maps['unwarped'] = {};
-maps['unwarped'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } );
+maps['unwarped'].zoomWheel = new OpenLayers.Control.Navigation( { zoomWheelEnabled: false } );
 maps['unwarped'].panZoomBar = new OpenLayers.Control.PanZoomBar();
 maps['unwarped'].keyboard = new OpenLayers.Control.KeyboardDefaults({ observeElement: 'map' });
 

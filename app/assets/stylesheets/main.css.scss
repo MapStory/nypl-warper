@@ -268,13 +268,20 @@ h1,h2,h3,h4,h5,h6 {
   color: inherit;
 }
 
-a/*, a:link */{
-	color: #222;
+// Site default blue links
+a {
+	color: #0f6cba;
 	text-decoration: none;
 }
 
-a:hover {
-	color:#447a05;
+// Tab navigation is gray
+.ui-tabs-nav a {
+  color: #999999;
+}
+
+// Active tab link is "black"
+.ui-tabs-active a {
+  color: #4d4d4d;
 }
 
 .ui-widget-content a.unauthorized {
@@ -686,9 +693,6 @@ padding: 10px;
 {
   clear:right;
 }
-.ui-tabs-nav li a {
-padding: 0.5em 0.6em !important;
-}
 #panel-under-tabs{
   clear: both;
  /* border-right: 1px solid #776655;
@@ -1002,12 +1006,9 @@ font-style:italic;
 {
 	font-size:larger;
 	font-weight:700;
-        color: #010;
+  color: #010;
 }
-.maplist_title a, .layer_title a {
-}
-.maplist_title a:hover {
-}
+
 .continue_link {
 	margin: 1em;
 }

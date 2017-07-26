@@ -386,20 +386,23 @@ class MapsController < ApplicationController
     @html_title = "Export Map" + @map.id.to_s
     
     choose_layout_if_ajax
-    if params[:unwarped]
-      tif_filename = @map.filename
-    else
-      tif_filename =  @map.warped_filename
-    end
     
     respond_to do | format |
       format.html {}
-      format.tif {  send_file tif_filename, :x_sendfile => true }
-      format.png  { send_file @map.warped_png, :x_sendfile => true }
-      format.aux_xml { send_file @map.warped_png_aux_xml, :x_sendfile => true }
+      format.tif {  send_file @map.warped_filename }
+      format.png  { send_file @map.warped_png }
+      format.aux_xml { send_file @map.warped_png_aux_xml }
     end
   end
   
+  # Download the original file that was uploaded
+  # This can be in any number of formats
+  def download
+    @map = Map.find(params[:id])
+    send_file @map.upload.path
+  end
+
+
   def clip
     #TODO delete current_tab
     @current_tab = "clip"
@@ -754,7 +757,6 @@ class MapsController < ApplicationController
   include Mapscript
 
   def wms
-    Rails.logger.debug "We're in WMS! Looking for #{params[:id]}"
     @map = Map.find(params[:id])
     #status is additional query param to show the unwarped wms
     status = params["STATUS"].to_s.downcase || "unwarped"

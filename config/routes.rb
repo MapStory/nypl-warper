@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       get 'trace'
       get 'idland'
       get 'thumb'
+      get 'download'
     end
     collection do
         get 'geosearch'

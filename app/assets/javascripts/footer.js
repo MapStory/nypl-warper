@@ -1,14 +1,15 @@
-//set page content so footer is always "below the fold"
+// set page content so footer is always "below the fold"
+// Use no-conflict naming to work on all pages of the application
 function setPageHeight(){
-  var wH = $(window).height();
-  var gH = $("#sitehead").height();
-  $("main").css("min-height",wH-gH);  
+  var wH = jQuery(window).height();
+  var gH = jQuery("#sitehead").height();
+  jQuery("main").css("min-height",wH-gH);  
  }
  
-$(window).resize(function() {
+jQuery(window).resize(function() {
   setPageHeight();
 });
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
   setPageHeight();   
 });

@@ -17,7 +17,7 @@ example call:
 GET[http://mapwarper.net/maps?field=title&amp;query=New&amp;sort_key=updated_at&amp;sort_order=desc&amp;show_warped=1&amp;format=json http://mapwarper.net/maps?field=title&query=New&sort_key=updated_at&sort_order=desc&show_warped=1&format=json]
 
 ==== query parameters  ====
-field       title|description|nypl_digital_id|catnyp
+field       title|description
 
       (if no field parameter, field is title, by default)
 
@@ -51,8 +51,6 @@ page     page number
      "id": 6985,
      "description": "from A new edition, much enlarged, of the second part of the North American pilot, for New England, New York, Pennsylvania, New Jersey, Maryland, Virginia, North and South Carolina, Georgia, Florida, and the Havanna : including general charts of the British Ch",
      "height": 4744,
-     "nypl_digital_id": "1030125",
-     "catnyp": "b7166511",
      "mask_status": null,
      "bbox": "-75.9831134505588,38.552727388127,-73.9526411829395,40.4029389105122",
      "width": 5875,
@@ -111,7 +109,6 @@ example call:
      "title": "Map of the counties of Orange and Rockland / by David H. Burr ; engd. by Rawdon, Clark \u0026amp; Co., Albany, \u0026amp; Rawdon, Wright \u0026amp; Co., N. York.",
      "id": 12851,
      "description": "from An atlas of the state of New York : containing a map of the state and of the several counties / by David H. Burr.",
-     "nypl_digital_id": "433847",
      "bbox": "-75.126810998457,40.7450450274136,-73.460790365527,41.843831161244"
    },
    {
@@ -146,8 +143,6 @@ or [http://mapwarper.net/maps/8461?format=json http://mapwarper.net/maps/8461?fo
      "id": 8461,
      "description": "from Atlas of the Brooklyn borough of the City of New York : originally Kings Co.; complete in three volumes ... based upon official maps and plans ... / by and under the supervision of Hugo Ullitz, C.E.",
      "height": 4920,
-     "nypl_digital_id": "1517475",
-     "catnyp": null,
      "mask_status": null,
      "bbox": "-73.9656432253048,40.7255401662787,-73.9405456042296,40.7411978079278",
      "width": 6299,
@@ -203,10 +198,6 @@ bbox - string - comma separated string, bounding box of the rectified geotiff
 updated_at - date when object was last updated
 
 created_at - date when first created
-
-nypl_digital_id - NYPL digital id, used for thumbnail and link to bibliographic extras
-
-catnyp_id - NYPL digital catalalog id used for link to bibliographic
 
 mask_status - status of masking int. [0 : unmasked ,1 : masking ,2 : masked]
 
@@ -393,8 +384,6 @@ JSON
      "id": 12893,
      "description": "from The generall historie of Virginia, New-England, and the Summer isles : with the names of the adventurers, planters, and governours from their first beginning ano: 1584. to this present 1626. With the proceedings of those severall colonies and the accidents that befell them in all their journyes and discoveries. Also the maps and descriptions of all those countryes, their commodities, people, government, customes, and religion yet knowne. Divided into sixe bookes. / By Captaine Iohn Smith sometymes governour in those countryes \u0026 admirall of New England.",
      "height": null,
-     "nypl_digital_id": "433895",
-     "catnyp": null,
      "mask_status": null,
      "bbox": null,
      "width": null,

@@ -15,26 +15,6 @@
     <script type="text/javascript">
       jQuery(function() {
 
-        jQuery("#year-dialog").dialog({
-          bgiframe: true,
-          autoOpen: false,
-          title: "Depicts Year (admin only)",
-          height: 250,
-          hide: 'slow',
-          width: 305,
-          modal: true,
-          buttons: {
-            Cancel: function() {
-              jQuery(this).dialog('close');
-            }
-          },
-          close: function() {
-          }
-        });
-        jQuery("#edit-year-link-top").click(function(e) {
-          jQuery("#year-dialog").dialog('open');
-        });
-
         jQuery("#wooTabs").tabs({
           selected: <%=@selected_tab||0 %>,
           select: function(event, ui) {
@@ -165,36 +145,11 @@
         <%= flash_messages %>
         <%= yield %>
       </div>
-
     </div>
 
     <div id="panel-under-tabs">
-
     </div>
 
-    <% if admin_authorized? %>
-      <div id="year-dialog" class="hidden">
-        Add / edit year that this layer depicts: <br />
-
-
-        <script type="text/javascript">
-        jQuery(document).ready(function() {
-          jQuery("form#year-form").bind("ajax:success", function(e, data, status, xhr) {
-
-            jQuery("#depicts-year-span-top").html(data.message);
-          }).bind("ajax:before", function() {
-
-          }).bind("ajax:complete", function() {
-            jQuery('#year-dialog').dialog('close');
-            jQuery('#depicts-year-span-top').effect('highlight', {}, 3000);
-          }).bind("ajax:error", function() {
-            alert('Sorry, something went wrong trying to save this');
-          });
-        });
-        </script>
-
-      </div>
-    <% end %>
     <%= render :partial => 'shared/analytics' %>
   </body>
 </html>

@@ -1,5 +1,5 @@
-<title>Map Warper- <%= (@html_title) || ''-%> </title>
-
+<%# If these are all xhr requests, what is the head doing in here? %>
+<head>
 <%= yield :head %>
 <%= csrf_meta_tags %>
 <%= javascript_tag @onload -%>

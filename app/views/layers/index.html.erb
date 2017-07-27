@@ -19,39 +19,6 @@
       <input type="hidden" id="to"/>
             
       <input type="submit" value="Search" />
-      <script>
-        var year_from = <%= params[:from] || @year_min.to_i %>;
-        var year_to = <%= params[:to] || @year_max.to_i %>;
-      jQuery("#year-slider").noUiSlider({
-        start: [year_from, year_to],
-        connect: true,
-        step: 1,
-        format: wNumb({
-          decimals: 0
-        }),
-        range: {
-          'min': <%=  @year_min.to_i %>,
-          'max': <%= @year_max.to_i %>
-        }
-        });
-
-        jQuery("#year-slider").Link('upper').to('-inline-<div class="year-slider-tooltip"></div>', function ( value ) {
-          jQuery(this).html(
-            '<span>' + value + '</span>'
-          );
-        });
-
-        jQuery("#year-slider").Link('lower').to('-inline-<div class="year-slider-tooltip"></div>', function ( value ) {
-          jQuery(this).html(
-            '<span>' + value + '</span>'
-          );
-        });
-
-        jQuery("#year-slider").Link('upper').to('to')
-        jQuery("#year-slider").Link('lower').to('from')
-
-       </script>
-      
     <% end %>
     <div id="geosearch-link">
       New: <%= link_to 'Find Layers by Location',  url_for(:controller => 'layers', :action=>'geosearch'), :class => ""%>

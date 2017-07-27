@@ -307,7 +307,8 @@ function init() {
       warped_layer.setOpacity(ui.value / 100);
     }
   });
-  jQuery("#warped-slider").hide();
+  //jQuery("#warped-slider").hide();
+
   warped_layer.events.register('visibilitychanged', this, function(layer) {
     if (layer.object.getVisibility() === true) {
       jQuery("#warped-slider").show();

@@ -92,7 +92,7 @@ class MapsController < ApplicationController
     
     @query = params[:query]
     
-    @field = %w(text title description status catnyp nypl_digital_id uuid).detect{|f| f == (params[:field])}
+    @field = %w(text title description status).detect{|f| f == (params[:field])}
     
     
     @field = "text" if @field.nil?
@@ -242,7 +242,7 @@ class MapsController < ApplicationController
     }
     order_params = sort_geo + sort_clause + sort_nulls
     @maps = Map.select("bbox, title, description, updated_at, id, status").warped.where(conditions).where(status_conditions).order(order_params).paginate(paginate_params)
-    @jsonmaps = @maps.to_json # (:only => [:bbox, :title, :id, :nypl_digital_id])
+    @jsonmaps = @maps.to_json
     respond_to do |format|
       format.html{ render :layout =>'application' }
       

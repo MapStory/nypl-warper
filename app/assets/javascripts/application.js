@@ -22,7 +22,6 @@
 //= require unwarped
 //= require SelectFeatureNoClick
 //= require querystring
-//= require jquery.nouislider.all.min
 //= require warper-controls
 
 

@@ -6,7 +6,6 @@ bin/fetch.sh
 config/database.yml
 config/secrets.yml
 config/application.yml
-config/nypl_repo.yml
 log/*.log
 log/*.log.tar.gz
 tmp

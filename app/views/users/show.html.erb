@@ -1,10 +1,4 @@
-<%= link_to "&lt; Browse Maps".html_safe, maps_path %>
-
-<h2>User: <%=  @user.login %></h2>
-
-<%- if @user.provider %>
-  <p>A <%= image_tag(@user.provider+'_logo.png', width: '17', height: '17') %> <%=@user.provider_name.titlecase %> User </p>
-<%- end %>
+<h2>User: <%= @user.login %></h2>
 
 <p>Joined on: <%= @user.created_at.to_s(:long) %></p>
 
@@ -110,14 +104,13 @@
 
 <h3>User Maps</h3>
 
-<div id = "usermaps">
+<div id="usermaps">
   <%=will_paginate @mymaps %>
   <table id="map_table" cellpadding="3">
     <thead>
       <tr>
         <th>Map</th>
         <th>Title</th>
-        <th>Year</th>
         <th>Last modified</th>
         <th>Status</th>
       </tr>

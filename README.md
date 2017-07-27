@@ -35,18 +35,11 @@ which is available at https://github.com/nypl-spacetime/nypl-warper
   * User Statistics
   * Revisions and Rollbacks
  
-  
-
-## Note on code and branches
-
-Unmaintained branches exist for older systems and setups
-
-* Rails 2.3 and Ruby 1.8.4 - See the rails2 branch
 
 ## Ruby & Rails
 
 * Rails 4.2
-* Ruby 1.9+
+* Ruby 2.3+
 
 ## Database
 
@@ -57,7 +50,7 @@ Unmaintained branches exist for older systems and setups
 
 Check out the Vagrant section lower down in the readme if you want to get started quickly.
 
-on Ubuntu 14.04 LTS
+on Ubuntu 16.04 LTS
 
 ```apt-get install -y ruby ruby-dev postgresql-9.3-postgis-2.1 postgresql-server-dev-all postgresql-contrib build-essential git-core libxml2-dev libxslt-dev imagemagick libmapserver1 gdal-bin libgdal-dev ruby-mapscript nodejs```
 
@@ -82,7 +75,7 @@ In addition have a look in `config/initializers/application_config.rb `for some 
 
 Create a postgis database
 
-d    sudo -u postgres createdb mapwarper_development
+    sudo -u postgres createdb mapwarper_development
     psql mapwarper_development -c "create extension postgis;"
     RAILS_ENV=development bundle exec rake db:migrate
 

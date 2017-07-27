@@ -965,13 +965,8 @@ class MapsController < ApplicationController
     end
   end
 
-  # TODO: Clean this up - most of these are missing fields
   def map_params
-    params.require(:map).permit(:title, :description, :tag_list, :map_type, :subject_area, :unique_id, 
-      :source_uri, :call_number, :publisher, :publication_place, :authors, :date_depicted, :scale,
-      :metadata_projection, :metadata_lat, :metadata_lon, :public,
-      "published_date(3i)", "published_date(2i)", "published_date(1i)", "reprint_date(3i)", 
-      "reprint_date(2i)", "reprint_date(1i)", :upload ) 
+    params.require(:map).permit(:title, :description, :map_type, :upload) 
   end
   
   def choose_layout_if_ajax

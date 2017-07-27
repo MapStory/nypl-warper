@@ -3,13 +3,13 @@
 
 namespace :warper do
   desc "Import images from a directory to map"
-  task :import_images, [:directory, :user, :layer, :layer_name, :title, :description, :publisher, :authors, :scale]  => :environment  do |t, args|
+  task :import_images, [:directory, :user, :layer, :layer_name, :title, :description, :scale]  => :environment  do |t, args|
   
     puts "\nImporting images from directory into new map objects....\n"
     puts "Args were: #{args}"
     usage = "::::::USAGE::::::\nrake warper:import_images['path/to/dir/with/images REQUIRED',user id (int) REQUIRED, layer id (int) OPTIONAL [-99 for new layer, leave blank for no layer],
-'title for new layer' OPTIONAL, 'default title suffix for maps' OPTIONAL, 'default description for maps' OPTIONAL, 'default publisher for maps' OPTIONAL,
- 'default authors for maps' OPTIONAL, 'default scale for maps' OPTIONAL ] \n\nEXAMPLE  rake warper:import_images['/home/tim/maps/yorkshire/',23,-99,'Best Yorkshire maps','Yorkshire'] "
+'title for new layer' OPTIONAL, 'default title suffix for maps' OPTIONAL, 'default description for maps' OPTIONAL,
+'default scale for maps' OPTIONAL ] \n\nEXAMPLE  rake warper:import_images['/home/tim/maps/yorkshire/',23,-99,'Best Yorkshire maps','Yorkshire'] "
     #check to make sure the args are filled in properly
     
     if args.directory.empty? || args.user.empty?
@@ -55,8 +55,6 @@ namespace :warper do
     #fixed tags for fields for all models.
     default_title_suffix = " " + args.title.to_s || ""
     default_description = args.description.to_s || nil
-    default_publisher = args.publisher.to_s || nil
-    default_authors = args.authors.to_s || nil
     default_scale = args.scale.to_s || nil
 
     #////////////////#
@@ -77,7 +75,7 @@ namespace :warper do
       print ourfilename
       unless Map.exists?(:upload_file_name => ourfilename)
         print '+'
-        map = Map.new(:title => ourfilename + default_title_suffix, :description => default_description, :publisher => default_publisher , :authors => default_authors, :scale => default_scale)
+        map = Map.new(:title => ourfilename + default_title_suffix, :description => default_description, :scale => default_scale)
         ourfile = File.join(basedir , ourfilename)
         map.owner = user
         map.users << user

@@ -22,8 +22,6 @@ class Map < ActiveRecord::Base
  
   validates_presence_of :title
   validates_numericality_of :rough_lat, :rough_lon, :rough_zoom, :allow_nil => true
-  validates_length_of :issue_year, :maximum => 4,:allow_nil => true, :allow_blank => true
-  validates_numericality_of :issue_year, :if => Proc.new {|c| not c.issue_year.blank?}
 
   has_attached_file :upload, :styles => {:thumb => ["256x256>", :png]} ,
     :url => '/:attachment/:id/:style/:basename.:extension'
@@ -249,12 +247,7 @@ class Map < ActiveRecord::Base
   #############################################
   #INSTANCE METHODS
   #############################################
-  
-  
-  def depicts_year
-    issue_year ||  self.layers.with_year.collect(&:depicts_year).compact.first
-  end
-  
+    
   def warped?
     status == :warped
   end

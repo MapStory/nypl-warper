@@ -4,11 +4,16 @@
 
 <div class="browse">
 
-  <h2>Browse Maps
+  <h2>Maps
     <%if @query && @query.length > 0 %>&mdash; Searched for "<%=@query%>"
     <%end-%>
   </h2>
 
+  <% unless params[:show_warped] %>
+  <p><%= link_to "Show only rectified maps", maps_path(show_warped: 1) %></p>
+  <% else %>
+  <p><%= link_to "Show all maps", maps_path(show_warped: nil) %></p>
+  <% end %>
 
   <div class="warper_pagination">
     <div id="search-pagination-top">
@@ -22,7 +27,6 @@
       <tr>
         <th>Map</th>
         <%= sort_header_tag('title', :title => "Title") %>
-        <%= sort_header_tag('issue_year', :title => "Year", :class=>"year-sort") %>
         <%= sort_header_tag('updated_at', :title => "Last modified") %>
         <%= sort_header_tag('status', :title => "Status") %>
       </tr>

@@ -100,21 +100,13 @@ class LayersController < ApplicationController
       sort_geo ="ST_Area(bbox_geom) DESC ,"
     end
 
-    @year_min = Map.minimum(:issue_year) - 1
-    @year_max = Map.maximum(:issue_year) + 1
-
-    year_conditions = nil
-    if params[:from] && params[:to] && !(@year_min == params[:from].to_i && @year_max == params[:to].to_i)
-      year_conditions = {:depicts_year => params[:from].to_i..params[:to].to_i}
-    end
 
     paginate_params = {
       :page => params[:page],
       :per_page => 20
     }
     order_params = sort_geo + sort_clause + sort_nulls
-    @layers = Layer.select("bbox, name, updated_at, id, maps_count, rectified_maps_count,
-                       depicts_year").visible.with_maps.where(conditions).where(year_conditions).paginate(paginate_params)
+    @layers = Layer.select("bbox, name, updated_at, id, maps_count, rectified_maps_count").visible.with_maps.where(conditions).paginate(paginate_params)
 
     @jsonlayers = @layers.to_json
     respond_to do |format|
@@ -158,14 +150,6 @@ class LayersController < ApplicationController
       select = "*"
     end
 
-    @year_min = Map.minimum(:issue_year).to_i - 1
-    @year_max = Map.maximum(:issue_year).to_i + 1
-
-    year_conditions = nil
-    if params[:from] && params[:to] && !(@year_min == params[:from].to_i && @year_max == params[:to].to_i)
-      year_conditions = {:depicts_year => params[:from].to_i..params[:to].to_i}
-    end
-
     @from = params[:from]
     @to = params[:to]
 
@@ -203,7 +187,7 @@ class LayersController < ApplicationController
       @html_title = "Layer List for Map #{@map.id}"
       @page = "for_map"
     else
-      @layers = Layer.select(select).where(conditions).where(year_conditions).order(sort_clause + sort_nulls).paginate(paginate_params)
+      @layers = Layer.select(select).where(conditions).order(sort_clause + sort_nulls).paginate(paginate_params)
       @html_title = "Browse Layer List"
     end
 
@@ -323,11 +307,6 @@ class LayersController < ApplicationController
       update_text = "(Not Visible)"
     end
     render :json => {:message => update_text}
-  end
-
-  def update_year
-    @layer.update_attributes(params[:layer].permit(:depicts_year))
-    render :json => {:message => "Depicts : " + @layer.depicts_year.to_s }
   end
 
   #merge this layer with another one
@@ -514,11 +493,9 @@ class LayersController < ApplicationController
             raster.metadata.set('wms_title', layer.id.to_s + ": "+snippet(layer.name, 15))
 
             raster.metadata.set('wms_abstract', layer.rectified_maps_count.to_s + "maps. "+
-                layer.rectified_percent.to_i.to_s + "% Complete"+
-                "[Depicts:"+layer.depicts_year.to_s+"]")
+                layer.rectified_percent.to_i.to_s + "% Complete")
 
-            raster.metadata.set('wms_keywordlist', 'depictsYear:'+layer.depicts_year.to_s +
-                ',totalMaps:' + layer.maps.count.to_s +
+            raster.metadata.set('wms_keywordlist', 'totalMaps:' + layer.maps.count.to_s +
                 ',numberWarpedMaps:'+ layer.rectified_maps_count.to_s +
                 ',percentComplete:'+ layer.rectified_percent.to_i.to_s +
                 ',lastUpdated:' + layer.updated_at.to_s )
@@ -541,8 +518,7 @@ class LayersController < ApplicationController
         raster.metadata.set('wcs_formats', 'GEOTIFF')
         raster.metadata.set('wms_title', single_layer.name)
         raster.metadata.set('wms_srs', 'EPSG:4326 EPSG:4269 EPSG:900913')
-        raster.metadata.set('wms_keywordlist', 'depictsYear:'+layer.depicts_year.to_s +
-            ',totalMaps:' + layer.maps.count.to_s +
+        raster.metadata.set('wms_keywordlist', 'totalMaps:' + layer.maps.count.to_s +
             ',warpedMaps:'+ layer.rectified_maps_count.to_s +
             ',percentComplete:'+ layer.rectified_percent.to_i.to_s +
             ',lastUpdated:' + layer.updated_at.to_s )
@@ -660,7 +636,7 @@ class LayersController < ApplicationController
   end
 
   def layer_params
-    params.require(:layer).permit(:name, :description, :source_uri, :depicts_year)
+    params.require(:layer).permit(:name, :description, :source_uri)
   end
 
 end

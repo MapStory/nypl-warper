@@ -17,12 +17,6 @@
           (In <%=link_to(pluralize(map.layers.count, 'layer'), map_layers_path(map.id)) -%>)
         <%end %>
       </span>
-
-      <span class="map_year">
-        <% if map.depicts_year -%>
-          Depicts: <%= map.depicts_year -%>
-        <% end -%>
-      </span>
       
     </div>
     <div class="map_links_bigger">
@@ -57,9 +51,6 @@
       <% end -%>
     </div>
 
-  </td>
-  <td>
-    <%=  map.depicts_year %>
   </td>
   <td>
     <%=h time_ago_in_words(map.updated_at) -%> ago.

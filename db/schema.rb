@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723200553) do
+ActiveRecord::Schema.define(version: 20170727155037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,16 +104,12 @@ ActiveRecord::Schema.define(version: 20170723200553) do
   create_table "layers", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "catnyp"
-    t.string   "uuid"
-    t.string   "parent_uuid"
     t.boolean  "is_visible",                                                      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "maps_count",                                                      default: 0
     t.integer  "rectified_maps_count",                                            default: 0
     t.string   "bbox"
-    t.string   "depicts_year",         limit: 4,                                  default: ""
     t.geometry "bbox_geom",            limit: {:srid=>4326, :type=>"st_polygon"}
   end
 
@@ -127,19 +123,12 @@ ActiveRecord::Schema.define(version: 20170723200553) do
   create_table "maps", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "content_type"
-    t.string   "thumbnail"
-    t.integer  "size"
     t.integer  "width"
     t.integer  "height"
     t.integer  "parent_id"
-    t.string   "nypl_digital_id"
-    t.string   "catnyp"
-    t.string   "uuid"
-    t.string   "parent_uuid"
     t.integer  "status"
     t.integer  "mask_status"
     t.boolean  "map",                                                                                      default: true
@@ -153,7 +142,6 @@ ActiveRecord::Schema.define(version: 20170723200553) do
     t.integer  "rough_state"
     t.datetime "rectified_at"
     t.datetime "gcp_touched_at"
-    t.integer  "issue_year"
     t.string   "transform_options",                                                                        default: "auto"
     t.string   "resample_options",                                                                         default: "cubic"
     t.string   "upload_file_name"

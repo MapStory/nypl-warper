@@ -19,7 +19,6 @@
     var layer_id = <%=@layer.id-%>;
     var mapLayersURL = '<%=url_for :controller => 'layers', :action => 'maps', :id => @layer.id -%>';
     var mapBaseURL = '<%=url_for :controller=> 'maps' %>';
-    var mapThumbBaseURL = "<%= url_for(map_thumb_base_path) %>/";
  
   </script>
   <%= javascript_include_tag "layer-maps" -%>

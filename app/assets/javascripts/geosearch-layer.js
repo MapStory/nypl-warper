@@ -5,7 +5,6 @@ function replaceMapTable(smaps) {
     var tableRow = "<tr id='map-row-" + smap.id + "' class='minimap-tr'>" +
             "<td class='mini-map-thumb'><img src='" + mapThumbBaseURL + "/" + smap.id + "' height='70' ></td>" +
             "<td>" + smap.name + "<br />" +
-            smap.depicts_year + "<br />"+
             "<a href='" + mapBaseURL + "/" + smap.id + "' target='_blank'>Open layer</a> </td></tr>";
 
     jQuery("#searchmap-table").append(tableRow);

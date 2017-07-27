@@ -2,43 +2,7 @@
   
   <script type="text/javascript">
     var gs_bounds = new OpenLayers.Bounds(<%=@bbox-%>);
-    var mapBaseURL = '<%= url_for maps_path %>';
-    var mapThumbBaseURL = '<%= url_for(map_thumb_base_path) %>/';
-    var year_from = <%= @year_min.to_i %>;
-    var year_to = <%= @year_max.to_i %>;
-  
-    jQuery(function () {
-      jQuery("#year-slider").noUiSlider({
-        start: [year_from, year_to],
-        connect: true,
-        step: 1,
-        format: wNumb({
-          decimals: 0
-        }),
-        range: {
-          'min': <%=  @year_min.to_i %>,
-          'max': <%= @year_max.to_i %>
-        }
-      });
-  
-      jQuery("#year-slider").Link('upper').to('-inline-<div class="year-slider-tooltip"></div>', function (value) {
-        jQuery(this).html(
-                '<span>' + value + '</span>'
-                );
-      });
-  
-      jQuery("#year-slider").Link('lower').to('-inline-<div class="year-slider-tooltip"></div>', function (value) {
-        jQuery(this).html(
-                '<span>' + value + '</span>'
-                );
-      });
-      jQuery("#year-slider").Link("upper").to(jQuery("input#to"));
-      jQuery("#year-slider").Link("lower").to(jQuery("input#from"));
-      $('#year-slider').on('set', function () {
-        do_search(1);
-      });
-    });
-  
+    var mapBaseURL = '<%= url_for maps_path %>';  
   </script>
 
   <%= javascript_include_tag "geosearch" %>
@@ -53,18 +17,6 @@
     </p>
     <div id="searchmap-container">
       <div id="searchmap-list-block">
-
-        <div id="geosearch-year-filter-container">
-          <div id="year-filter">
-            <div id="year-label">
-              Year
-            </div>
-            <div id="year-slider-container">
-              <div id="year-slider"></div>
-            </div>	
-          </div>
-        </div>
-
         <table id="searchmap-table" style="table-layout:fixed">
 
         </table>

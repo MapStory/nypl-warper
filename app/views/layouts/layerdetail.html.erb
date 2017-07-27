@@ -193,11 +193,6 @@
         });
         </script>
 
-        <%= form_for(@layer, {:html => {:id =>"year-form"} , :url =>update_year_layer_path(@layer.id), :remote => true }) do |f| %>
-          <%= f.text_field :depicts_year, :size =>10 %>
-          <%= submit_tag "Save" %>
-        <% end %>          
-
       </div>
     <% end %>
     <%= render :partial => 'shared/analytics' %>

@@ -108,17 +108,7 @@ class MapsController < ApplicationController
     else
       conditions = nil
     end
-    
-    @year_min = Map.minimum(:issue_year).to_i - 1
-    @year_max = Map.maximum(:issue_year).to_i + 1
-    @year_min = 1600 if @year_min == 0
-    @year_max = 2015 if @year_max == 0
-    
-    year_conditions = nil
-    if params[:from] && params[:to] && !(@year_min == params[:from].to_i && @year_max == params[:to].to_i)
-      year_conditions = {:issue_year => params[:from].to_i..params[:to].to_i}
-    end
-    
+            
     @from = params[:from]
     @to = params[:to]
         
@@ -137,9 +127,9 @@ class MapsController < ApplicationController
     #order('name').where('name LIKE ?', "%#{search}%").paginate(page: page, per_page: 10)
     
     if @show_warped == "1"
-      @maps = Map.warped.where(where_options).where(year_conditions).order(order_options).paginate(paginate_params)
+      @maps = Map.warped.where(where_options).order(order_options).paginate(paginate_params)
     else
-      @maps = Map.where(where_options).where(year_conditions).order(order_options).paginate(paginate_params)
+      @maps = Map.where(where_options).order(order_options).paginate(paginate_params)
     end
     
     @html_title = "Browse Maps"
@@ -148,7 +138,7 @@ class MapsController < ApplicationController
     else
       respond_to do |format|
         format.html{ render :layout =>'application' }  # index.html.erb
-        format.xml  { render :xml => @maps.to_xml(:root => "maps", :except => [:content_type, :size, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]) {|xml|
+        format.xml  { render :xml => @maps.to_xml(:root => "maps", :except => [:content_type, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]) {|xml|
             xml.tag!'stat', "ok"
             xml.tag!'total-entries', @maps.total_entries
             xml.tag!'per-page', @maps.per_page
@@ -159,7 +149,7 @@ class MapsController < ApplicationController
             :per_page => @maps.per_page,
             :total_entries => @maps.total_entries,
             :total_pages => @maps.total_pages,
-            :items => @maps.to_a}.to_json(:except => [:content_type, :size, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid], :methods => :depicts_year) , :callback => params[:callback]
+            :items => @maps.to_a}.to_json(:except => [:content_type, :parent_id, :map, :rough_centroid]) , :callback => params[:callback]
         }
       end
     end
@@ -243,16 +233,6 @@ class MapsController < ApplicationController
     else
       sort_geo ="ST_Area(bbox_geom) DESC ,"
     end
-
-    @year_min = Map.minimum(:issue_year).to_i - 1 
-    @year_max = Map.maximum(:issue_year).to_i + 1
-    @year_min = 1600 if @year_min == 0
-    @year_max = 2015 if @year_max == 0
-
-    year_conditions = nil
-    if params[:from] && params[:to] && !(@year_min == params[:from].to_i && @year_max == params[:to].to_i)
-      year_conditions = {:issue_year => params[:from].to_i..params[:to].to_i}
-    end
     
     status_conditions = {:status => [Map.status(:warped), Map.status(:published), Map.status(:publishing)]}
     
@@ -261,7 +241,7 @@ class MapsController < ApplicationController
       :per_page => 20
     }
     order_params = sort_geo + sort_clause + sort_nulls
-    @maps = Map.select("bbox, title, description, updated_at, id, nypl_digital_id, uuid, issue_year, status").warped.where(conditions).where(year_conditions).where(status_conditions).order(order_params).paginate(paginate_params)
+    @maps = Map.select("bbox, title, description, updated_at, id, status").warped.where(conditions).where(status_conditions).order(order_params).paginate(paginate_params)
     @jsonmaps = @maps.to_json # (:only => [:bbox, :title, :id, :nypl_digital_id])
     respond_to do |format|
       format.html{ render :layout =>'application' }
@@ -271,7 +251,7 @@ class MapsController < ApplicationController
         :per_page => @maps.per_page,
         :total_entries => @maps.total_entries,
         :total_pages => @maps.total_pages,
-        :items => @maps.to_a}.to_json(:methods => :depicts_year) , :callback => params[:callback]}
+        :items => @maps.to_a}.to_json , :callback => params[:callback]}
     end
   end
   

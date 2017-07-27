@@ -232,7 +232,7 @@ query        optional text for search query based on field chosen, case insensit
 
       simple exact string text search, i.e. a search for "city New York" gives no results, but a search for "city of New York" gives 22
 
-sort_key      name|depicts_year|updated_at|mapscans _count|percent
+sort_key      name|updated_at|mapscans _count|percent
 
 sort_order     asc|desc
 
@@ -259,8 +259,6 @@ JSON
      "mapscans_count": 50,
      "id": 873,
      "rectified_mapscans_count": 9,
-     "catnyp": "b5639903",
-     "depicts_year": "1868",
      "bbox": "-73.949323,40.831269,-73.673187,41.300783",
      "created_at": "2009/03/23 21:21:19 -0400"
    },
@@ -298,8 +296,6 @@ http://mapwarper.net/maps/10090/layers.json
      "mapscans_count": 30,
      "id": 931,
      "rectified_mapscans_count": 20,
-     "catnyp": "b5589358",
-     "depicts_year": "1866",
      "bbox": "-74.433033,42.247915,-73.478985,43.136618",
      "created_at": "2009/03/23 21:21:19 -0400"
    },
@@ -310,8 +306,6 @@ http://mapwarper.net/maps/10090/layers.json
      "mapscans_count": 2501,
      "id": 919,
      "rectified_mapscans_count": 96,
-     "catnyp": null,
-     "depicts_year": null,
      "bbox": "-83.179076,39.640270,-69.331971,45.723733",
      "created_at": "2009/03/23 21:21:19 -0400"
    }
@@ -348,8 +342,6 @@ or[http://mapwarper.net/layers/760?format=json http://mapwarper.net/layers/760?f
      "mapscans_count": 115,
      "id": 760,
      "rectified_mapscans_count": 1,
-     "catnyp": "b6082770",
-     "depicts_year": "1671",
      "bbox": "-65.077269,32.107121,-64.553078,32.521725",
      "created_at": "2009/03/23 21:21:19 -0400"
    }
@@ -372,8 +364,6 @@ mapscans_count - how many maps a layer has. Where a map is defined using the map
 rectified_mapscans_count - How many maps are rectified in the layer
 
 percent - the percentage of rectified maps out of total number of maps
-
-depicts_year - the year which this layer depicts
 
 is_visible - boolean. if it's set to false, usually indicates a meta layer, or collection of atlases. These meta-layers will not have WMS.
 

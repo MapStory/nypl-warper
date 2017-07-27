@@ -11,24 +11,13 @@
     <%= form_tag url_for(:controller => "layers"), :id=>"searchform",:name=> "searchform", :method => :get do -%>
       Search
       <select id="field" name="field">
-        <%= options_for_select([ ["Text", "text"], 
-            ["Collections Id", "uuid"]], @field)-%>
+        <%= options_for_select([ ["Text", "text"]], @field)-%>
       </select>
       for
       <%= text_field_tag 'query', @query -%>
       <input type="hidden" id="from" />
       <input type="hidden" id="to"/>
-      
-    
-      <div id="year-filter">
-        <div id="year-label">
-          Year
-        </div>
-        <div id="year-slider-container">
-          <div id="year-slider"></div>
-        </div>	
-      </div>
-      
+            
       <input type="submit" value="Search" />
       <script>
         var year_from = <%= params[:from] || @year_min.to_i %>;
@@ -88,7 +77,6 @@
       <tr>
         <th>Layer</th>
         <%= sort_header_tag('name', :title => "Title") %>
-        <%= sort_header_tag('depicts_year', :title => "Year", :class=>"year-sort") %> 
         <%= sort_header_tag('maps_count', :title=> "Number of Maps") %>
         <%= sort_header_tag('percent', :title => "Percent Complete") %>
       </tr>

@@ -12,9 +12,6 @@
       
       Last modified <%=h time_ago_in_words(layer.updated_at) -%> ago.
     </span>
-    <span class="layer_year">
-      <%if layer.depicts_year%>Depicts : <%= layer.depicts_year %> <%end%>
-    </span>
     <span class="map_links">
 
     </span>
@@ -53,9 +50,6 @@
       <% end %>
 
     </span>
-  </td>
-  <td>
-    <%if layer.depicts_year -%><%= layer.depicts_year -%> <%end-%>
   </td>
   <td>
     <span class="layer_mapcount">

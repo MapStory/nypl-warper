@@ -13,15 +13,6 @@ div.comment span.comment_metadata {
   font-style: italic;
 }
 
-  
-a.buttonWarperBlue{
-  padding: 6px 6px 3px 6px;
-  margin-left:4px;
-  margin-bottom: 2px;
-  margin-top: 2px;
-  background: #191970 none repeat scroll 0% 0%;
-  color: #E3E3D4;
-}
 
 main {
   margin: 1.5em;
@@ -32,16 +23,6 @@ main {
     font-weight: bold;
     margin-top: 24px;
   }
-
-  .buttonWarper {
-    background:#556b2f;
-  }
-
-  .buttonWarper:hover {
-    color:#556b2f;
-    background: #E3E3D4;
-  }
-
 }
 
 
@@ -500,14 +481,6 @@ td.smaller {
   max-width: 300px;
 }
 
-.activity-table a.buttonWarper{
-  margin-bottom: 2px;
-  margin-top: 2px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  background: #556B2F none repeat scroll 0% 0%;
-  color: #E3E3D4;
-}
 .activity-details {
 width:50%;
 

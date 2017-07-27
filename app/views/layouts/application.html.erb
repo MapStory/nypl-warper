@@ -18,13 +18,11 @@
   <%end%>
           
     <%= render "header" %>
-    
-    <div id="warper-maindiv">
+    <%= flash_messages %>
 
-      <%= flash_messages %>
-
+    <main>
       <%= yield %>
-    </div>
+    </main>
 
     <%= render "footer" %>
 

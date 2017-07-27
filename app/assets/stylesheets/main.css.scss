@@ -23,16 +23,27 @@ a.buttonWarperBlue{
   color: #E3E3D4;
 }
 
-#warper-maindiv {
+main {
   margin: 1.5em;
   margin-top: 0.2em;
   overflow: auto;
+ 
+  h4 {
+    font-weight: bold;
+    margin-top: 24px;
+  }
+
+  .buttonWarper {
+    background:#556b2f;
+  }
+
+  .buttonWarper:hover {
+    color:#556b2f;
+    background: #E3E3D4;
+  }
+
 }
 
-#warper-maindiv h4 {
-	font-weight: bold;
-	margin-top: 24px;
-}
 
 /*
 * for map form
@@ -347,14 +358,6 @@ p {
 }
 
 
-#warper-maindiv .buttonWarper {
-	background:#556b2f;
-}
-
-#warper-maindiv .buttonWarper:hover {
-	color:#556b2f;
-	background: #E3E3D4;
-}
 
 input[type="text"], input[type="password"], select {
 	border-radius:4px;

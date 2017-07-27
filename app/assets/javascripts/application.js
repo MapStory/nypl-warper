@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 
 //= require general
+//= require footer
 //= require jquery.history
 //= require jquery-warper
 //= require layers
@@ -23,6 +24,7 @@
 //= require querystring
 //= require jquery.nouislider.all.min
 //= require warper-controls
+
 
 var querystring = require('querystring-component');
 

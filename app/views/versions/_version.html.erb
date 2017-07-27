@@ -59,7 +59,7 @@
           link_text = "Revert this version"
           end
       %>
-        <%= link_to "#{link_text}", revert_map_url(:id => version), :method => :put, :data => {:confirm => "Really revert all GCPS in the map?"}, :class=>"buttonWarper" %>
+        <%= link_to "#{link_text}", revert_map_url(:id => version), :method => :put, :data => {:confirm => "Really revert all GCPS in the map?"} %>
       <% elsif version.item_type == "Gcp" 
         link_text = "Revert GCP to version #{version.index-1}"
         if version.index-1 < 0
@@ -67,7 +67,7 @@
           end
 
       %>
-        <%= link_to "#{link_text}", revert_gcp_url(:id => version), :method => :put, :data => {:confirm => "Really revert this GCP?"}, :class=>"buttonWarper"%>
+        <%= link_to "#{link_text}", revert_gcp_url(:id => version), :method => :put, :data => {:confirm => "Really revert this GCP?"}%>
       <% end %>
     </td>
   <% end %>

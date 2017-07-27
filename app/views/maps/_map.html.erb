@@ -20,8 +20,6 @@
       
     </div>
     <div class="map_links_bigger">
-      <%= link_to("View Map",map) -%>
-      |
       <% if !admin_authorized? && map.published? %>
         <strong title ="This map has been published by an admin and no further editing is possible">Published</strong>
       <%  else %>

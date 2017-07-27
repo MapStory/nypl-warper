@@ -84,47 +84,34 @@ div#to_map_notification_inner{
 font-size: 10px;
 }
 
-#geosearch-link{
-  float:right;
-}
-
-#geosearch-year-filter-container {
-  height: 55px;
-  margin-top: 27px;
-}
-
-#geosearch-year-filter-container #year-slider-container {
-  width: 350px;
-}
-
 #geosearch {
   border: 2px solid #BBBBBB;
   padding: 5px;
 }
 
-#searchmap
-{     margin-left: 2px;
-        position: relative;
-        z-index: 22;
+#searchmap {
+  margin-left: 2px;
+  position: relative;
+  z-index: 22;
 	height:650px;
 	border:1px solid #999999;
 }
 
 
 #searchmap-container{
-height: 650px;
+  height: 650px;
 }
 
 #searchmap-list-block {
-width: 55%;
-overflow: auto;
-height: 100%;
-float: left;
+  width: 55%;
+  overflow: auto;
+  height: 100%;
+  float: left;
 }
 
 #searchmap-block{
-width: 44%;
-float: right;
+  width: 44%;
+  float: right;
 }
 
 #searchmap-table td {
@@ -626,13 +613,15 @@ clear: both;
 
 #left-col {
 	float: left;
-	margin: 10px 30px 10px 10px;
-	padding: 1em;
+	//margin: 10px 30px 10px 10px;
+	padding: 10px;
 	width: 320px;
-	background: #eeeee0;
-	border: 1px solid #ccc;
-	border-radius:6px;
+	background-color: #ffffff;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #e8e8e8;
+	border-radius: 8px;
 }
+
 
 #left-col h2:first-of-type {
 	margin-top: 0;

@@ -7,7 +7,7 @@ class AdminsController < ApplicationController
 
   def index
     @html_title = "Admin - "
-  endread
+  end
     
   #
   # Action used by Rack Attack for throttling behaviour testing

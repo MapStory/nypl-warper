@@ -733,11 +733,14 @@ class MapsController < ApplicationController
      
   end
 
-  require 'mapscript'
-  include Mapscript
+  # require 'mapscript'
+  # include Mapscript
 
+  
+  # Warning, status is a method on this object! Shouldn't be setting here!
   def wms
     @map = Map.find(params[:id])
+
     #status is additional query param to show the unwarped wms
     status = params["STATUS"].to_s.downcase || "unwarped"
     ows = Mapscript::OWSRequest.new
@@ -754,44 +757,50 @@ class MapsController < ApplicationController
     ows.setParameter("LAYERS", "image")
     ows.setParameter("COVERAGE", "image")
     
-    mapsv = Mapscript::MapObj.new(File.join(Rails.root, '/lib/mapserver/wms.map'))
-    projfile = File.join(Rails.root, '/lib/proj')
-    mapsv.setConfigOption("PROJ_LIB", projfile)
-    #map.setProjection("init=epsg:900913")
-    mapsv.applyConfigOptions
-    rel_url_root =  (ActionController::Base.relative_url_root.blank?)? '' : ActionController::Base.relative_url_root
-    mapsv.setMetaData("wms_onlineresource",
-      "http://" + request.host_with_port + rel_url_root + "/maps/wms/#{@map.id}")
+    # mapsv = Mapscript::MapObj.new(File.join(Rails.root, '/lib/mapserver/wms.map'))
+    # projfile = File.join(Rails.root, '/lib/proj')
+    # mapsv.setConfigOption("PROJ_LIB", projfile)
+    # #map.setProjection("init=epsg:900913")
+    # mapsv.applyConfigOptions
+    # rel_url_root =  (ActionController::Base.relative_url_root.blank?)? '' : ActionController::Base.relative_url_root
+    # mapsv.setMetaData("wms_onlineresource",
+    #   "http://" + request.host_with_port + rel_url_root + "/maps/wms/#{@map.id}")
     
-    raster = Mapscript::LayerObj.new(mapsv)
-    raster.name = "image"
-    raster.type = Mapscript::MS_LAYER_RASTER
-    raster.addProcessing("RESAMPLE=BILINEAR")
+    # raster = Mapscript::LayerObj.new(mapsv)
+    # raster.name = "image"
+    # raster.type = Mapscript::MS_LAYER_RASTER
+    # raster.addProcessing("RESAMPLE=BILINEAR")
 
-    if status == "unwarped"
-      raster.data = @map.unwarped_filename
+    # if status == "unwarped"
+    #   raster.data = @map.unwarped_filename
       
-    else #show the warped map
-      raster.data = @map.warped_filename
-    end
+    # else #show the warped map
+    #   raster.data = @map.warped_filename
+    # end
     
-    raster.status = Mapscript::MS_ON
-    raster.dump = Mapscript::MS_TRUE
-    raster.metadata.set('wcs_formats', 'GEOTIFF')
-    raster.metadata.set('wms_title', @map.title)
-    raster.metadata.set('wms_srs', 'EPSG:4326 EPSG:3857 EPSG:4269 EPSG:900913')
-    #raster.debug = Mapscript::MS_TRUE
-    raster.setProcessingKey("CLOSE_CONNECTION", "ALWAYS")
+    # #wms_dispatch
+
+    # Rails.logger.debug "Status is #{status}"
+
+    # raster.status = Mapscript::MS_ON
+    # raster.dump = Mapscript::MS_TRUE
+    # raster.metadata.set('wcs_formats', 'GEOTIFF')
+    # raster.metadata.set('wms_title', @map.title)
+    # raster.metadata.set('wms_srs', 'EPSG:4326 EPSG:3857 EPSG:4269 EPSG:900913')
+    # #raster.debug = Mapscript::MS_TRUE
+    # raster.setProcessingKey("CLOSE_CONNECTION", "ALWAYS")
     
-    Mapscript::msIO_installStdoutToBuffer
-    result = mapsv.OWSDispatch(ows)
-    content_type = Mapscript::msIO_stripStdoutBufferContentType || "text/plain"
-    result_data = Mapscript::msIO_getStdoutBufferBytes
+    # Mapscript::msIO_installStdoutToBuffer
+    # result = mapsv.OWSDispatch(ows)
+    # content_type = Mapscript::msIO_stripStdoutBufferContentType || "text/plain"
+    # result_data = Mapscript::msIO_getStdoutBufferBytes
     
+    # send_data result_data, :type => content_type, :disposition => "inline"
+    # Mapscript::msIO_resetHandlers
+    
+    result_data, content_type = Wms.dispatch(ows, status, request, @map)
+
     send_data result_data, :type => content_type, :disposition => "inline"
-    Mapscript::msIO_resetHandlers
-    
-    
   end
   
   def tile
@@ -819,6 +828,15 @@ class MapsController < ApplicationController
   
   private
   
+
+
+  def wms_dispatch
+    Rails.logger.debug "In WMS DISPATCH!"
+    Rails.logger.debug "Status is #{status}"
+    false
+  end
+
+
   def rectify_main
     resample_param = params[:resample_options] || @map.resample_options
     transform_param = params[:transform_options] || @map.transform_options

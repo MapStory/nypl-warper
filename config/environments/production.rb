@@ -80,5 +80,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.active_record.raise_in_transactional_callbacks = true  
+  config.active_record.raise_in_transactional_callbacks = true
+
+  # Specify base for WMS server. Include trailing slash
+  config.wms_base = "http://warper.mapstory.org/maps/wms/"
+
 end

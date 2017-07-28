@@ -39,4 +39,7 @@ Rails.application.configure do
   config.active_record.raise_in_transactional_callbacks = true
   
   config.active_support.test_order = :random
+
+  # Specify base for WMS server. Include trailing slash
+  config.wms_base = "http://localhost:3000/maps/wms/"
 end

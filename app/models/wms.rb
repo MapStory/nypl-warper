@@ -4,14 +4,12 @@ class Wms
 	# Pass in
 	# ows - preference settings object
 	# status - "unwarped" or something else
-	# request - the request object, used to build up metadata URL
 	# map - needed for id and filenames
-	def self.dispatch(ows, status, request, map)
+	def self.dispatch(ows, status, map)
 
 		# Define here so we can return outside of instrumentation block
 		result_data = nil
 		content_type = nil
-
 
 		ActiveSupport::Notifications.instrument("wms.dispatch", map_id: map.id, status: status) do
 			mapsv = Mapscript::MapObj.new(File.join(Rails.root, '/lib/mapserver/wms.map'))
@@ -19,14 +17,7 @@ class Wms
 			mapsv.setConfigOption("PROJ_LIB", projfile)
 			#map.setProjection("init=epsg:900913")
 			mapsv.applyConfigOptions
-			
-			# TODO: Pull this from a global setting too
-			rel_url_root =  (ActionController::Base.relative_url_root.blank?)? '' : ActionController::Base.relative_url_root
-			
-			# Do we really need this? If so, shouldn't we set it
-			# from a global setting instead of reading each request?
-			mapsv.setMetaData("wms_onlineresource",
-				"http://" + request.host_with_port + rel_url_root + "/maps/wms/#{map.id}")
+			mapsv.setMetaData("wms_onlineresource", "#{Rails.configuration.wms_base}#{map.id}")
 			
 			raster = Mapscript::LayerObj.new(mapsv)
 			raster.name = "image"

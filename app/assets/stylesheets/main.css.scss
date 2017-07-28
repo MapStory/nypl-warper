@@ -1281,16 +1281,6 @@ div.olControlMousePosition
   background-image: asset_url("editing_tool_bar_with_pin2.gif");
   background-repeat: no-repeat;
   background-position: -178px -23px;
-
-}
-
-.breadCrumb {
-	font-weight: 600;
-	padding-left: 30px;
-}
-
-.breadCrumb a:last-of-type {
-	color: #191970;
 }
 
 fieldset#control_panel_fieldset { 
@@ -1356,36 +1346,6 @@ fieldset#control_panel_fieldset a {
 
 span.current_status{
   font-weight: bold;
-}
-.site_status_form{
-   width:400px;
-}
-.site_status_form div{
-
-   margin: 0.7em;
-}
-.site_status_form fieldset {
-  padding: 0.2em 0.5em;
-  border:1px solid green;
-  color:green;
-  font-size:90%;
-  margin-left: 1em;
-}
-
-.site_status_form legend {
-  border:1px solid green;
-  padding-left: 0.3em;
-  padding-right: 0.3em;
-}
-
-.noUi-connect {
-  background-color: #D4BABD !important;
-}
-.noUi-target {
-  height: 15px !important;
-}
-.noUi-horizontal .noUi-handle{
-  height: 24px !important;
 }
 
 span.subdued {

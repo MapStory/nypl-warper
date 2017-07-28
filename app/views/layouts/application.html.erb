@@ -2,22 +2,24 @@
 <html>
   <head>
     <title>MapStory Map Warper: <%= (@html_title) || ''-%></title>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     
     <%# Why are we loading openlayers here? %>
-    <%#= javascript_include_tag "openlayers/2.8/OpenLayers-2.8/OpenLayers" %>
+    <%# There is a call to it in application, but, do we need it? %>
+    <%# Shouldn't we just minifiy the whole thing? %>
+    <%= javascript_include_tag "openlayers/2.8/OpenLayers-2.8/OpenLayers" %>
     <%= javascript_include_tag 'application' %>
     
     <%= csrf_meta_tags %>
 
     <%= yield :head %>
   </head>
-  <% if @onload -%>
+  <% if @onload %>
     <body onload="<%=@onload%>">
-  <%else-%>
+  <% else %>
     <body>
-  <%end%>
+  <% end %>
           
     <%= render "header" %>
     <%= flash_messages %>

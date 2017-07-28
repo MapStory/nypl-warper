@@ -1,36 +1,3 @@
-#map_table a:hover {
-    text-decoration: underline;
-    color: #191970;
-}
-
-#layer_table a:hover {
-    text-decoration: underline;
-    color: #191970;
-}
-
-#Export a:hover {
-    text-decoration: underline;
-    color: #191970;
-}
-
-ul#legal-links {
-  list-style:none;
-  color:#534D45 !important;font-size:85%;
-  text-transform: capitalize;
-  text-align: center;
-}
-ul#legal-links a:visited, ul#legal-links a:link {
-  color: #534D45;
-}
-
-ul#legal-links a:hover, ul#legal-links a:active {
-  color: #908B85;
-}
-
-ul#legal-links li {
-  margin: 0 0.15em;
-  display: inline;
-}
 
 #right-col{
   margin-left: 386px;
@@ -47,6 +14,7 @@ ul#legal-links li {
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
 }
+
 #export-copyright{
   margin-top:1em;
 }

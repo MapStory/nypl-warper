@@ -4,11 +4,14 @@
 }
 
 // General theme stuff
+// Match beta.mapstory.org
 body {
   color: #333333;
   font-size: 16px;
-  line-height: 22px;
-  font-family: "Open Sans", Helvetica, sans-serif;
+  line-height: 1.5;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   background: #fff;
@@ -57,9 +60,7 @@ h1.site-title {
 
 
 header.navigation ul li.nav-link {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 0.85em;
+  //font-size: 0.85em;
   display: inline;
   line-height: 50px;
   overflow: hidden;
@@ -93,10 +94,7 @@ footer.site-footer a:link {
 .site-footer {
   color: #e0e0e0;
   background: #333333;
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
-  font-weight: 400;
   font-size: 0.9em;
-
   width: 100%;
   max-width: 100%;
   margin-top: initial;
@@ -112,7 +110,7 @@ footer.site-footer a:link {
     font-size: 22px;
     
     h3 {
-      font-weight: 400;
+      font-weight: 900;
       font-style: bold;
     }
   }
@@ -128,7 +126,7 @@ footer.site-footer a:link {
 
   .footer-version {
     font-size: 14px;
-    font-weight: 200;
+    font-weight: 300;
     text-align: right;
   }
 }
@@ -153,7 +151,6 @@ footer.site-footer a:link {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  font-family: 'Lato', sans-serif;
 }
 
 .button span {

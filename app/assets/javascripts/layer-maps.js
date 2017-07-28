@@ -66,10 +66,11 @@ function init(){
   mapnik_lay1 = mapnik.clone();
 
 
-  nyc_lay1 = ny_2014.clone();
-  nyc_lay1.setIsBaseLayer(true);
+  //nyc_lay1 = ny_2014.clone();
+  //nyc_lay1.setIsBaseLayer(true);
 
-  layerMap.addLayers([mapnik_lay1,nyc_lay1]);
+  //layerMap.addLayers([mapnik_lay1,nyc_lay1]);
+  layerMap.addLayers([mapnik_lay1]);
 
   wmslayer =  new OpenLayers.Layer.WMS
   ( "Layer"+layer_id,

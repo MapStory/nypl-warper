@@ -83,7 +83,7 @@ function init() {
     from_map.zoomToMaxExtent();
   }
 
-  OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
+  OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
   OpenLayers.Util.onImageLoadErrorColor = "transparent";
 
   to_layer_switcher = new OpenLayers.Control.LayerSwitcher();
@@ -123,8 +123,8 @@ function init() {
   }
 
 
-  ny_2014.setVisibility(false);
-  to_map.addLayer(ny_2014);
+  //ny_2014.setVisibility(false);
+  //to_map.addLayer(ny_2014);
 
   if (map_has_bounds) {
     map_bounds_merc = new OpenLayers.Bounds();
@@ -317,22 +317,6 @@ function init() {
     }
   });
   
-	 /*
-	  // switch between maps based upon zoom level
-	  to_map.events.register("zoomend", mapnik, function () {
-	    if (this.map.getZoom() > 18 && this.visibility == true) {
-	      this.map.setBaseLayer(ny_2014);
-	    }
-	  });
-	  
-	   to_map.events.register("zoomend", ny_2014, function () {
-	    if (this.map.getZoom() < 15 && this.visibility == true) {
-	      this.map.setBaseLayer(mapnik);
-	    }
-	  });
-	*/
-
-
   // setup resize
   window.addEventListener("resize", warp_updateSize);
   warp_updateSize();

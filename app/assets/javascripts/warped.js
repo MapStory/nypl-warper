@@ -66,8 +66,8 @@ function warpedinit() {
     mapnik3 = mapnik.clone();
     warpedmap.addLayer(mapnik3);
     
-    ny_2014_clone = ny_2014.clone();
-    warpedmap.addLayer(ny_2014_clone);
+    //ny_2014_clone = ny_2014.clone();
+    //warpedmap.addLayer(ny_2014_clone);
     
     for (var i = 0; i < layers_array.length; i++) {
         warpedmap.addLayer(get_map_layer(layers_array[i]));
@@ -97,18 +97,6 @@ function warpedinit() {
     warpedmap.addLayer(warped_wmslayer);
 
     clipmap_bounds_merc = warped_bounds.transform(warpedmap.displayProjection, warpedmap.projection);
-
-    warpedmap.events.register("zoomend", mapnik3, function () {
-      if (this.map.getZoom() > 18 && this.visibility == true) {
-        this.map.setBaseLayer(ny_2014_clone);
-      }
-    });
-
-    warpedmap.events.register("zoomend", ny_2014_clone, function () {
-      if (this.map.getZoom() < 15 && this.visibility == true) {
-        this.map.setBaseLayer(mapnik3);
-      }
-    });
 
     //set up slider
     jQuery("#slider").slider({

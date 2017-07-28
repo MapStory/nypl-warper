@@ -1,10 +1,6 @@
 # Used for fetching wms data
 class Wms
 
-  require 'mapscript'
-  #include Mapscript
-
-
 	def self.dispatch(ows, status, request, map)
 
     mapsv = Mapscript::MapObj.new(File.join(Rails.root, '/lib/mapserver/wms.map'))

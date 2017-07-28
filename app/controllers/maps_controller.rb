@@ -732,10 +732,6 @@ class MapsController < ApplicationController
     end
      
   end
-
-  # require 'mapscript'
-  # include Mapscript
-
   
   # Warning, status is a method on this object! Shouldn't be setting here!
   def wms

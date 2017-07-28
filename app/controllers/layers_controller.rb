@@ -380,8 +380,6 @@ class LayersController < ApplicationController
 
   end
 
-  require 'mapscript'
-  include Mapscript
   def wms()
     begin
       @layer = Layer.find(params[:id])

@@ -733,12 +733,11 @@ class MapsController < ApplicationController
      
   end
   
-  # Warning, status is a method on this object! Shouldn't be setting here!
   def wms
     @map = Map.find(params[:id])
 
     #status is additional query param to show the unwarped wms
-    status = params["STATUS"].to_s.downcase || "unwarped"
+    wms_status = params["STATUS"].to_s.downcase || "unwarped"
     ows = Mapscript::OWSRequest.new
     
     # TODO: Should rework this with more modern params handling..
@@ -754,7 +753,7 @@ class MapsController < ApplicationController
     ows.setParameter("LAYERS", "image")
     ows.setParameter("COVERAGE", "image")
 
-    result_data, content_type = Wms.dispatch(ows, status, @map)
+    result_data, content_type = Wms.dispatch(ows, wms_status, @map)
 
     send_data result_data, :type => content_type, :disposition => "inline"
   end

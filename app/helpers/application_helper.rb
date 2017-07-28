@@ -58,5 +58,11 @@ module ApplicationHelper
 
     assets
   end
+
+  # Used for formatting papertrail output
+  def formatted_action(action)
+    action.gsub(/\W/, "").titleize
+  end
+
   
 end

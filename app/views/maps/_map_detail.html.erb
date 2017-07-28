@@ -7,13 +7,9 @@
   </td>
   <td class="<%= cl %>">
     <span class="maplist_title">
-      <% if map.parent && map.inset_maps.empty? %>
-        Inset of: 
-      <% end %>
       <%=strip_brackets(map.title) %>
     </span>
-
-    <br />
+    <br>
     <span class="map_description">
       <%=strip_brackets(map.description) -%>
     </span>
@@ -30,15 +26,6 @@
       <%end-%>
     </span>
     
-
-    <div class="inset_info">
-      <% if map.parent || map.inset_maps.nil? %>
-        This is an inset map. <%= link_to "View original map", map_url(:id=>map.parent) %>
-      <% elsif !map.inset_maps.empty?  %>
-        This map has <%= link_to pluralize(map.inset_maps.size, "inset map"), inset_maps_map_path(:id=>map.id) %>.
-      <% end %>
-    </div>
-
     <% if true #user_signed_in? %>
       <div class="users_version_info map_summary ">
         <% if @current_version_number > 0  && @current_version_user %>
@@ -91,11 +78,6 @@
           <% if  Time.now - map.versions.where(:event => "publishing").last[:created_at].localtime > 60*60*2 %>
             <%= link_to("UnPublish",publish_map_path(:id => map, :to => "unpublish"), :data => {:confirm => "Just making sure: really un publish this map? This will mean that the map can be edited now"} ) -%>
           <% end %>
-        <% end %>
-  
-        <% if [:available, :warping, :warped, :published].include?(map.status) && map.parent.nil? %>
-          | <%= link_to("Create Inset", create_inset_map_path(:id => map), :method => :post, :data => {:confirm => "Really create a new inset map?"}) %>
-    
         <% end %>
       <% end %>
 

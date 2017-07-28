@@ -15,8 +15,9 @@ class Map < ActiveRecord::Base
   has_many :my_maps, :dependent => :destroy
   has_many :users, :through => :my_maps
   #belongs_to :owner, :class_name => "User"
+
+  # I think parent is only for inset maps, which have been removed.
   belongs_to :parent, :class_name => "Map", :foreign_key => "parent_id"
-  has_many :inset_maps, :class_name => "Map",:foreign_key => "parent_id"
   
   has_many :flags, :as => :flaggable 
  
@@ -690,31 +691,7 @@ class Map < ActiveRecord::Base
     gmlfile.close
     message = "Map clipping mask saved (gml)"
   end
-  
-  
-  def create_inset
-    inset_map = nil
-    if [:available, :warping, :warped, :published].include?(self.status) && self.parent.nil?
-      inset_map = self.dup
-      unique_id = "inset-#{self.id}-#{Time.new.strftime('%m-%d-%H%M%S-%L')}"
-      inset_map.filename = File.join(maps_dir, unique_id) + ".tif"
-      FileUtils.copy(self.filename, inset_map.filename)
-      
-      inset_map.status = :available
-      inset_map.mask_status = :unmasked
-      inset_map.rectified_at = nil
-      
-      inset_map.layers = self.layers
-      
-      inset_map.uuid = unique_id
-      
-      inset_map.parent_id = self.id
-    end
-    
-    inset_map
-  end
-  
- 
+   
   ############
   #PRIVATE
   ############

@@ -199,12 +199,12 @@ class LayersController < ApplicationController
       respond_to do |format|
         format.html {render :layout => "application"}
 
-        format.xml { render :xml => @layers.to_xml(:root => "layers", :except => [:uuid, :parent_uuid, :description]) {|xml|
+        format.xml { render :xml => @layers.to_xml(:root => "layers", :except => [:description]) {|xml|
             xml.tag!'total-entries', @layers.total_entries
             xml.tag!'per-page', @layers.per_page
             xml.tag!'current-page',@layers.current_page}
         }
-        format.json {render :json => {:stat => "ok", :items => @layers.to_a}.to_json(:except => [:uuid, :parent_uuid, :description]), :callback => params[:callback] }
+        format.json {render :json => {:stat => "ok", :items => @layers.to_a}.to_json(:except => [:description]), :callback => params[:callback] }
       end
     end
   end

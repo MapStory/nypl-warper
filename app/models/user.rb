@@ -9,9 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :my_maps, :dependent => :destroy
   has_many :maps, -> { uniq }, :through => :my_maps
-  
-  has_many :flags, :as => :flaggable 
- 
+   
   #has_many :layers, :dependent => :destroy
   
   validates_presence_of    :login

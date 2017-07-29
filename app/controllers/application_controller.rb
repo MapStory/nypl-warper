@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   
-  before_filter :check_rack_attack
-
   after_filter :set_access_control_headers
   
   def info_for_paper_trail
@@ -51,31 +49,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
   
-  def check_rack_attack
-    if request.env['rack.attack.flag_user'] == true
-  
-      flag =  Flag.find_or_initialize_by(:flaggable_id => current_user.id) 
-
-      if flag.new_record?
-        flag.flaggable_type = "User"
-        flag.reason = "request_throttle"
-        flag.message =  [
-          env['rack.attack.matched'],
-          env['rack.attack.match_type'],
-          env['rack.attack.match_data']
-        ].inspect
-        
-        begin
-          flag.save
-        rescue ActiveRecord::RecordNotUnique  => e
-          logger.error "Flag not unique "+ e.inspect
-        end
-      end
-
-    end
-  end
-
-
 end
 
 

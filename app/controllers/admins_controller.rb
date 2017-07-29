@@ -8,13 +8,5 @@ class AdminsController < ApplicationController
   def index
     @html_title = "Admin - "
   end
-    
-  #
-  # Action used by Rack Attack for throttling behaviour testing
-  #
-  def throttle_test
-    render :text => "throttle test"
-  end
-
   
 end

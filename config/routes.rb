@@ -18,11 +18,9 @@ Rails.application.routes.draw do
     end
     resource :user_account
     resources :roles
-    resources :flags, :only => [:create]
   end
   
   get '/admin/' => 'admins#index', :as => "admin"
-  get '/admin/throttle_test' => 'admins#throttle_test', :as => 'admintest'
 
   get '/maps/activity' => 'versions#for_map_model', :as => "maps_activity"
   
@@ -59,15 +57,8 @@ Rails.application.routes.draw do
         get 'tag'
     end
     resources :layers
-    resources :flags, :only => [:create]
   end
-  
-  resources :flags, :except => [:exit, :update, :new] do
-    member do
-      put :close
-    end
-  end
-  
+    
   get '/gcps/' => 'gcp#index', :as => "gcps"
   get '/gcps/:id' => 'gcps#show', :as => "gcp"
   delete '/gcps/:id/destroy' => 'gcps#destroy', :as => "destroy_gcp"

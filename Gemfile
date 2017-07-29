@@ -69,7 +69,6 @@ gem "rmagick"
 
 gem "s3"
 
-gem 'rack-attack', '~>3.0'
 gem 'redis-activesupport'
 
 group :development do

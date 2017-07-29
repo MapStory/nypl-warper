@@ -18,9 +18,7 @@ class Map < ActiveRecord::Base
 
   # I think parent is only for inset maps, which have been removed.
   belongs_to :parent, :class_name => "Map", :foreign_key => "parent_id"
-  
-  has_many :flags, :as => :flaggable 
- 
+   
   validates_presence_of :title
   validates_numericality_of :rough_lat, :rough_lon, :rough_zoom, :allow_nil => true
 

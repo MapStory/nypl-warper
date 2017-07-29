@@ -1,8 +1,0 @@
-map1_flag:
-  id: 1
-  flaggable_id: 1
-  flaggable_type: "Map"
-  reason: "error"
-  message: "message about it"
-  reporter_id: 1
-  

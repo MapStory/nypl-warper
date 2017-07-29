@@ -31,7 +31,6 @@ which is available at https://github.com/nypl-spacetime/nypl-warper
   * User administration, disabling
   * Roles management (editor, developer, admin etc)
   * Batch Imports
-  * User Flags
   * User Statistics
   * Revisions and Rollbacks
  

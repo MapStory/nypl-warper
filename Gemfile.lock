@@ -174,8 +174,6 @@ GEM
     proxies (0.2.1)
     public_suffix (2.0.5)
     rack (1.6.8)
-    rack-attack (3.0.0)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -304,7 +302,6 @@ DEPENDENCIES
   paper_trail (~> 4.0.0.rc1)
   paperclip (~> 4.2.0)
   pg (= 0.20.0)
-  rack-attack (~> 3.0)
   rails (= 4.2.3)
   redis-activesupport
   rmagick

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728194007) do
+ActiveRecord::Schema.define(version: 20170729030048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,21 +44,6 @@ ActiveRecord::Schema.define(version: 20170728194007) do
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "flags", force: :cascade do |t|
-    t.integer  "flaggable_id"
-    t.string   "flaggable_type"
-    t.string   "reason"
-    t.text     "message"
-    t.integer  "reporter_id"
-    t.integer  "closer_id"
-    t.datetime "closed_at"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "flags", ["flaggable_id", "flaggable_type"], name: "index_flags_on_flaggable_id_and_flaggable_type", unique: true, using: :btree
-  add_index "flags", ["flaggable_id"], name: "index_flags_on_flaggable_id", using: :btree
 
   create_table "gcps", force: :cascade do |t|
     t.integer  "map_id"

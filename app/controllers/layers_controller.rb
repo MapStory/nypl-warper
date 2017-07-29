@@ -224,15 +224,14 @@ class LayersController < ApplicationController
       lmaps = @layer.maps.order(:map_type).paginate(paginate_params)
     end
     respond_to do |format|
-      #format.json {render :json =>lmaps.to_json(:stat => "ok",:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail])}
       format.json {render :json =>{:stat => "ok",
           :current_page => lmaps.current_page,
           :per_page => lmaps.per_page,
           :total_entries => lmaps.total_entries,
           :total_pages => lmaps.total_pages,
-          :items => lmaps.to_a}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail]), :callback => params[:callback] }
+          :items => lmaps.to_a}.to_json(:except => [:content_type, :size, :bbox_geom, :filename, :parent_id,  :map, :thumbnail]), :callback => params[:callback] }
 
-      format.xml {render :xml => lmaps.to_xml(:root => "maps",:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail])  {|xml|
+      format.xml {render :xml => lmaps.to_xml(:root => "maps",:except => [:content_type, :size, :bbox_geom, :filename, :parent_id,  :map, :thumbnail])  {|xml|
           xml.tag!'total-entries', lmaps.total_entries
           xml.tag!'per-page', lmaps.per_page
           xml.tag!'current-page',lmaps.current_page} }
@@ -261,9 +260,7 @@ class LayersController < ApplicationController
     else
       respond_to do |format|
         format.html {render :layout => "layerdetail"}# show.html.erb
-        #format.json {render :json => @layer.to_json(:except => [:uuid, :parent_uuid, :description])}
-        format.json {render :json => {:stat => "ok", :items => @layer}.to_json(:except => [:uuid, :parent_uuid, :description]), :callback => params[:callback] }
-
+        format.json {render :json => {:stat => "ok", :items => @layer}.to_json(:except => [:description]), :callback => params[:callback] }
         format.kml {render :action => "show_kml", :layout => false}
       end
     end

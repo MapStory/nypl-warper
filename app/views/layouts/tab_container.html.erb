@@ -1,7 +1,11 @@
-<%= javascript_tag @onload -%>
+<%# If these are all xhr requests, what is the head doing in here? %>
+
+<%= yield :head %>
 <script type="text/javascript">
   var xhrFlag = "<%=@xhr_flag%>";
 </script> 
+
+<%= javascript_tag @onload %>
 
 <%= flash_messages %>
 

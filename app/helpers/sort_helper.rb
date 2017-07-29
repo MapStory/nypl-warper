@@ -130,7 +130,7 @@ module SortHelper
    
     params = {:params => {:sort_key => column, :sort_order => order, :query => @query, :field => @field, 
                           :show_available => @show_available, :per_page => @per_page, :period=> @period, 
-                          :from => @from, :to => @to, :show_warped => @show_warped} } #if @query
+                          :show_warped => @show_warped} } #if @query
     params = params.merge(options[:params]) if options[:params]
     link_to(text, params) +
       (icon ? nbsp(2) + image_tag(icon) : '').html_safe()

@@ -91,16 +91,9 @@ class MapsController < ApplicationController
     set_session_link_back url_for(:controller=> 'maps', :action => 'index',:skip_relative_url_root => false, :only_path => false )+ qstring
     
     @query = params[:query]
-    
-    @field = %w(text title description status).detect{|f| f == (params[:field])}
-    
-    
-    @field = "text" if @field.nil?
-    where_col = @field
-    
-    if  @field == "text"
-      where_col  = "(title || ' ' || description)"
-    end
+        
+    # What we are searching.
+    where_col  = "(title || ' ' || description)"
     
     #we'll use POSIX regular expression for searches    ~*'( |^)robinson([^A-z]|$)' and to strip out brakets etc  ~*'(:punct:|^|)plate 6([^A-z]|$)';
     if @query && @query.strip.length > 0 && @field
@@ -108,10 +101,7 @@ class MapsController < ApplicationController
     else
       conditions = nil
     end
-            
-    @from = params[:from]
-    @to = params[:to]
-        
+                    
     if params[:sort_order] && params[:sort_order] == "desc"
       sort_nulls = " NULLS LAST"
     else

@@ -96,7 +96,7 @@ class MapsController < ApplicationController
     where_col  = "(title || ' ' || description)"
     
     #we'll use POSIX regular expression for searches    ~*'( |^)robinson([^A-z]|$)' and to strip out brakets etc  ~*'(:punct:|^|)plate 6([^A-z]|$)';
-    if @query && @query.strip.length > 0 && @field
+    if @query && @query.strip.length > 0
       conditions = ["#{where_col}  ~* ?", '(:punct:|^|)'+@query+'([^A-z]|$)']
     else
       conditions = nil

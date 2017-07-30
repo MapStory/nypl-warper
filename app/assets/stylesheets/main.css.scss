@@ -492,19 +492,23 @@ div.period span.period{
 }
 
 // Main search form under header
+// This is the container box all the controls and form are in.
 #search-form {
-	padding: 1em;
-	background: #eeeee0;
-	border: 1px solid #ccc;
-	border-radius:6px;
+	//padding: 1em;
+	//background: #eeeee0;
+	//border: 1px solid #ccc;
+	//border-radius:6px;
 	margin-bottom: 10px;
-	overflow:hidden; // to clear float
+	overflow: hidden; // to clear float
+  line-height:1;
 }
 
 #searchform #radio-buttons{ 
   display: inline-block;
   position: relative;
-  top: 13px;
+  line-height: 1.5;
+  // Adjust to line up with search box
+  //top: 0px;
 }
 #searchform input{
  margin-bottom: 26px;
@@ -513,63 +517,49 @@ div.period span.period{
   margin-bottom: 0px;
 }
 
-#searchform input[type="submit"] {
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
+// Search input box
 #searchform #query{
   width: 20em;
+  position: relative;
+  // Specify font to over-ride system UI defaults
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.85em;
+  background: #f5f5f5;
+  border: 1px solid #e7e7e7;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #424242;
+  //font-style: italic;
+  margin: 0;
+  padding: 3px 8px;
+  line-height: 1.5;
+  top: -10px;
+
 }
 
-#searchform button[type=submit] {
-    background: #f5f5f5;
-    border: 0;
-    bottom: 0.3em;
-    left: auto;
-    outline: none;
-    padding: 0 9px;
-    position: absolute;
-    right: 0.3em;
-    top: 0.3em;
-    color: #757575;
+// Magnifying glass
+#searchform button[type="submit"] {
+  position: relative;
+  left: -30px;
+  top: -10px;
+  background: transparent;
+  border: 0;
+  color: #757575;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.42857143;
+  user-select: none;
 }
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-
-
-
-
-
-
-
-
-
 
 #search-title {
-font-size: 2em;
-font-weight: bold;
-clear: both;
-
+  font-size: 2em;
+  font-weight: bold;
+  clear: both;
 }
 
 #search-sort {

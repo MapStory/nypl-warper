@@ -1,11 +1,10 @@
 <%= form_tag url_for(:controller => "maps"), :id=>"searchform",:name=> "searchform", :method => :get do %>
+  
   <%= text_field_tag 'query', @query, placeholder: "Quick Search" -%>
-  <button class="btn" type="submit">
+  <button type="submit">
     <i class="fa fa-search"></i>
   </button>
 
-  <!--<input type="submit" value="Search">-->
-  
   <% if @show_warped == "1" -%>
     <% check_all = false -%>
     <% check_rectified = true -%>

@@ -228,6 +228,9 @@
     <%= render :partial => 'shared/analyticstop' %>
           
     <%= render "header" %>
+    
+    <main>
+
     <table id="map_table">
       <%= render :partial => 'maps/map_detail', :object => @map, :locals => {:variety => "detail"} %>
     </table>
@@ -264,6 +267,8 @@
     <div id="panel-under-tabs">
 
     </div>
+
+    </main>
 
     <%= render "footer" %>
     <%= render :partial => 'shared/analyticsbottom', :locals => {

@@ -190,7 +190,7 @@ function onFeatureSelect(feature) {
     null,
     "<div class='layermap-popup'> Map "+
       feature.mapId + "<br /> <a href='" + mapBaseURL + "/"+ feature.mapId + "' target='_blank'>"+feature.mapTitle+"</a><br />"+
-      "<img src='"+mapThumbBaseURL+feature.mapId+"' height='80'>"+
+      "<img src='/maps/"+feature.mapId+"/thumb' height='80'>"+
       "<br /> <a href='"+mapBaseURL+"/"+feature.mapId+"#Rectify_tab' target='_blank'>Edit this map</a>"+
       "</div>",
     null, true, onPopupClose);

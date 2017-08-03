@@ -674,7 +674,7 @@ class MapsController < ApplicationController
   
 
   # TODO: Look into action caching or rack::cache for this
-  # or possible roll our own cache. Need to think about invalidation
+  # or possibly roll our own cache. Need to think about invalidation
   # options. We should be able to monitor @map updated_at and status (along with query params?)
   # as it could greatly speed up serving
   def wms

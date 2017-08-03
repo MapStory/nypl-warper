@@ -31,7 +31,7 @@ class Layer < ActiveRecord::Base
   end
 
   def update_counts
-    update_attribute(:maps_count, self.maps.real_maps.length)
+    update_attribute(:maps_count, self.maps.length)
     update_attribute(:rectified_maps_count, self.maps.warped.count)
   end
 

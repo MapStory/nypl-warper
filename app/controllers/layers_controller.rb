@@ -207,9 +207,9 @@ class LayersController < ApplicationController
 
     show_warped = params[:show_warped]
     unless show_warped == "0"
-      lmaps = @layer.maps.warped.order(:map_type).paginate(paginate_params)
+      lmaps = @layer.maps.warped.paginate(paginate_params)
     else
-      lmaps = @layer.maps.order(:map_type).paginate(paginate_params)
+      lmaps = @layer.maps.paginate(paginate_params)
     end
     respond_to do |format|
       format.json {render :json =>{:stat => "ok",
@@ -234,7 +234,7 @@ class LayersController < ApplicationController
       @disabled_tabs = ["digitize"]
     end
 
-    @maps = @layer.maps.order(:map_type).paginate(:page => params[:page], :per_page => 30)
+    @maps = @layer.maps.paginate(:page => params[:page], :per_page => 30)
 
     @html_title = "Layer "+ @layer.id.to_s + " " + @layer.name.to_s
 

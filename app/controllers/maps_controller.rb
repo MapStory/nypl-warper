@@ -4,12 +4,12 @@ class MapsController < ApplicationController
   
   before_filter :store_location, :only => [:warp, :align, :clip, :export, :edit, :comments ]
   
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :delete, :warp, :rectify, :clip, :align, :warp_align, :mask_map, :delete_mask, :save_mask, :save_mask_and_warp, :set_rough_state, :set_rough_centroid, :publish, :trace, :id, :map_type]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :delete, :warp, :rectify, :clip, :align, :warp_align, :mask_map, :delete_mask, :save_mask, :save_mask_and_warp, :set_rough_state, :set_rough_centroid, :publish, :trace, :id]
  
-  before_filter :check_administrator_role, :only => [:publish, :map_type, :edit]
+  before_filter :check_administrator_role, :only => [:publish, :edit]
  
   before_filter :find_map_if_available,
-    :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :destroy, :edit, :tag, :geosearch, :map_type]
+    :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :destroy, :edit, :tag, :geosearch]
   
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
 
@@ -460,21 +460,6 @@ class MapsController < ApplicationController
   # Other / API actions 
   #
   ###############  
-  
-  def map_type
-    @map = Map.find(params[:id])
-    map_type = params[:map][:map_type]
-    if Map::MAP_TYPE.include? map_type.to_sym
-      @map.update_map_type(map_type)
-    end
-    
-    if Layer.exists?(params[:layerid].to_i)
-      @layer = Layer.find(params[:layerid].to_i)
-      @maps = @layer.maps.paginate(:per_page => 30, :page => 1, :order => :map_type)
-    end
-    
-       render :text => "Map has changed. Map type: "+@map.map_type.to_s
-    end
 
   #pass in soft true to get soft gcps
   def gcps
@@ -861,7 +846,7 @@ class MapsController < ApplicationController
   end
 
   def map_params
-    params.require(:map).permit(:title, :description, :map_type, :upload) 
+    params.require(:map).permit(:title, :description, :upload) 
   end
   
   def choose_layout_if_ajax

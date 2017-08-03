@@ -7,8 +7,6 @@ map1:
   height: 105
   status: 4
   mask_status: 0
-  map: true
-  map_type: 1
   
 unloaded:
   id: 2
@@ -19,5 +17,3 @@ unloaded:
   height:
   status: 0
   mask_status: 0
-  map: true
-  map_type: 1

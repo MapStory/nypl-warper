@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729030048) do
+ActiveRecord::Schema.define(version: 20170803024306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,9 +96,7 @@ ActiveRecord::Schema.define(version: 20170729030048) do
     t.integer  "parent_id"
     t.integer  "status"
     t.integer  "mask_status"
-    t.boolean  "map",                                                                                      default: true
     t.string   "bbox"
-    t.integer  "map_type"
     t.geometry "bbox_geom",           limit: {:srid=>4326, :type=>"st_polygon"}
     t.decimal  "rough_lat",                                                      precision: 15, scale: 10
     t.decimal  "rough_lon",                                                      precision: 15, scale: 10

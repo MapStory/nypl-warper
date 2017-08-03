@@ -45,7 +45,6 @@ page     page number
 "items": [
    {
      "status": "warped",
-     "map_type": "is_map",
      "updated_at": "2010/03/25 10:52:42 -0400",
     "title": "A chart of Delaware Bay and River : containing a full and exact description of the shores, creeks, harbours, soundings, shoals, sands, and bearings of the most considerable land marks \u0026c. \u0026c. / faithfully coppied [sic] from that published at Philadelphia",
      "id": 6985,
@@ -137,7 +136,6 @@ or [http://mapwarper.net/maps/8461?format=json http://mapwarper.net/maps/8461?fo
  "items": [
    {
      "status": "warped",
-     "map_type": "is_map",
      "updated_at": "2010/03/25 11:12:41 -0400",
    "title": "Double Page Plate No. 34: [Bounded by (New Town Creek) Commercial Street, Ash Street, Oakland Street, Paidge Avenue, Sutton Street, Meserole Avenue, Diamond Street, Calyer Street, Manhattan Avenue, Greenpoint Avenue, West Street and Bay Street.]",
      "id": 8461,
@@ -180,8 +178,6 @@ warping is the status temporarily set during the warping process
 warped status is set after rectification
 
 published is set when the map should no longer be edited. Not currently used.
-
-map_type - integer [0 : index, 1 : is_map, 2 : not_map ]
 
 index to mark a map as actually being an index / overview map
 
@@ -350,7 +346,7 @@ Layer Variables
 
 bbox - bounding box, based on the extents of the tileindex shapefile that makes up the layer with maps.
 
-mapscans_count - how many maps a layer has. Where a map is defined using the map_type => is_map variable - excludes title pages for instance.
+mapscans_count - how many maps a layer has.
 
 rectified_mapscans_count - How many maps are rectified in the layer
 
@@ -378,7 +374,6 @@ JSON
  "items": [
    {
      "status": null,
-     "map_type": "not_map",
      "updated_at": "2009/07/03 13:26:45 -0400",
      "title": "The generall historie of Virginia, New-England, and the Summer isles: with the names of the adventurers, planters, and governours from their first beginning ano: 1584. to this present 1626. With the proceedings of those severall colonies and the accident",
      "id": 12893,

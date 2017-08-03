@@ -4,7 +4,7 @@
     Original file: <%= link_to  "Download original image file", download_map_path(@map) %>
   </li>
 </ul>
-<% if @map.warped_or_published? && @map.map_type == :is_map %>
+<% if @map.warped_or_published? %>
   <ul>
     <li>
       Warped GeoTIFF: <%= link_to  "Download warped GeoTIFF", export_map_url(:id => @map, :format => :tif) %> 

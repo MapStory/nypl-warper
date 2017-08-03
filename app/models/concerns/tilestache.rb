@@ -95,7 +95,7 @@ module Tilestache
     if who.class.to_s == "Map"
       warped_filename = who.warped_filename
     else
-      warped_filename = who.maps.select {|m| m.map_type == :is_map}.first.warped_filename
+      warped_filename = who.maps.first.warped_filename
     end
 
     if warped_filename

@@ -29,17 +29,14 @@ class Map < ActiveRecord::Base
 
 
   acts_as_commentable
-  acts_as_enum :map_type, [:index, :is_map, :not_map ]
   acts_as_enum :status, [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
   acts_as_enum :mask_status, [:unmasked, :masking, :masked]
   acts_as_enum :rough_state, [:step_1, :step_2, :step_3, :step_4]
 
   has_paper_trail :ignore => [:bbox, :bbox_geom]
   
-  scope :warped,    -> { where({ :status => [Map.status(:warped), Map.status(:published)], :map_type => Map.map_type(:is_map)  }) }
-  scope :published, -> { where({:status => Map.status(:published), :map_type => Map.map_type(:is_map)})}
-
-  scope :real_maps, -> { where({:map_type => Map.map_type(:is_map)})}
+  scope :warped,    -> { where({:status => [Map.status(:warped), Map.status(:published)] }) }
+  scope :published, -> { where({:status => Map.status(:published) })}
   
   attr_accessor :error
 
@@ -60,7 +57,6 @@ class Map < ActiveRecord::Base
   def default_values
     self.status  ||= :unloaded  
     self.mask_status  ||= :unmasked  
-    self.map_type  ||= :is_map  
     self.rough_state ||= :step_1  
   end
   
@@ -156,12 +152,6 @@ class Map < ActiveRecord::Base
   #############################################
   #CLASS METHODS
   #############################################
-
-  def self.map_type_hash
-    values = Map::MAP_TYPE
-    keys = ["Index/Overview", "Is a map", "Not a map"]
-    Hash[*keys.zip(values).flatten]
-  end
   
   def self.max_attachment_size
     max_attachment_size =  defined?(MAX_ATTACHMENT_SIZE)? MAX_ATTACHMENT_SIZE : nil
@@ -266,14 +256,7 @@ class Map < ActiveRecord::Base
   def warped_or_published?
     return [:warped, :published].include?(status)
   end
-  
-  def update_map_type(map_type)
-    if Map::MAP_TYPE.include? map_type.to_sym
-      self.update_attributes(:map_type => map_type.to_sym)
-      self.update_layers
-    end
-  end
-  
+    
   def last_changed
     if self.gcps.size > 0
       self.gcps.last.created_at

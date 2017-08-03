@@ -9,9 +9,7 @@ class MapsController < ApplicationController
   before_filter :check_administrator_role, :only => [:publish, :map_type, :edit]
  
   before_filter :find_map_if_available,
-    :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :edit, :tag, :geosearch, :map_type]
-
-  before_filter :check_link_back, :only => [:show, :warp, :clip, :align, :warped, :export, :activity]
+    :except => [:show, :index, :wms, :tile, :mapserver_wms, :warp_aligned, :status, :new, :create, :update, :destroy, :edit, :tag, :geosearch, :map_type]
   
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
 
@@ -87,9 +85,7 @@ class MapsController < ApplicationController
     sort_update
     @show_warped = params[:show_warped]
     request.query_string.length > 0 ?  qstring = "?" + request.query_string : qstring = ""
-    
-    set_session_link_back url_for(:controller=> 'maps', :action => 'index',:skip_relative_url_root => false, :only_path => false )+ qstring
-    
+        
     @query = params[:query]
         
     # What we are searching.
@@ -811,20 +807,6 @@ class MapsController < ApplicationController
     return merc_x, merc_y
   end
   
-
-  def set_session_link_back link_url
-    session[:link_back] = link_url
-  end
-
-  def check_link_back
-    @link_back = session[:link_back]
-    if @link_back.nil?
-      @link_back = url_for(:action => 'index')
-    end
-  
-    session[:link_back] = @link_back
-  end
-
   #only allow deleting by a user if the user owns it
   def check_if_map_can_be_deleted
     if user_signed_in? and (current_user.own_this_map?(params[:id])  or current_user.has_role?("editor"))

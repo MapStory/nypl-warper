@@ -67,6 +67,7 @@ class MapsController < ApplicationController
   end
 
   def destroy
+    @map = Map.find(params[:id])
     @map.destroy
     respond_to do |format|
       format.html { redirect_to maps_url }
@@ -671,6 +672,11 @@ class MapsController < ApplicationController
      
   end
   
+
+  # TODO: Look into action caching or rack::cache for this
+  # or possible roll our own cache. Need to think about invalidation
+  # options. We should be able to monitor @map updated_at and status (along with query params?)
+  # as it could greatly speed up serving
   def wms
     @map = Map.find(params[:id])
 

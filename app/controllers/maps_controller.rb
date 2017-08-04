@@ -687,6 +687,11 @@ class MapsController < ApplicationController
     send_data result_data, :type => content_type, :disposition => "inline"
   end
   
+  # for tile map - basically proxies requests to wms in a simpler
+  # url format...
+  #
+  # This is an "export" option - which specifies PNG. We probably
+  # want to change this to jpeg in the future as well.
   def tile
     x = params[:x].to_i
     y = params[:y].to_i

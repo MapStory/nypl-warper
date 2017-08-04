@@ -77,7 +77,7 @@ function warpedinit() {
 
     warped_wmslayer = new OpenLayers.Layer.WMS("warped image",
         warped_wms_url, {
-            format: 'image/png',
+            format: 'image/jpeg',
             status: 'warped'
         }, {
             TRANSPARENT: 'true',
@@ -120,7 +120,7 @@ function get_map_layer(layerid) {
     var newlayer_url = layer_baseurl + "/" + layerid;
     var map_layer = new OpenLayers.Layer.WMS("Layer " + layerid,
         newlayer_url, {
-            format: 'image/png'
+            format: 'image/jpeg'
         }, {
             TRANSPARENT: 'true',
             reproject: 'true'

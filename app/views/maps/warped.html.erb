@@ -5,6 +5,7 @@
   <% content_for :head do %>
     <%= javascript_include_tag "warped" %>
     <style type="text/css">
+      /*
       #slider {
         bottom:50px;
         margin-left:auto;
@@ -17,6 +18,7 @@
         margin-right:auto;
         width:10em;
       }
+      */
     </style>
     <script type="text/javascript">
       var map_id = '<%=h @map.id -%>';
@@ -36,13 +38,12 @@
 
 
   <div id="map-container">
-    <div id="warpedmap">
-    </div>
-    <div id="slider"><div class="ui-slider-handle"> </div> </div>
-
+    <div id="warpedmap"></div>
   </div>
+  
   <div id="opacity-info">
     Transparency: <input id="opacity" type="text" value="70" size="3" disabled="true" />
+    <div id="slider"></div>
   </div>
 
 <%end %>

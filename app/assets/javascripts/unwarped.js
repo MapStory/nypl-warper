@@ -62,8 +62,9 @@ function unwarped_init() {
     // adjust map size before the layer is added to obtain the correct zoomToMaxExtent
     unwarped_updateSize();
 
-
-    unwarped_image = new OpenLayers.Layer.WMS(title, wms_url, {format: 'image/png', status: 'unwarped'}, { transitionEffect: 'resize' } );
+    // image/jpeg - whole page 2.3 MB
+    // image/png  - whole page 4.4 MB
+    unwarped_image = new OpenLayers.Layer.WMS(title, wms_url, {format: 'image/jpeg', status: 'unwarped'}, { transitionEffect: 'resize' } );
 
     /*
     unwarped_image.events.register('loadend', unwarped_image, function(evt){

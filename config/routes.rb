@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/help' => 'home#help', :as => 'help'
   get '/offline' => 'home#offline', :as => 'offline'
   
-  devise_for :users, :path => 'u',:controllers => { :sessions => "sessions", :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :path => 'u',:controllers => { :sessions => "sessions" }
   
   resources :users, :except => [:new, :create] do
     member do

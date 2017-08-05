@@ -11,25 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803024306) do
+ActiveRecord::Schema.define(version: 20170805194458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
-
-  create_table "client_applications", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "support_url"
-    t.string   "callback_url"
-    t.string   "key",          limit: 20
-    t.string   "secret",       limit: 40
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "client_applications", ["key"], name: "index_client_applications_on_key", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50, default: ""
@@ -126,31 +112,6 @@ ActiveRecord::Schema.define(version: 20170803024306) do
   add_index "my_maps", ["map_id", "user_id"], name: "index_my_maps_on_map_id_and_user_id", unique: true, using: :btree
   add_index "my_maps", ["map_id"], name: "index_my_maps_on_map_id", using: :btree
 
-  create_table "oauth_nonces", force: :cascade do |t|
-    t.string   "nonce"
-    t.integer  "timestamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "oauth_nonces", ["nonce", "timestamp"], name: "index_oauth_nonces_on_nonce_and_timestamp", unique: true, using: :btree
-
-  create_table "oauth_tokens", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "type",                  limit: 20
-    t.integer  "client_application_id"
-    t.string   "token",                 limit: 20
-    t.string   "secret",                limit: 40
-    t.string   "callback_url"
-    t.string   "verifier",              limit: 20
-    t.datetime "authorized_at"
-    t.datetime "invalidated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "oauth_tokens", ["token"], name: "index_oauth_tokens_on_token", unique: true, using: :btree
-
   create_table "permissions", force: :cascade do |t|
     t.integer  "role_id",    null: false
     t.integer  "user_id",    null: false
@@ -188,7 +149,6 @@ ActiveRecord::Schema.define(version: 20170803024306) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "reset_password_sent_at"
-    t.string   "provider"
     t.string   "uid"
   end
 

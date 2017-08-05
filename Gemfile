@@ -36,13 +36,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 4.2'
 gem 'devise-encryptable'
 
-gem 'omniauth-twitter'
-gem 'omniauth-osm'
-gem 'omniauth-github'
-gem "omniauth-mediawiki"
-gem "omniauth-google-oauth2"
-gem "omniauth-facebook"
-
 
 # Locked to .20 to prevent deprecation warnings
 # This is fixed in rails 5.0

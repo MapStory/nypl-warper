@@ -68,7 +68,9 @@ Create and configure the following files
 * `config/database.yml`
 * `config/application.yml`
 
-In addition have a look in `config/initializers/application_config.rb `for some other paths and variables, and `config/initializers/devise.rb ` for devise and omniauth and also `config/environments/development.rb` if you rather not use the `/warper` relative path.
+In addition have a look in `config/initializers/application_config.rb `for some other paths and variables, 
+and `config/initializers/devise.rb ` for devise and also 
+`config/environments/development.rb` if you rather not use the `/warper` relative path.
 
 ## Database creation
 

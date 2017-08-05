@@ -17,28 +17,3 @@
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end -%>
-
-<%- if devise_mapping.omniauthable? %>
-<%- sign_action = "log in"
-    if controller_name == "users_registrations"
-      sign_action = "sign up"
-     end 
-%>
-     
-<div class="omniauth_links">
-  Alternatively, <%= sign_action %> with: <br /> 
-  <span class="github">
-    <%= link_to "#{image_tag("github_logo.png", width: '25', height: '25')} GitHub".html_safe, omniauth_authorize_path(resource_name, "github"), :class=>"github" %>
-  </span>
-  <span class="twitter">
-    <%= link_to "#{image_tag("twitter_logo.png", width: '25', height: '25')} Twitter".html_safe, omniauth_authorize_path(resource_name, "twitter"), :class=>"twitter" %>
-  </span>
-  <span class="google">
-    <%= link_to "#{image_tag("google_oauth2_logo.png",width: '25', height: '25')} Google".html_safe, omniauth_authorize_path(resource_name, "google_oauth2"), :class => "google" %>
-  </span>
-
-  <span class="facebook">
-    <%= link_to "#{image_tag("facebook_logo.png",width: '25', height: '25')} Facebook".html_safe, omniauth_authorize_path(resource_name, "facebook"), :class => "facebook" %>
-  </span>
-</div>
-<% end -%>

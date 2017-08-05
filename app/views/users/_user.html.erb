@@ -2,7 +2,6 @@
   <td><%= time_ago_in_words(user.created_at) -%> ago.</td>
   <td><%= link_to(( user.login), user_path(user.id), :method => :get)  -%></td>
   <% if admin_authorized? %>
-    <td><%=h user.provider -%></td>
     <td><%=h user.email -%></td>
     <td><%= user.enabled ? 'yes' : 'no' -%>&nbsp;
       <% unless user == current_user -%>

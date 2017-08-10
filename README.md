@@ -13,7 +13,6 @@ which is available at https://github.com/nypl-spacetime/nypl-warper
 * Find and search maps by geography
 * Adding control points to maps side by side
 * Crop maps
-* User commenting on maps
 * Align maps from similar
 * Login via Github / Twitter / etc
 * OR signup with email and password

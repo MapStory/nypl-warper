@@ -4,9 +4,7 @@ class Layer < ActiveRecord::Base
   has_many :layers_maps, :dependent => :destroy
   has_many :maps,:through => :layers_maps
   has_many :layer_properties #could be has_one
-  
-  acts_as_commentable  
-  
+    
   validates_presence_of :name
   
   scope :visible, -> {where(:is_visible => true).order(:id)}

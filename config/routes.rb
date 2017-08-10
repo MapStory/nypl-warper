@@ -33,7 +33,6 @@ Rails.application.routes.draw do
       get 'align'
       get 'warped'
       get 'metadata'
-      get 'comments'
       get 'status'
       get 'publish'
       get 'unpublish'
@@ -78,7 +77,6 @@ Rails.application.routes.draw do
   
   resources :layers, :except => [:edit, :update, :destroy, :new, :create] do
     member do
-      get 'comments'
       get 'merge'
       get 'publish'
       get 'toggle_visibility'
@@ -119,10 +117,7 @@ Rails.application.routes.draw do
   get '/activity/:id' => 'versions#show', :as => "activity_details"
   get '/activity.:format' => 'versions#index', :as => "formatted_activity"
 
-  
-  resources :comments
-
-  
+    
   resources :groups 
   
   get '/groups/:group_id/users/new' => 'memberships#new', :as => 'new_group_user'

@@ -44,9 +44,8 @@ gem 'pg', '0.20.0'
 #gem 'activerecord-postgis-adapter'
 gem 'activerecord-postgis-adapter', '~>3.0'
 
-gem 'acts-as-taggable-on', '~> 3.3.0'
 gem 'paperclip', '~> 4.2.0'
-gem 'acts_as_commentable'
+
 gem 'will_paginate', '~> 3.0'
 gem 'spawnling', '~>2.1'
 
@@ -60,8 +59,11 @@ gem 'yql', '0.0.2'
 
 gem "rmagick"
 
+
+# Used for caching files to S3
 gem "s3"
 
+# Why is this here?
 gem 'redis-activesupport'
 
 group :development do

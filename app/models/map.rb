@@ -28,7 +28,6 @@ class Map < ActiveRecord::Base
   validates_attachment_content_type :upload, content_type: /\Aimage\/.*\z/
 
 
-  acts_as_commentable
   acts_as_enum :status, [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
   acts_as_enum :mask_status, [:unmasked, :masking, :masked]
   acts_as_enum :rough_state, [:step_1, :step_2, :step_3, :step_4]

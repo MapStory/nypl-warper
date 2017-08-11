@@ -20,6 +20,8 @@
     </thead>
 
     <tbody id="results">
+      <%# Refactor to just render @maps... %>
+      
       <%= render :partial => 'maps/map', :collection => @maps unless @maps.nil? %>
     </tbody>
   </table>

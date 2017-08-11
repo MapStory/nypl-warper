@@ -6,11 +6,11 @@
   <div class="metadata">
     <h2><%= strip_brackets(map_summary.title) %></h2>
 
-    <span class="map_description">
+    <div>
       <%= strip_brackets(map_summary.description) %>
-    </span>
+    </div>
 
-    <span class="map_summary">
+    <div>
       <% if map_summary.layers.count > 0 %>
         (In <%=link_to(pluralize(map_summary.layers.count, 'layer'), map_layers_path(map_summary.id)) %>)
       <% end %>
@@ -20,7 +20,7 @@
       <% else %>
         Unrectified.
       <% end %>
-    </span>
+    </div>
     
     <% if user_signed_in? %>
       <div class="users_version_info map_summary">

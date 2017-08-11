@@ -1,0 +1,82 @@
+<%# A more modern map_detail - used to summarize map details %>
+<div class="map_summary">
+  <div class="thumb">
+    <%= image_tag(map_summary.upload.url(:thumb)) %>
+  </div>
+  <div class="metadata">
+    <h2><%= strip_brackets(map_summary.title) %></h2>
+
+    <span class="map_description">
+      <%= strip_brackets(map_summary.description) %>
+    </span>
+
+    <span class="map_summary">
+      <% if map_summary.layers.count > 0 %>
+        (In <%=link_to(pluralize(map_summary.layers.count, 'layer'), map_layers_path(map_summary.id)) %>)
+      <% end %>
+      Last modified <%=h time_ago_in_words(map_summary.last_changed) %> ago.
+      <% if map_summary.gcps.hard.size > 0 %>
+        <%= pluralize(map_summary.gcps.hard.size, "control point") %>.
+      <% else %>
+        Unrectified.
+      <% end %>
+    </span>
+    
+    <% if user_signed_in? %>
+      <div class="users_version_info map_summary">
+        <% if @current_version_number > 0  && @current_version_user %>
+          Version No.<%= @current_version_number%> 
+          <% if @current_version_user %>
+            by <%= link_to(@current_version_user.login, user_path(@current_version_user.id)) %>. 
+          <% end %>
+        <% end %>
+          <div id="other_users">        
+            <% if @version_users && @version_users.length > 0 %>
+              <%=  pluralize(@version_users.length, "User") -%> also helped including:
+              <% @version_users.each do | version_user |
+                if User.exists?(:id => version_user.whodunnit.to_i)
+                  user = User.select(:login, :id).find_by_id(version_user.whodunnit.to_i)
+              %>
+            <%= link_to(user.login, user_path(user.id)) %><%= ","  if(version_user != @version_users.last) -%>
+              <% end
+              end %>
+            <% else %>
+              No other users have helped this map yet. Be the first!
+            <% end %>
+         </div>
+      </div>
+    <% end %>
+    
+    <div>
+      <% if user_signed_in? %>
+        <% current_user_maps = current_user.maps %>
+        <% if current_user_maps.to_a.include?(map_summary) %>
+          <%= link_to('Remove from My Maps', destroy_my_map_path(:user_id => current_user, :map_id => map_summary), :method => :post, :data => {:confirm => "really remove this map from your list?"} ) -%>  |
+          <%= link_to "Edit map details", edit_map_path(map_summary) %>
+        <% else %>
+          <%= link_to('Save to My Maps',
+            add_my_map_path(:user_id => current_user, :map_id => map_summary), :method => :post) -%> | 
+        <% end -%>
+      <% end -%>
+
+
+      <% if !admin_authorized? && map_summary.published? %>
+        | <strong>Published [<a href="#" title="This map has been published by an admin and no further editing is possible.">?</a>]</strong>
+      <% end %>
+
+      <% if admin_authorized? %>
+        <% if map_summary.status == :warped  %>
+          | <%= link_to("Publish",publish_map_path(:id => map_summary, :to => "publish"), :data => {:confirm => "Really publish this map? This will mean that no further editing can be done"} ) -%>
+        <% elsif map_summary.published? %>
+          | <%= link_to("UnPublish",publish_map_path(:id => map_summary, :to => "unpublish"), :data => {:confirm => "Really un publish this map? This will mean that the map can be edited now"} ) -%>
+        <% elsif map_summary.publishing? %>
+          | Map is being published (started <%= map_summary.versions.where(:event => "publishing").last[:created_at].localtime.to_formatted_s(:short) %>)
+          <% if  Time.now - map_summary.versions.where(:event => "publishing").last[:created_at].localtime > 60*60*2 %>
+            <%= link_to("UnPublish",publish_map_path(:id => map_summary, :to => "unpublish"), :data => {:confirm => "Just making sure: really un publish this map? This will mean that the map can be edited now"} ) -%>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

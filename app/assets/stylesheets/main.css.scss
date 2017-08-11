@@ -1293,3 +1293,29 @@ span.subdued {
   color:grey;
   font-size:smaller;
 }
+
+
+.map_summary {
+  .thumb {
+    display: inline-block;
+    height: 120px;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .metadata {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+  }
+
+}
+
+

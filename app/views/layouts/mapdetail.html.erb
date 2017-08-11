@@ -226,9 +226,10 @@
     
     <main>
 
-    <table id="map_table">
-      <%= render :partial => 'maps/map_detail', :object => @map, :locals => {:variety => "detail"} %>
-    </table>
+      <%# Why don't we just render @map here? What is that partial used for at the moment? %>
+      <%# TODO: Leveraging new map_summary for now, but will need to look at in future %>
+      <%= render partial: "maps/map_summary", collection: [@map] %>
+
     <span id="focusHolder"> </span>
     <% @tabs = [{:name=>"show",:divname=>"Show", :label=>"Show", :path=>map_path},
       {:name=>"warp",:divname=>"Rectify", :label=>"Rectify", :path=>warp_map_path(:id => @map)},

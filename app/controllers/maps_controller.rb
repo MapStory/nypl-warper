@@ -13,6 +13,12 @@ class MapsController < ApplicationController
   
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
 
+  # Speed up WMS serving. How do we invalidate if file is re-uploaded?
+  # would need to append a version into the param
+  caches_action :wms, cache_path: -> { params }
+
+
+
   helper :sort
   include SortHelper
   

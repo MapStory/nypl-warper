@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 4.2'
 gem 'devise-encryptable'
 
+# Leverage action caching for WMS server
+gem 'actionpack-action_caching'
 
 # Locked to .20 to prevent deprecation warnings
 # This is fixed in rails 5.0

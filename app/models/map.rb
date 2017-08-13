@@ -27,10 +27,9 @@ class Map < ActiveRecord::Base
   validates_attachment_size(:upload, :less_than => MAX_ATTACHMENT_SIZE) if defined?(MAX_ATTACHMENT_SIZE)
   validates_attachment_content_type :upload, content_type: /\Aimage\/.*\z/
 
-
-  acts_as_enum :status, [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
-  acts_as_enum :mask_status, [:unmasked, :masking, :masked]
-  acts_as_enum :rough_state, [:step_1, :step_2, :step_3, :step_4]
+  enum status: [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
+  enum mask_status: [:unmasked, :masking, :masked]
+  enum rough_state: [:step_1, :step_2, :step_3, :step_4]
 
   has_paper_trail :ignore => [:bbox, :bbox_geom]
   

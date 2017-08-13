@@ -650,6 +650,8 @@ class MapsController < ApplicationController
   # or possibly roll our own cache. Need to think about invalidation
   # options. We should be able to monitor @map updated_at and status (along with query params?)
   # as it could greatly speed up serving
+  #
+  # Should these ever be private? We can't cache if we have to enforce permissions...
   def wms
     @map = Map.find(params[:id])
 

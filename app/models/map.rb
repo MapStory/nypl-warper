@@ -30,8 +30,8 @@ class Map < ActiveRecord::Base
 
   has_paper_trail :ignore => [:bbox, :bbox_geom]
   
-  scope :warped,    -> { where({:status => [Map.status(:warped), Map.status(:published)] }) }
-  scope :published, -> { where({:status => Map.status(:published) })}
+  scope :warped,    -> { where(status: [:warped, :published]) }
+  scope :published, -> { where(status: :published) }
   
   attr_accessor :error
 

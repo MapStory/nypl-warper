@@ -284,7 +284,7 @@ class MapsController < ApplicationController
           format.html {render :action => "preview"}
           format.kml {render :action => "show_kml", :layout => false}
           format.rss {render :action=> 'show'}
-          format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
+          format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
         end
       end
       
@@ -330,7 +330,7 @@ class MapsController < ApplicationController
       respond_to do |format|
         format.html
         format.kml {render :action => "show_kml", :layout => false}
-        format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
+        format.json {render :json =>{:stat => "ok", :items => @map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback] }
       end
     end    
   end
@@ -465,7 +465,7 @@ class MapsController < ApplicationController
   def get_rough_centroid
     map = Map.find(params[:id])
     respond_to do |format|
-      format.json {render :json =>{:stat => "ok", :items => map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail]), :callback => params[:callback]  }
+      format.json {render :json =>{:stat => "ok", :items => map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :filename, :parent_id,  :map, :thumbnail]), :callback => params[:callback]  }
     end
   end
   
@@ -477,7 +477,7 @@ class MapsController < ApplicationController
     respond_to do |format|
       if map.update_attributes(:rough_lon  => lon, :rough_lat => lat, :rough_zoom => zoom ) && lat && lon
         map.save_rough_centroid(lon, lat)
-        format.json {render :json =>{:stat => "ok", :items => map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :parent_uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback]
+        format.json {render :json =>{:stat => "ok", :items => map}.to_json(:except => [:content_type, :size, :bbox_geom, :uuid, :filename, :parent_id,  :map, :thumbnail, :rough_centroid]), :callback => params[:callback]
         }
       else
         format.json { render :json => {:stat => "fail", :message => "Rough centroid not set", :items => [], :errors => map.errors.to_a}.to_json, :callback => params[:callback]}

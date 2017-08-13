@@ -5,10 +5,7 @@ require 'rmagick'
 include ErrorCalculator
 class Map < ActiveRecord::Base
   include Tilestache
-  
-  alias_attribute :bibl_uuid, :parent_uuid
-  alias_attribute :mods_uuid, :uuid
-  
+    
   has_many :gcps,  :dependent => :destroy
   has_many :layers_maps,  :dependent => :destroy
   has_many :layers, :through => :layers_maps # ,:after_add, :after_remove

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   
   after_filter :set_access_control_headers
   
+  helper_method :user_signed_in?, :current_user
+
   def info_for_paper_trail
     { :ip => request.remote_ip, :user_agent => request.user_agent }
   end
@@ -41,6 +43,22 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
   
+
+  # stub method until we get SSO hooked up
+  def user_signed_in?
+    true
+  end
+
+  # stub Method until we get SSO hooked up
+  def current_user
+    @current_user = User.all.first
+  end
+
+  # stub Method until we get SSO hooked up
+  def authenticate_user!
+    true
+  end
+
 end
 
 

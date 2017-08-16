@@ -32,5 +32,3 @@ ActionMailer::Base.smtp_settings = {
 #ActionMailer::Base.delivery_method = :sendmail
 
 ActionMailer::Base.default_url_options[:host] = APP_CONFIG['host']
-
-Devise.mailer_sender = APP_CONFIG['email']

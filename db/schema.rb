@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810023133) do
+ActiveRecord::Schema.define(version: 20170816032848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,27 +115,10 @@ ActiveRecord::Schema.define(version: 20170810023133) do
   create_table "users", force: :cascade do |t|
     t.string   "login"
     t.string   "email"
-    t.string   "encrypted_password",        limit: 128, default: "",   null: false
-    t.string   "password_salt",                         default: "",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_token"
-    t.datetime "remember_token_expires_at"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.string   "reset_password_token"
-    t.boolean  "enabled",                               default: true
-    t.integer  "updated_by"
-    t.text     "description",                           default: ""
-    t.datetime "confirmation_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,    null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "reset_password_sent_at"
-    t.string   "uid"
+    t.boolean  "enabled",     default: true
+    t.text     "description", default: ""
   end
 
   create_table "version_associations", force: :cascade do |t|

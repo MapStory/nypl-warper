@@ -8,7 +8,7 @@
 
 
 # A default admin user. For some reason seed isn't assigning an ID?
-user = User.create(login: "warper", email: "warper@localhost", password: "password", password_confirmation: "password", confirmed_at: Time.now, description: "Dev admin account")  
+user = User.create(login: "warper", email: "warper@localhost", description: "Dev admin account")  
 #puts user.save
 #puts user.valid?
 #puts user.inspect

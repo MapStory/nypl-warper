@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   get '/about' => 'home#about', :as => 'about'
   get '/help' => 'home#help', :as => 'help'
   get '/offline' => 'home#offline', :as => 'offline'
-  
-  devise_for :users, :path => 'u',:controllers => { :sessions => "sessions" }
-  
+    
   resources :users, :except => [:new, :create] do
     member do
       put 'enable'

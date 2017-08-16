@@ -1,5 +1,4 @@
 class MapsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
   fixtures :maps, :roles, :permissions
 
   test "index all maps" do

@@ -1,5 +1,4 @@
 class LayersControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
   fixtures :layers, :roles, :permissions
 
 

@@ -68,8 +68,7 @@ Create and configure the following files
 * `config/application.yml`
 
 In addition have a look in `config/initializers/application_config.rb `for some other paths and variables, 
-and `config/initializers/devise.rb ` for devise and also 
-`config/environments/development.rb` if you rather not use the `/warper` relative path.
+and also `config/environments/development.rb` if you rather not use the `/warper` relative path.
 
 ## Database creation
 
@@ -86,9 +85,6 @@ Creating a new user
     user = User.new
     user.login = "super"
     user.email = "super@superxyz123.com"
-    user.password = "your_password"
-    user.password_confirmation = "your_password"
-    user.confirmed_at = Time.now
     user.save
 
     role = Role.find_by_name('super user')

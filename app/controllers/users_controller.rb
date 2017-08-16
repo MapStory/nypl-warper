@@ -129,28 +129,6 @@ class UsersController < ApplicationController
     redirect_to :action => 'index'
   end
 
-  def disable_and_reset
-    @user = User.find(params[:id])
-    unless @user.has_role?("administrator") ||  @user.has_role?("super user")
-      generated_password = Devise.friendly_token.first(8)
-      @user.password=generated_password
-      @user.password_confirmation=generated_password
-      
-      if @user.save
-        UserMailer.disabled_change_password(@user).deliver_now
-        @user.send_reset_password_instructions
-        flash[:notice] = "User changed and an email sent with password reset link"
-      else
-        flash[:error] = "Sorry, there was a problem changingin this user"
-      end
-      
-    else
-      flash[:error] = "Admins cannot be disabled and reset, sorry"
-    end
-    
-    redirect_to :action => 'show'
-  end
-
   def disable
     @user = User.find(params[:id])
     if @user.update_attribute(:enabled, false)

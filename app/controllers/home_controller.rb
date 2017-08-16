@@ -9,9 +9,8 @@ class HomeController < ApplicationController
     
     @layers = Layer.all.order(:updated_at => :desc).limit(3).includes(:maps)
         
-    if user_signed_in?
-      @my_maps = current_user.maps.order(:updated_at => :desc).limit(3)
-    end
+    @my_maps = current_user.maps.order(:updated_at => :desc).limit(3)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @maps }

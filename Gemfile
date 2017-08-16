@@ -33,9 +33,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'devise', '~> 4.2'
-gem 'devise-encryptable'
-
 # Leverage action caching for WMS server
 gem 'actionpack-action_caching'
 

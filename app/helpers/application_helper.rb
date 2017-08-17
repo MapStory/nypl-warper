@@ -1,9 +1,5 @@
 module ApplicationHelper
-  
-  def admin_authorized?
-    user_signed_in? && current_user.has_role?('administrator')
-  end
-    
+      
   FLASH_NOTICE_KEYS = [:error, :notice, :warning]
   def flash_messages
     return unless messages = flash.keys.select{|k| FLASH_NOTICE_KEYS.include?(k.to_sym)}

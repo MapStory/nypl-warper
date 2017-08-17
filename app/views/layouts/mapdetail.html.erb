@@ -32,7 +32,7 @@
             ui.jqXHR.fail(function() {
               //console.log(ui.jqXHR.status)
               if (ui.jqXHR.status == 401){
-                <% flash  = "Sorry. You may need to <a class='unauthorized' href='#{url_for(new_user_session_path)}'>Log In</a> to view this." %>
+                <% flash  = "Sorry. You may need to <a class='unauthorized' href='#{url_for(login_path)}'>Log In</a> to view this." %>
                 var flash = "<%= flash.html_safe %>";
                 jQuery(ui.panel).html(flash)
               }else if (ui.jqXHR.status == 503){

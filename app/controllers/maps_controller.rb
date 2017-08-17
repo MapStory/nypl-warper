@@ -279,7 +279,7 @@ class MapsController < ApplicationController
       end
       
       flash.now[:notice] = "You may need to %s to start editing the map"
-      flash.now[:notice_item] = ["log in", :new_user_session]
+      flash.now[:notice_item] = ["log in", :login]
       session[:user_return_to] = request.url
       
       if request.xhr?

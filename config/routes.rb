@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get '/about' => 'home#about', :as => 'about'
-  get '/help' => 'home#help', :as => 'help'
-  get '/offline' => 'home#offline', :as => 'offline'
+  get '/offline' => 'home#offline', as: 'offline'
+  get 'login' => 'home#login', as: 'login'
     
   resources :users, :except => [:new, :create] do
     member do

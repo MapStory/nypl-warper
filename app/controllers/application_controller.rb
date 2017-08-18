@@ -125,7 +125,7 @@ class ApplicationController < ActionController::Base
   # Generate a cookie using the debug:make_cookie task
   # then call this in a before_filter to login while developing
   def development_login
-    if Rails.environment.development?
+    if Rails.env.development?
       cookies[:msid] = ""
     end
   end

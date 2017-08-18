@@ -122,14 +122,6 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
-  # Generate a cookie using the debug:make_cookie task
-  # then call this in a before_filter to login while developing
-  def development_login
-    if Rails.env.development?
-      cookies[:msid] = ""
-    end
-  end
-
 
 end
 

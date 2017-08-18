@@ -17,8 +17,15 @@ class HomeController < ApplicationController
     end
   end
 
+  # Just a placeholder page to instruct users to log
+  # in at MapStory
   def login
 
+    # Generate a cookie using the debug:make_cookie task
+    # login user for next request
+    if Rails.env.development?
+      cookies[:msid] = "dlee:a95b7769b76795fcdd502c36e153ae2c16cf76f5"
+    end
   end
 
 

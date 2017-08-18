@@ -1,0 +1,201 @@
+<script type="text/javascript">
+  if(typeof maps === 'undefined'){
+    var maps = {};
+  }
+  var currentMaps = [];
+
+  jQuery(function() {
+    jQuery("#wooTabs").tabs({selected:<%=@selected_tab||0 %>});
+    jQuery("#wooTabs").bind("tabsselect", function(event, ui) {
+      if (typeof (pageTracker) !== 'undefined') {
+        pageTracker._trackEvent("Map", ui.tab.title, '<%=@map.id%>');
+      }
+    });
+
+    jQuery("#wooTabs").tabs('option', 'cache', true);
+    
+    jQuery("#wooTabs").tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.fail(function() {
+          //console.log(ui.jqXHR.status)
+          if (ui.jqXHR.status == 401){
+            <% flash  = "Sorry. You may need to <a class='unauthorized' href='#{url_for(login_path)}'>Log In</a> to view this." %>
+            var flash = "<%= flash.html_safe %>";
+            jQuery(ui.panel).html(flash)
+          }else if (ui.jqXHR.status == 503){
+           <% flash  = "Sorry. The site is currently in read only mode and some features are disabled. Please try again later." %>
+            var flash = "<%= flash.html_safe %>";
+            jQuery(ui.panel).html(flash)
+          }else{
+          //  <% flash  = "Something went wrong with this. Sorry! Please try again, or try logging in first." %>
+          //  var flash = "<%= flash.html_safe %>";
+          //  jQuery(ui.panel).html(flash)
+          }
+        });
+        }
+    });
+
+    jQuery("#wooTabs").bind("tabsshow", function(event, ui) {
+      //console.log('ui.panel.id: ' + ui.panel.id);
+
+      deactivateMaps();
+
+      if (ui.panel.id == "Show") {
+        if (typeof umap != 'undefined') {
+          maps['unwarped'].activate();
+
+          // if the page was initially loaded on any tab over than Show the zoom extent needs to be reset
+          if (umapLoaded === false){
+            umap.zoomToMaxExtent();
+          }
+          
+        } else {
+          presetContainer();
+        }
+      }
+
+      if (ui.panel.id == "Rectify") {
+        if (typeof to_map != 'undefined') {
+          maps['warp'].activate();
+        } else {
+          presetContainer();
+        }
+        
+      }
+
+      if (ui.panel.id == "Crop") {
+        if (typeof clipmap != 'undefined') {
+          maps['clip'].activate();
+        } else {
+          presetContainer()
+        }
+        
+      }
+
+      if (ui.panel.id == "Preview") {
+        if (typeof warpedmap != 'undefined') {
+          maps['warped'].activate();
+        } else {
+          presetContainer();
+        }
+
+      }
+
+      if (ui.panel.id == "Activity_History") {
+
+      }
+
+      // shift focus from tabs to span to prevent arrow keys from changing tabs
+      jQuery("#focusHolder").attr('tabindex',-1).focus();
+
+    }); //end tabshow
+
+  });//end jquery function
+
+  function presetContainer(){
+    // tab content does not yet exist so we're presetting container height to avoid scrolling
+    jQuery('#wooTabs').css({'min-height': '2000px'});
+  }
+
+  function deactivateMaps(){
+    if (typeof maps['unwarped'] !== 'undefined'){
+      maps['unwarped'].deactivate();
+    }
+
+    if (typeof maps['warp'] !== 'undefined'){
+      maps['warp'].deactivate();
+    }
+
+    if (typeof maps['clip'] !== 'undefined'){
+      maps['clip'].deactivate();
+    }
+
+    if (typeof maps['warped'] !== 'undefined'){
+      maps['warped'].deactivate();
+    }
+  }
+
+</script>
+<script type="text/javascript">
+  // PageLoad function
+  // This function is called when  1. after calling $.historyInit(); 2. after calling $.historyLoad(); 3. after pushing "Go Back" button of a browser
+  var tabSuffix = "_tab"; //suffix to be added to link to stop jumping
+  var umapLoaded = false;
+  function pageload(hash) {
+    if (hash) {
+      // restore ajax loaded state
+      if (jQuery.browser.msie) {
+        // jquery's $.load() function does't work when hash include special characters like aao.
+        hash = encodeURIComponent(hash);
+      }
+      hash = hash.slice(0, -tabSuffix.length)
+      var tab_divs = jQuery("div.ui-tabs-panel", jQuery("#wooTabs").tabs());
+      var select_tab_index = 0;
+      jQuery.each(tab_divs, function( index, value ) {
+        if (hash === value.id){
+          select_tab_index = index;
+
+          // handle deep links to tabs
+          if (value.id.indexOf('Show') != -1){
+            umapLoaded = true;
+
+            // workaround for unwarped being loaded by default even if directed to another tab
+            setTimeout(function(){
+              maps['unwarped'].activate();
+            }, 200);
+
+          } else if (value.id.indexOf('Rectify') != -1) {
+            setTimeout(function(){
+              maps['warp'].activate();
+            }, 1500);
+
+          } else if (value.id.indexOf('Crop') != -1) {
+            setTimeout(function(){
+              maps['clip'].activate();
+            }, 1500);
+
+          } else if (value.id.indexOf('Preview') != -1) {
+            setTimeout(function(){
+              maps['warped'].activate();
+            }, 1500);
+          }
+        }
+      });
+      
+      jQuery("#wooTabs").tabs( "option", "active", select_tab_index );
+      //jQuery("#wooTabs").tabs("select", hash);
+    } else {
+      //if there is no hash, wat to do? currently, nothing, as by default it should be displayed tab.
+      //show tab  //jQuery("#wooTabs").tabs("select", 0);
+      setTimeout(function(){
+        maps['unwarped'].activate();
+      }, 200);
+    }
+  }
+
+  jQuery(document).ready(function() {
+    jQuery.historyInit(pageload); //TODO
+
+    // if we don't have a hash in the URL manually call the pageload event to get the default tab setup properly
+    if (window.location.hash === ''){
+      pageload(window.location.hash);
+    } 
+
+    // set onlick event for buttons
+    jQuery("a[rel='history']").click(function() {
+
+      var hash = this.title + tabSuffix;
+      jQuery.historyLoad(hash);
+    });
+  });
+
+
+  // prevent browser from scrolling with arrow keys
+  window.addEventListener("keydown", function(e) {
+    // suppress the space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }          
+  }, false);
+
+</script>

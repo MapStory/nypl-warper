@@ -6,7 +6,7 @@ class MapstoryCookie
 	def self.decode(data)
 		# Remove the quotes from the cookie string, then split.
 		name, hash = data.gsub('"',"").split(":")
-		hash_check = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), Rails.application.secrets.mapstory_cookie_key, name)
+		hash_check = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), Rails.application.secrets.mapstory_cookie_key, name)
 		return name if hash_check == hash  	# Hash verifies, return user name.
 		false																# Hash didn't verify, return false
 	end

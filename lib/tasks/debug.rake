@@ -6,7 +6,7 @@ namespace :debug do
 		puts "case sensitive"
 		name = STDIN.gets.strip
 
-		hash_check = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), Rails.application.secrets.mapstory_cookie_key, name)
+		hash_check = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), Rails.application.secrets.mapstory_cookie_key, name)
 
 		puts "#{name}:#{hash_check}"
 		puts "Copyable code:"

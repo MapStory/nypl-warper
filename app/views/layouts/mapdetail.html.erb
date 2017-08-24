@@ -33,7 +33,7 @@
     <% @tabs = [{:name=>"show",:divname=>"Show", :label=>"Show", :path=>map_path},
       {:name=>"warp",:divname=>"Rectify", :label=>"Rectify", :path=>warp_map_path(:id => @map)},
       {:name=>"clip",:divname=>"Crop", :label=>"Crop", :path=>clip_map_path(:id => @map)},
-      {:name=>"align",:divname=>"Align", :label=>"Align", :path=>align_map_path(:id => @map)},
+      #{:name=>"align",:divname=>"Align", :label=>"Align", :path=>align_map_path(:id => @map)},
       {:name=>"warped",:divname=>"Preview_Rectified_Map", :label=>"Preview", :path=>warped_map_path(:id => @map)},
       {:name=>"export",:divname=>"Export", :label=>"Export", :path=>export_map_path(:id => @map)},
       {:name=>"activity",:divname=>"Activity_History", :label=>"Activity",:path=> map_activity_path(:id => @map)} ] %>

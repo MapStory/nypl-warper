@@ -240,6 +240,7 @@ class Map < ActiveRecord::Base
     return [:available,:warping, :warped, :published].include?(status)
   end
 
+  # This method is automatically handled by rails?
   def published?
     status == :published
   end
@@ -248,8 +249,11 @@ class Map < ActiveRecord::Base
     status == :publishing
   end
 
+  # At some point rails switched from strings to symbols.
+  # unsure what version, but our current version is old
+  # enough to be using strings. Convert to symbol here
   def warped_or_published?
-    return [:warped, :published].include?(status)
+    return [:warped, :published].include?(status.to_sym)
   end
     
   def last_changed

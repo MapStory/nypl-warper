@@ -14,9 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 
-// Should load in openlayers/2.8/OpenLayers-2.8/OpenLayers here...
-
-
+//= require openlayers/2.8/OpenLayers-2.8/OpenLayers
 //= require general
 //= require footer
 //= require jquery.history

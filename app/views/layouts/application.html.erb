@@ -5,10 +5,6 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     
-    <%# Why are we loading openlayers here? %>
-    <%# There is a call to it in application, but, do we need it? %>
-    <%# Shouldn't we just minifiy the whole thing? %>
-    <%= javascript_include_tag "openlayers/2.8/OpenLayers-2.8/OpenLayers" %>
     <%= javascript_include_tag 'application' %>
     
     <%= csrf_meta_tags %>

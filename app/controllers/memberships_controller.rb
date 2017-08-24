@@ -1,9 +1,6 @@
 class MembershipsController < ApplicationController
   before_filter :find_group
 
-  before_filter :authenticate_user!
-
-
   def new
     membership =  @group.memberships.new(:user => current_user)
     if membership.save

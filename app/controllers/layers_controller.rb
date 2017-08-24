@@ -1,6 +1,5 @@
 class LayersController < ApplicationController
   layout 'layerdetail', :only => [:show,  :edit, :export, :metadata]
-  before_filter :authenticate_user! , :except => [:wms, :wms2, :show_kml, :show, :index, :metadata, :maps, :thumb, :geosearch, :tile, :export]
   before_filter :check_administrator_role, :only => [:publish, :toggle_visibility, :merge, :trace, :id, :remove_map, :update_year]
 
   before_filter :find_layer, :only => [:show, :export, :metadata, :toggle_visibility, :update_year, :publish, :remove_map, :merge, :maps, :thumb, :trace, :id, :digitize]

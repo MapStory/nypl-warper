@@ -86,11 +86,6 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
-  # stub Method until we get SSO hooked up
-  def authenticate_user!
-    true
-  end
-
   # Logs in via cookie if set
   def login_from_mapstory
     Rails.logger.debug "Looking for MapStory cookie to login with"

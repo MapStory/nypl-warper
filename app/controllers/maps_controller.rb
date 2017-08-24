@@ -3,9 +3,7 @@ class MapsController < ApplicationController
   layout 'mapdetail', :only => [:show, :preview, :warp, :clip, :align, :activity, :warped, :export, :metadata]
   
   before_filter :store_location, :only => [:warp, :align, :clip, :export, :edit ]
-  
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :delete, :warp, :rectify, :clip, :align, :warp_align, :mask_map, :delete_mask, :save_mask, :save_mask_and_warp, :set_rough_state, :set_rough_centroid, :publish, :trace, :id]
- 
+   
   before_filter :check_administrator_role, :only => [:publish, :edit]
  
   before_filter :find_map_if_available,

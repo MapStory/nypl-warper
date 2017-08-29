@@ -79,16 +79,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) || current_user
     @html_title = "Showing User "+ @user.login.capitalize
     @mymaps = @user.maps.order("updated_at DESC").paginate(:page => params[:page],:per_page => 8)
-    @current_user_maps = current_user.maps
     
-    @user_activity_total  = PaperTrail::Version.paginate_by_sql(user_stat_sql(@user, "total"),:page => 1, :per_page => 100).first
- 
-    @user_activity_hour   = PaperTrail::Version.paginate_by_sql(user_stat_sql(@user,"hour"),  :page => 1, :per_page => 100).first 
-    logger.debug @user_activity_hour.inspect
-    @user_activity_day    = PaperTrail::Version.paginate_by_sql(user_stat_sql(@user,"day"),   :page => 1, :per_page => 100).first
-    @user_activity_week   = PaperTrail::Version.paginate_by_sql(user_stat_sql(@user,"week"),  :page => 1, :per_page => 100).first
-    @user_activity_month  = PaperTrail::Version.paginate_by_sql(user_stat_sql(@user, "month"),:page => 1, :per_page => 100).first
-
     respond_to do | format |
       format.html {}
       format.js {}

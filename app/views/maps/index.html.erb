@@ -3,46 +3,49 @@
 </div>
 
 <div class="browse">
+  <% if params[:show_warped] && params[:show_warped] == "1" %>
+    <h2>Rectified maps
+      <%if @query && @query.length > 0 %>&mdash; Searched for "<%=@query%>"
+      <%end-%>
+    </h2>
+    <p><%= link_to "Show all maps", maps_path(show_warped: nil) %></p>
 
-  <h2>Maps
-    <%if @query && @query.length > 0 %>&mdash; Searched for "<%=@query%>"
-    <%end-%>
-  </h2>
-
-  <% unless params[:show_warped] %>
-  <p><%= link_to "Show only rectified maps", maps_path(show_warped: 1) %></p>
   <% else %>
-  <p><%= link_to "Show all maps", maps_path(show_warped: nil) %></p>
+    <h2>Maps
+      <%if @query && @query.length > 0 %>&mdash; Searched for "<%=@query%>"
+      <%end-%>
+    </h2>
+    <p><%= link_to "Show only rectified maps", maps_path(show_warped: 1) %></p>
   <% end %>
 
-  <div class="warper_pagination">
-    <div id="search-pagination-top">
-      <%= will_paginate @maps %>
-    </div>
-  </div>
+  <% if @maps.any? %>
+    <table id="map_table" cellpadding="3">
+      <thead>
+        <tr>
+          <th>Map</th>
+          <%= sort_header_tag('title', :title => "Title") %>
+          <%= sort_header_tag('updated_at', :title => "Last modified") %>
+          <%= sort_header_tag('status', :title => "Status") %>
+        </tr>
+      </thead>
 
+      <tbody id="results">
+        <%= render :partial => 'map', :collection => @maps %>
+      </tbody>
+    </table>
 
-  <table id="map_table" cellpadding="3">
-    <thead>
-      <tr>
-        <th>Map</th>
-        <%= sort_header_tag('title', :title => "Title") %>
-        <%= sort_header_tag('updated_at', :title => "Last modified") %>
-        <%= sort_header_tag('status', :title => "Status") %>
-      </tr>
-    </thead>
-
-    <tbody id="results">
-      <%= render :partial => 'map', :collection => @maps unless @maps.nil? %>
-    </tbody>
-  </table>
-
-  <div class="warper_pagination">
-    <div id="search-pagination-bottom">
-      <%= will_paginate @maps %>
-      <div class="per_page_select">
-        <%= page_entries_info @maps %>.&nbsp;<%= select_tag :per_page, options_for_select([20,50,100], @per_page.to_i), :onchange => "if(this.value){reload_with_page(this.value)};" %> per page.
+    <div class="warper_pagination">
+      <div id="search-pagination-bottom">
+        <%= will_paginate @maps %>
+        <div class="per_page_select">
+          <%= page_entries_info @maps %>.
+          <%= select_tag :per_page, options_for_select([20,50,100], @per_page.to_i), :onchange => "if(this.value){reload_with_page(this.value)};" %> per page.
+        </div>
       </div>
     </div>
-  </div>
+  <% else %>
+    <p>No maps</p>
+  <% end %>
+
+
 </div>

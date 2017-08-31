@@ -258,7 +258,7 @@ class MapsController < ApplicationController
     @selected_tab = 0
     @disabled_tabs =[]
     @map = Map.find(params[:id])
-    @html_title = "Viewing Map "+@map.id.to_s
+    @html_title = "Viewing Map #{@map.id}"
 
     if @map.status.nil? || @map.status == :unloaded
       @mapstatus = "unloaded"
@@ -301,20 +301,6 @@ class MapsController < ApplicationController
     #
     # Logged in users
     #
-    if @map.versions.last 
-      @current_version_number = @map.versions.last.index
-      if User.exists?(@map.versions.last.whodunnit.to_i)
-        @current_version_user = User.find_by_id(@map.versions.last.whodunnit.to_i)
-      else
-        @current_version_user  = nil
-      end
-    else
-      @current_version_number = 1
-      @current_version_user = nil
-    end
-
-    version_users = PaperTrail::Version.where({:item_type => 'Map', :item_id => @map.id}).where.not(:whodunnit => nil).where.not(:whodunnit => @current_version_user).select(:whodunnit).distinct.limit(7)
-    @version_users = version_users.to_a.delete_if{|v| !User.exists?(v.whodunnit) }
     
     unless user_signed_in? and current_user.has_role?("administrator")
       if @map.status == :publishing or @map.status == :published

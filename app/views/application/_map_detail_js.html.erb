@@ -75,6 +75,8 @@
       if (ui.panel.id == "Preview") {
         if (typeof warpedmap != 'undefined') {
           maps['warped'].activate();
+          // Zoom to extents of the warped image.
+          warpedmap.zoomToMaxExtent();
         } else {
           presetContainer();
         }
@@ -157,6 +159,7 @@
           } else if (value.id.indexOf('Preview') != -1) {
             setTimeout(function(){
               maps['warped'].activate();
+
             }, 1500);
           }
         }

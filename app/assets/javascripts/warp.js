@@ -307,7 +307,10 @@ function init() {
       warped_layer.setOpacity(ui.value / 100);
     }
   });
-  //jQuery("#warped-slider").hide();
+  
+  // Hide this, as by default we don't show the warped layer
+  // it will show up when the user toggles the layer on.
+  jQuery("#warped-slider").hide();
 
   warped_layer.events.register('visibilitychanged', this, function(layer) {
     if (layer.object.getVisibility() === true) {

@@ -169,7 +169,7 @@ padding-bottom:5px;
 }
 
 
-#slider {
+#slider, #warped-slider {
   //background-color: orange;
   border: 1px solid #999999;
   border-radius: 4px;
@@ -191,6 +191,12 @@ padding-bottom:5px;
     border-radius: 4px;
   }
 }
+
+#warped-slider {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 
 .moar-button {
 width: 90%;
@@ -939,23 +945,23 @@ font-style:italic;
 	border:1px solid #999999;
 }
 
-#to_map_block
-{
+// Left (source) map
+#from_map_block {
   position: relative;
   z-index: 20;
-	float:right;
-      /* border:1px solid gray; */
-	width:48.5%;
+  float: left;
+  width: 48.6%;
 }
 
-#from_map_block
-{
+
+// Right (warped) map
+#to_map_block {
   position: relative;
   z-index: 20;
-	float:left;
-	/* border:1px solid gray; */
-	width:48.5%;
+	float: right;
+	width: 48.6%;
 }
+
 
 #gcp
 {

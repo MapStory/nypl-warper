@@ -20,7 +20,9 @@ class Map < ActiveRecord::Base
   validates_numericality_of :rough_lat, :rough_lon, :rough_zoom, :allow_nil => true
 
   has_attached_file :upload, :styles => {:thumb => ["256x256>", :png]} ,
-    :url => '/:attachment/:id/:style/:basename.:extension'
+    :url => '/:attachment/:id/:style/:hash.:extension',
+    :hash_secret => Rails.application.secrets.secret_key_base
+    
   validates_attachment_size(:upload, :less_than => MAX_ATTACHMENT_SIZE) if defined?(MAX_ATTACHMENT_SIZE)
   validates_attachment_content_type :upload, content_type: /\Aimage\/.*\z/
 

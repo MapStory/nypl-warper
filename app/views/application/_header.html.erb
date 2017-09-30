@@ -6,7 +6,10 @@
 		
 		<nav role="navigation">
 			<ul class="navigation-menu">
-				<li class="nav-link"><%= link_to "Upload Map", new_map_path %></li>
+				<% if user_signed_in? %>
+					<li class="nav-link"><%= link_to "Upload Map", new_map_path %></li>
+				<% end %>
+				
 				<li class="nav-link"><%= link_to "Maps", maps_path %></li>
 
 				<% if false %>

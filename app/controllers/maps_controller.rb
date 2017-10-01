@@ -55,6 +55,7 @@ class MapsController < ApplicationController
     end
   end
 
+  # TODO: Should only allow edits if user that owns map, or administrator
   def edit
     @map = Map.find(params[:id])
   end

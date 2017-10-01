@@ -2,8 +2,8 @@
 
 <%= error_messages_for @map %>
 
-<%- if (@map.users.include?(current_user) || admin_authorized?) -%>
-   <p>&mdash; <%=  link_to 'Delete this map.', map_path(@map), method: :delete  %> &mdash; </p>
+<% if (@map.users.include?(current_user) || admin_authorized?) %>
+   <p>&mdash; <%=  link_to 'Delete this map.', map_path(@map), method: :delete %> &mdash; </p>
 <% end %>
 
 <%= render "form" %>

@@ -1,5 +1,9 @@
 <h1><%= @user.login.capitalize %></h1>
 
+<p>
+<%= @user.roles.pluck(:name).to_sentence %>
+</p>
+
 <% unless @user.description.blank? %>
   <h2>Profile Description:</h2>
   <p><%= @user.description.gsub("\n","<br/>") %></p>

@@ -107,7 +107,7 @@ Also, you can run `rake db:seed` to add in a default admin user
 
 Via [Docker](https://www.docker.com/)
 
-Start with `docker-compose up`
+Start with `docker-compose up -d`
 
 Note that initial boot of the web server may fail as postgres may not have been started in time.
 you can issue a `docker-compose restart web` if this is the case

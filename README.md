@@ -105,24 +105,7 @@ Also, you can run `rake db:seed` to add in a default admin user
 
 ## Development 
 
-Via [Vagrant](https://www.vagrantup.com/), there is a [`Vagrantfile`](/Vagrantfile) you can use which uses the [`/lib/vagrant/provision.sh`](/lib/vagrant/provision.sh) provision script. **Note:** the default `Vagrantfile` is configured to take 8GB RAM. To use this file type:
-
-    vagrant up
-
-to get and install the virtual machine - this will also install the libraries and depencies and ruby gems for mapwarper into the virtual machine. See [`/lib/vagrant/provision.sh`](/lib/vagrant/provision.sh) for more details about this process.
-
-After that runs, type `vagrant ssh` to login and then you can:
-
-    cd /srv/mapwarper
-    rails c
-
-Create a user in the console, as [shown above](#database-initialization) and then `exit`. Then start the server in a relative url root use `thin`:
-
-    rails s -b 0.0.0.0
-
-and then browse to `http://localhost:3000/`
-
-In non-Vagrant circumstances you may want to run it just using `rails s`.
+Via [Docker](https://www.docker.com/)
 
 
 ## Deployment instructions

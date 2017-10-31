@@ -117,12 +117,12 @@ If your Gemfile or Gemfile.lock change you must rebuild the docker image with `d
 
 Stop with `docker-compose down`
 
-Warning: Database data is stored on the docker image. If that image is lost, so is all the data.
 
+### Intial setup for development
 
-### Intial setup
+Create a docker volume for storing database data `docker volume create pgdata`
 
-Run migrations and initalize the database for the first time with
+Run migrations and initialize the database for the first time with
 
 `docker exec -it warper_web_1 bundle exec rake db:migrate`
 

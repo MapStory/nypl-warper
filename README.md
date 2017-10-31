@@ -107,6 +107,30 @@ Also, you can run `rake db:seed` to add in a default admin user
 
 Via [Docker](https://www.docker.com/)
 
+Start with `docker-compose up`
+
+Note that initial boot of the web server may fail as postgres may not have been started in time.
+you can issue a `docker-compose restart web` if this is the case
+
+If your Gemfile or Gemfile.lock change you must rebuild the docker image with `docker-compose build`
+
+
+Stop with `docker-compose down`
+
+Warning: Database data is stored on the docker image. If that image is lost, so is all the data.
+
+
+### Intial setup
+
+Run migrations and initalize the database for the first time with
+
+`docker exec -it warper_web_1 bundle exec rake db:migrate`
+
+`docker exec -it warper_web_1 bundle exec rake db:seed`
+
+Where "warper_web_1" is whatever container name 
+
+
 
 ## Deployment instructions
 

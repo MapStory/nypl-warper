@@ -27,8 +27,8 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = false
 
-  # Allow web console when using vagrant
-  config.web_console.whitelisted_ips = '10.0.2.2'
+  # Allow web console when using vagrant and/or docker
+  config.web_console.whitelisted_ips = ['10.0.2.2', '172.16.0.0/12']
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

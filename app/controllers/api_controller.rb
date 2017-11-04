@@ -2,7 +2,18 @@ class ApiController < ApplicationController
   layout nil
   
   def index
-    @html_title = "Admin - "
+
   end
+
+  def warped
+
+  end
+
+
+  def map
+
+  end
+  
+
   
 end

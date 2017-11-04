@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+#ActiveRecord::SchemaDumper.ignore_tables = ["table_name"]
+
 module Rails4Mapwarper
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

@@ -18,3 +18,4 @@ fixtures/vcr_cassettes/*.yml
 public/assets
 public/uploads
 public/mapimages
+pgdata

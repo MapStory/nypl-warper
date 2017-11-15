@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816032848) do
+ActiveRecord::Schema.define(version: 20171104190321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "apikeys", force: :cascade do |t|
+    t.string   "key"
+    t.boolean  "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "gcps", force: :cascade do |t|
     t.integer  "map_id"

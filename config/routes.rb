@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :apikeys
+
   root 'home#index'
   get '/offline' => 'home#offline', as: 'offline'
   get 'login' => 'home#login', as: 'login'

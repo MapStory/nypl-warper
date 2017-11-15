@@ -1,0 +1,12 @@
+<p>
+  <strong>Key:</strong>
+  <%= @apikey.key %>
+</p>
+
+<p>
+  <strong>Enabled:</strong>
+  <%= @apikey.enabled %>
+</p>
+
+<%= link_to 'Edit', edit_apikey_path(@apikey) %> |
+<%= link_to 'Back', apikeys_path %>

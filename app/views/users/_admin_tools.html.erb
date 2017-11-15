@@ -8,7 +8,7 @@
      
   
     <% if !@user.confirmed? -%>
-      <%= link_to('Mnually confirm', force_confirm_user_path(@user.id), :method => :put) -%> Force confirmation of user, cannot be changed. <br />
+      <%= link_to('Manually confirm', force_confirm_user_path(@user.id), :method => :put) -%> Force confirmation of user, cannot be changed. <br />
     <% end  %>
     
     <% if @user.enabled -%>

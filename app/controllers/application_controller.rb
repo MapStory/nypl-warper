@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Debugging method to check for a MapStory Cookie
+  # Shouldn't be used in production...
   # Call with a before_filter.
   def check_cookie
     Rails.logger.info "Checking for MapStory cookie"

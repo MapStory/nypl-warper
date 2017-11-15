@@ -1,0 +1,27 @@
+<h1>Listing Apikeys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Enabled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @apikeys.each do |apikey| %>
+      <tr>
+        <td><%= apikey.key %></td>
+        <td><%= apikey.enabled %></td>
+        <td><%= link_to 'Show', apikey %></td>
+        <td><%= link_to 'Edit', edit_apikey_path(apikey) %></td>
+        <td><%= link_to 'Destroy', apikey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Apikey', new_apikey_path %>

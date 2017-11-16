@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   # API endpoints
   get 'api/v1/maps' => 'api#index'
+  get 'api/v1/warped' => 'api#warped'
+  get 'api/v1/maps/:id' => 'api#map'
 
 
   root 'home#index'

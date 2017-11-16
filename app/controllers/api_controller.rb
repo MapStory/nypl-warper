@@ -1,6 +1,6 @@
 # 
 class ApiController < ApplicationController
-  layout nil
+  layout false
   
   before_filter :validate_api_key
 
@@ -17,7 +17,7 @@ class ApiController < ApplicationController
 
   # Specific details about a map
   def map
-
+    @map = Map.find(params[:id])
   end
   
 

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :apikeys
 
+  # API endpoints
+  get 'api/v1/maps' => 'api#index'
+
+
   root 'home#index'
   get '/offline' => 'home#offline', as: 'offline'
   get 'login' => 'home#login', as: 'login'

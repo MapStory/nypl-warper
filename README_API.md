@@ -20,3 +20,9 @@ json formatted metadata about the map (thumbs, accuracy, dates, etc) including a
 to the geotif file for download.
 
 
+## Authentication
+
+All API requests require an API key. This key should be passed
+via a request header "X-API-KEY"
+
+	curl -H "X-API-KEY: 31044b6c69cac20c530059b88e80fa8d" http://localhost:3000/api/v1/maps

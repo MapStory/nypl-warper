@@ -1,5 +1,6 @@
 namespace :set do
 
+  # Run with rake set:super_user["dlee"]
   desc "Grants user super_user and administrator rights"
   task :super_user, [:login]  => :environment do |t,args|
 

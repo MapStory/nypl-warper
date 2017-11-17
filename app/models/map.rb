@@ -234,21 +234,9 @@ class Map < ActiveRecord::Base
   #INSTANCE METHODS
   #############################################
     
-  def warped?
-    status == :warped
-  end
-  
+
   def available?
-    return [:available,:warping, :warped, :published].include?(status)
-  end
-
-  # This method is automatically handled by rails?
-  def published?
-    status == :published
-  end
-
-  def publishing?
-    status == :publishing
+    return [:available,:warping, :warped, :published].include?(status.to_sym)
   end
 
   # At some point rails switched from strings to symbols.

@@ -16,6 +16,8 @@ class ApiController < ApplicationController
   end
 
   # Specific details about a map
+  # We really probably don't need this, since we're including all
+  # the details from the index
   def map
     @map = Map.find(params[:id])
   end

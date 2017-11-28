@@ -31,8 +31,9 @@ class ApiController < ApplicationController
   # Expect an API key in X-API-KEY
   def validate_api_key
     # Rails automatically underscores the dashes...
-    Apikey.find_by! key: request.headers["HTTP_X_API_KEY"], enabled: true
-  end
+    key = Apikey.find_by key: request.headers["HTTP_X_API_KEY"], enabled: true
 
+    head 401 unless key
+  end
   
 end

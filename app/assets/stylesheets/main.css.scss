@@ -1315,4 +1315,20 @@ span.subdued {
 
 }
 
+// Apply to a table element to add proper padding around tables
+.padded {
+  th, td {
+    padding-right: 1em;
+  }
 
+}
+
+.new_apikey {
+  input[type='text'] {
+    width: 30em;
+  }
+
+  .field {
+    margin-bottom: .7em;
+  }
+}

@@ -35,7 +35,7 @@ class ApikeysController < ApplicationController
 
     respond_to do |format|
       if @apikey.save
-        format.html { redirect_to @apikey, notice: 'Apikey was successfully created.' }
+        format.html { redirect_to @apikey, notice: 'API key was successfully created.' }
       else
         format.html { render :new }
       end
@@ -47,7 +47,7 @@ class ApikeysController < ApplicationController
   def update
     respond_to do |format|
       if @apikey.update(apikey_params)
-        format.html { redirect_to @apikey, notice: 'Apikey was successfully updated.' }
+        format.html { redirect_to @apikey, notice: 'API key was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -59,7 +59,7 @@ class ApikeysController < ApplicationController
   def destroy
     @apikey.destroy
     respond_to do |format|
-      format.html { redirect_to apikeys_url, notice: 'Apikey was successfully destroyed.' }
+      format.html { redirect_to apikeys_url, notice: 'API key was successfully destroyed.' }
     end
   end
 

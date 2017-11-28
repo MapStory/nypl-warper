@@ -1,9 +1,10 @@
-<h1>Listing Apikeys</h1>
+<h1>Listing API keys</h1>
 
-<table>
+<table class="padded">
   <thead>
     <tr>
       <th>Key</th>
+      <th>Notes</th>
       <th>Enabled</th>
       <th colspan="3"></th>
     </tr>
@@ -13,6 +14,7 @@
     <% @apikeys.each do |apikey| %>
       <tr>
         <td><%= apikey.key %></td>
+        <td><%= apikey.notes %></td>
         <td><%= apikey.enabled %></td>
         <td><%= link_to 'Show', apikey %></td>
         <td><%= link_to 'Edit', edit_apikey_path(apikey) %></td>
@@ -24,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Apikey', new_apikey_path %>
+<%= link_to 'New API key', new_apikey_path %>

@@ -5,6 +5,8 @@ class ApiController < ApplicationController
   before_filter :validate_api_key
 
   # All maps in system
+  # This would be rarely used, as you can't consume an un-warped map
+  # however could be used to point users to work that needs to be completed.
   def index
     @maps = Map.all
   end
@@ -12,7 +14,12 @@ class ApiController < ApplicationController
   
   # All warped maps in system
   def warped
-    @maps = Map.warped
+    if params[:user]
+      user = User.find_by!(login: params[:user])
+      @maps = user.maps.warped
+    else
+      @maps = Map.warped
+    end
   end
 
   # Specific details about a map

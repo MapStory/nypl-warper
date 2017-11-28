@@ -26,18 +26,15 @@ class Map < ActiveRecord::Base
   validates_attachment_size(:upload, :less_than => MAX_ATTACHMENT_SIZE) if defined?(MAX_ATTACHMENT_SIZE)
   validates_attachment_content_type :upload, content_type: /\Aimage\/.*\z/
 
+  # We don't really use published, or publishing anymore...
   enum status: [:unloaded, :loading, :available, :warping, :warped, :published, :publishing]
   enum mask_status: [:unmasked, :masking, :masked]
   enum rough_state: [:step_1, :step_2, :step_3, :step_4]
 
   has_paper_trail :ignore => [:bbox, :bbox_geom]
-  
-  scope :warped,    -> { where(status: [:warped, :published]) }
-  scope :published, -> { where(status: :published) }
-  
+    
   attr_accessor :error
 
-  
   after_initialize :default_values
 
   after_destroy :delete_images

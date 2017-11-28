@@ -9,25 +9,29 @@ The API is version 1, in the future there may be other versions.
 
 ## Methods
 
-### Get list of all maps
-json formatted list that returns all maps that have been warped for a given user. 
+### Get list of all warped maps
+json formatted list that returns all maps that have been warped in the system. 
 
-This should include links to thumbnails, accuracy of warp, times, dates, etc.
+All relevant metadata is returned, including a "download" link to fetch the 
+rectified geotiff image.
 
 Example: 
 
-  GET /api/v1/maps.json
-
+  GET /api/v1/warped.json
 
 
 #### Filter by user
 
-You can optionally filter all maps by if the user has added to "my maps". Supply the login
-name, which will be the mapstory user id.
+You can optionally filter all maps by the "My maps" collection. By default
+new maps will be added to that user's "my maps" collection.
+
+Supply the login name, which will be the mapstory user id.
 
 Example:
 	
+	GET /api/v1/warped.json?user=dlee
 
+This will return 404 if the user can't be found
 
 ## Authentication
 
@@ -36,6 +40,6 @@ via a request header "X-API-KEY"
 
 Example:
 
-	curl -H "X-API-KEY: 31044b6c69cac20c530059b88e80fa8d" http://localhost:3000/api/v1/maps.json
+	curl -H "X-API-KEY: 31044b6c69cac20c530059b88e80fa8d" http://localhost:3000/api/v1/warped.json
 
 If no API key, or an invalid API key, is passed in the API will return a 401 Unauthorized 

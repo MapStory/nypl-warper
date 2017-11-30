@@ -1,34 +1,29 @@
 <%= form_for(@map, :html => {:multipart => true}) do |f| %>
-  <div class="column span-12">
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <b>Description </b><span class="tiny-text">(max 256 chars)</span><br />
+    <%= f.text_area(:description, :cols => 30, :rows => 12) %>
+  </p>
+  
+  <%# Only show the upload if it's a new image %>
+  <%- if defined?(page)  && page =~ /new/ -%>
     <p>
-      <b>Title</b><br />
-      <%= f.text_field :title %>
+      <label for="upload"><b>Upload An Image File:</b>
+        <% if @max_size %>
+          Max size: <%=  number_to_human_size @max_size %>.
+        <% end %>
+        <%= @upload_file_message %>
+      </label> <br />
+      <%= f.file_field :upload %>
     </p>
+  <%- end -%>
 
-    <p>
-      <b>Description </b><span class="tiny-text">(max 256 chars)</span><br />
-      <%= f.text_area(:description, :cols => 30, :rows => 12) %>
-    </p>
-  </div>
+  <p>
+    <%= f.submit((defined?(page) && page =~ /new/) ? "Create" : "Update" )%>
+  </p>
 
-  <div class="column span-24">
-    
-    <%# Only show the upload if it's a new image %>
-    <%- if defined?(page)  && page =~ /new/ -%>
-      <p>
-        <label for="upload"><b>Upload An Image File:</b>
-          <% if @max_size %>
-            Max size: <%=  number_to_human_size @max_size %>.
-          <% end %>
-          <%= @upload_file_message %>
-        </label> <br />
-        <%= f.file_field :upload %>
-      </p>
-    <%- end -%>
-
-    <p>
-      <%= f.submit((defined?(page) && page =~ /new/) ? "Create" : "Update" )%>
-    </p>
-
-  </div>
 <% end %>

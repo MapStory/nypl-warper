@@ -34,4 +34,6 @@ json.maps @maps do |map|
   # Human readable time
   json.last_modified "#{time_ago_in_words(map.updated_at)} ago"
 
+  # List of users that have saved this map?
+
 end

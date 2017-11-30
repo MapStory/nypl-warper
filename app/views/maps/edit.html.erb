@@ -2,10 +2,15 @@
 
 <%= error_messages_for @map %>
 
-<% if (@map.users.include?(current_user) || admin_authorized?) %>
-   <p>&mdash; <%=  link_to 'Delete this map.', map_path(@map), method: :delete %> &mdash; </p>
-<% end %>
-
 <%= render "form" %>
-<%#= render :partial => "form_remote", :locals => {:page => "edit"} %>
+
+<div>
 <%= link_to "Cancel", map_path(@map) %>
+
+or 
+
+<%# Maps can technically be owned by multiple people, so this could get confusing... %>
+<% if (@map.users.include?(current_user) || admin_authorized?) %>
+	<%=  link_to 'Delete this map', map_path(@map), method: :delete %>.
+<% end %>
+</div>

@@ -1,3 +1,4 @@
+# Not really used right now, as we're focusing only on warped maps
 json.maps @maps do |map|
 	# Basic metadata
 	json.id map.id

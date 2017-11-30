@@ -33,6 +33,15 @@ Example:
 
 This will return 404 if the user can't be found
 
+## Future methods
+
+Currently fetching un-warped maps is not implemented. This may be useful if wanting to
+direct users to maps that need work.
+
+Fetching data about a specific map is not implemented. All relevant data is returned
+with the list.
+
+
 ## Authentication
 
 All API requests require an API key. This key should be passed

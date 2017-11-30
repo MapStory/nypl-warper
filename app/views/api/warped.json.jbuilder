@@ -5,15 +5,14 @@ json.maps @maps do |map|
   json.description map.description
   
   # Status, with friendly parsing
-  json.warped map.warped?
-
-  # Map details
-  #json.rough_lat map.rough_lat
-  #json.rough_lon map.rough_lon
-  #json.rough_centroid map.rough_centroid
+  #json.warped map.warped?
   
   # Might want to call bounds here instead - would fall back if un-warped?
   json.bbox map.bbox
+
+
+  # Number of control points
+  json.control_point_count map.gcps.hard.size
 
 
   # Thumbnail image
@@ -31,5 +30,8 @@ json.maps @maps do |map|
   json.rectified_at map.rectified_at
   json.gcp_touched_at map.gcp_touched_at
   json.upload_updated_at map.upload_updated_at
+
+  # Human readable time
+  json.last_modified "#{time_ago_in_words(map.updated_at)} ago"
 
 end

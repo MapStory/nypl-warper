@@ -12,7 +12,7 @@
   <%# Only show the upload if it's a new image %>
   <%- if defined?(page)  && page =~ /new/ -%>
     <p>
-      <label for="upload"><b>Upload An Image File:</b>
+      <label for="upload"><b>Add an image file</b>
         <% if @max_size %>
           Max size: <%=  number_to_human_size @max_size %>.
         <% end %>
@@ -23,7 +23,7 @@
   <%- end -%>
 
   <p>
-    <%= f.submit((defined?(page) && page =~ /new/) ? "Create" : "Update" )%>
+    <%= f.submit((defined?(page) && page =~ /new/) ? "Upload" : "Update" )%>
   </p>
 
 <% end %>

@@ -52,3 +52,6 @@ Example:
 	curl -H "X-API-KEY: 31044b6c69cac20c530059b88e80fa8d" http://localhost:3000/api/v1/warped.json
 
 If no API key, or an invalid API key, is passed in the API will return a 401 Unauthorized 
+
+An API key can be generated through the admin menu. The user must have administrative rights to
+view this menu and create keys.
